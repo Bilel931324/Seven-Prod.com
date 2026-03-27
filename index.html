@@ -697,11 +697,8 @@ footer { background:var(--dark); color:var(--cream); padding:52px 28px 28px; }
 </section>
 
 <!-- DEVIS -->
-
-
-<!-- DEVIS -->
 <section class="devis section" id="devis">
-  <div class="rv" style="margin-bottom:40px;">
+  <div class="rv devis-top">
     <div class="s-eyebrow">Devis gratuit · Seven-Prod</div>
     <div class="s-title">TRAVAILLONS<br>ENSEMBLE</div>
   </div>
@@ -709,134 +706,69 @@ footer { background:var(--dark); color:var(--cream); padding:52px 28px 28px; }
   <div id="devisForm" class="rv">
     <div class="devis-wrap">
 
-      <!-- COLONNE GAUCHE -->
       <div class="devis-left">
-        <div style="font-size:9px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:20px;">SEVEN-PROD · PARIS</div>
-        <div class="devis-left-title">Parlons<br>de ton<br>projet<span>.</span></div>
-        <p class="devis-left-sub">Je réponds sous 24 h. Échange direct, sans intermédiaire, sans engagement.</p>
+        <div class="devis-left-brand">SEVEN<br>PROD<span>.</span></div>
+        <p class="devis-left-sub">Décris-moi ton projet. Je te reviens avec un devis sur-mesure sous 24 h — par WhatsApp ou email.</p>
         <div class="devis-infos">
-          <div class="devis-info-row"><span class="di-key">Localisation</span><span class="di-val">Paris &amp; Île-de-France</span></div>
+          <div class="devis-info-row"><span class="di-key">Zone</span><span class="di-val">Paris &amp; Île-de-France</span></div>
           <div class="devis-info-row"><span class="di-key">Instagram</span><span class="di-val">@sevenprod</span></div>
-          <div class="devis-info-row"><span class="di-key">Email</span><span class="di-val">contact@seven-prod.fr</span></div>
           <div class="devis-info-row"><span class="di-key">Réponse</span><span class="di-val">&lt; 24 heures</span></div>
         </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px;">
-          <div style="display:flex;align-items:center;gap:7px;font-size:11px;color:rgba(255,255,255,.35);">
-            <span style="color:var(--red);font-size:14px;">✓</span> Réponse rapide
-          </div>
-          <div style="display:flex;align-items:center;gap:7px;font-size:11px;color:rgba(255,255,255,.35);">
-            <span style="color:var(--red);font-size:14px;">✓</span> Sans engagement
-          </div>
-          <div style="display:flex;align-items:center;gap:7px;font-size:11px;color:rgba(255,255,255,.35);">
-            <span style="color:var(--red);font-size:14px;">✓</span> Tarif adapté
-          </div>
-        </div>
-        <div class="devis-total-panel">
-          <div class="dtp-label">Estimation du projet</div>
-          <div class="dtp-price" id="cTotal">—</div>
-          <div class="dtp-note">Indicatif — chaque projet est discuté ensemble</div>
+        <div class="devis-reassurance">
+          <div class="dr-item"><span class="dr-icon">✓</span>Devis 100 % gratuit</div>
+          <div class="dr-item"><span class="dr-icon">✓</span>Sans engagement</div>
+          <div class="dr-item"><span class="dr-icon">✓</span>Tarif adapté à ton budget</div>
         </div>
       </div>
 
-      <!-- COLONNE DROITE -->
       <div class="devis-right">
 
-        <!-- ÉTAPE 1 : Prestation -->
         <div class="devis-step rv">
-          <div class="step-head">
-            <div class="step-num">1</div>
-            <div class="step-title">CHOISIS TA PRESTATION</div>
-          </div>
+          <div class="step-head"><div class="step-num">1</div><div class="step-title">TON PROJET</div></div>
           <div class="step-body">
-            <div class="prest-cards" id="mainOpts">
-              <div class="prest-card" onclick="pickMain(this,150)">
-                <div class="prest-icon">📸</div>
-                <div class="prest-info"><div class="prest-name">Shooting Photo</div><div class="prest-desc">Identité visuelle, press kit, réseaux</div></div>
-                <div class="prest-price-badge">150 €</div>
-                <div class="prest-radio"></div>
-              </div>
-              <div class="prest-card" onclick="pickMain(this,500)">
-                <div class="prest-icon">🎬</div>
-                <div class="prest-info"><div class="prest-name">Clip Vidéo</div><div class="prest-desc">Tournage, montage, color grading 4K</div></div>
-                <div class="prest-price-badge">500 €</div>
-                <div class="prest-radio"></div>
-              </div>
-              <div class="prest-card" onclick="pickMain(this,300)">
-                <div class="prest-icon">📱</div>
-                <div class="prest-info"><div class="prest-name">Pack Réseaux</div><div class="prest-desc">Reels, TikTok, Shorts — 5 vidéos verticales</div></div>
-                <div class="prest-price-badge">300 €</div>
-                <div class="prest-radio"></div>
-              </div>
-              <div class="prest-card" onclick="pickMain(this,900)">
-                <div class="prest-icon">🏆</div>
-                <div class="prest-info"><div class="prest-name">Offre Complète</div><div class="prest-desc">Photo + Vidéo + Réseaux — tout inclus</div></div>
-                <div class="prest-price-badge">900 €</div>
-                <div class="prest-radio"></div>
-              </div>
+            <div class="svs-label">Quel type de contenu ?</div>
+            <div class="svs-opts" id="svsOpts">
+              <div class="svs-opt" onclick="pickSvc(this,'Shooting Photo')">Shooting Photo</div>
+              <div class="svs-opt" onclick="pickSvc(this,'Clip Vidéo')">Clip Vidéo</div>
+              <div class="svs-opt" onclick="pickSvc(this,'Pack Réseaux')">Pack Réseaux</div>
+              <div class="svs-opt" onclick="pickSvc(this,'Brand Content')">Brand Content</div>
+              <div class="svs-opt" onclick="pickSvc(this,'Autre / Plusieurs')">Autre / Plusieurs</div>
+            </div>
+            <div class="f-grp" style="margin-top:16px;">
+              <label>Décris ton projet</label>
+              <textarea placeholder="Ex : Je veux un clip rap, ambiance rue, Paris 18e, tournage en journée. J'ai déjà un beat. Je veux quelque chose de cinématique..."></textarea>
             </div>
           </div>
         </div>
 
-        <!-- ÉTAPE 2 : Options -->
         <div class="devis-step rv">
-          <div class="step-head">
-            <div class="step-num">2</div>
-            <div class="step-title">OPTIONS SUPPLÉMENTAIRES</div>
-          </div>
-          <div class="step-body">
-            <div class="opts-grid">
-              <div class="opt-card" onclick="pickExtra(this,80)">
-                <div class="opt-card-top"><span class="opt-name">Déplacement hors Paris</span><div class="opt-check"></div></div>
-                <div class="opt-price">+80 €</div>
-              </div>
-              <div class="opt-card" onclick="pickExtra(this,150)">
-                <div class="opt-card-top"><span class="opt-name">Drone — prises aériennes</span><div class="opt-check"></div></div>
-                <div class="opt-price">+150 €</div>
-              </div>
-              <div class="opt-card" onclick="pickExtra(this,100)">
-                <div class="opt-card-top"><span class="opt-name">Shooting de nuit / studio</span><div class="opt-check"></div></div>
-                <div class="opt-price">+100 €</div>
-              </div>
-              <div class="opt-card" onclick="pickExtra(this,60)">
-                <div class="opt-card-top"><span class="opt-name">Livraison express 48 h</span><div class="opt-check"></div></div>
-                <div class="opt-price">+60 €</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ÉTAPE 3 : Coordonnées -->
-        <div class="devis-step rv">
-          <div class="step-head">
-            <div class="step-num">3</div>
-            <div class="step-title">TES COORDONNÉES</div>
-          </div>
+          <div class="step-head"><div class="step-num">2</div><div class="step-title">TES COORDONNÉES</div></div>
           <div class="step-body">
             <div class="f-fields">
               <div class="f-row2">
-                <div class="f-grp"><label>Prénom / Pseudo</label><input type="text" placeholder="Ton nom d'artiste"></div>
+                <div class="f-grp"><label>Prénom / Nom d'artiste</label><input type="text" placeholder="Ton nom d'artiste"></div>
                 <div class="f-grp"><label>Instagram / TikTok</label><input type="text" placeholder="@toncompte"></div>
               </div>
               <div class="f-row2">
-                <div class="f-grp"><label>Email</label><input type="email" placeholder="ton@email.com"></div>
+                <div class="f-grp"><label>WhatsApp</label><input type="tel" placeholder="+33 6 XX XX XX XX"></div>
                 <div class="f-grp"><label>Date souhaitée</label><input type="date"></div>
               </div>
-              <div class="f-grp"><label>Décris ton projet</label><textarea placeholder="Lieu, ambiance, références visuelles, tout ce que tu as en tête..."></textarea></div>
-              <button class="btn-submit" onclick="sendDevis()">
-                ENVOYER À SEVEN-PROD <span class="btn-submit-arr">→</span>
-              </button>
+              <div class="devis-submit-block">
+                <button class="btn-submit" onclick="sendDevis()">ENVOYER MA DEMANDE <span class="btn-submit-arr">→</span></button>
+                <p class="devis-privacy">Tu recevras ton devis personnalisé sous 24 h par WhatsApp ou email.</p>
+              </div>
             </div>
           </div>
         </div>
 
-      </div><!-- fin devis-right -->
-    </div><!-- fin devis-wrap -->
-  </div><!-- fin devisForm -->
+      </div>
+    </div>
+  </div>
 
   <div class="success-box" id="devisOk">
-    <div class="success-icon">✅</div>
-    <div class="success-title">C'EST PARTI !</div>
-    <p class="success-sub">Je te réponds sous <strong style="color:var(--red);font-style:normal;">24 heures</strong>.<br>Vérifie aussi tes DMs Instagram.</p>
+    <div class="success-icon" style="font-size:40px;letter-spacing:2px;color:var(--red);font-family:var(--ft);">SP.</div>
+    <div class="success-title">DEMANDE ENVOYÉE !</div>
+    <p class="success-sub">Je prépare ton devis personnalisé et reviens vers toi sous <strong style="color:var(--red);font-style:normal;">24 heures</strong>.<br>Vérifie tes DMs Instagram et WhatsApp.</p>
   </div>
 </section>
 
