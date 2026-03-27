@@ -1,3 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEVEN-PROD — Photographe &amp; Vidéaste Paris</title>
+<style>
+/* ── POLICES SYSTÈME — aucun chargement externe ── */
+:root {
+  --cream:  #F4EFE6;
+  --cream2: #EAE3D8;
+  --white:  #FAF7F2;
+  --black:  #0D0C0B;
+  --dark:   #1A1917;
+  --red:    #B8860B;
+  --red2:   #8B6508;
+  --grey:   #7A756E;
+  --light:  #C4BEB5;
+  --border: rgba(13,12,11,0.10);
+  --ft: Impact,'Arial Black',Arial,sans-serif;
+  --fs: Georgia,'Times New Roman',serif;
+  --fb: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+}
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--white); color:var(--black); font-family:var(--fb); overflow-x:hidden; }
+
+/* ── LOADER ── */
+#loader { position:fixed; inset:0; z-index:9999; background:var(--black); display:flex; flex-direction:column; justify-content:center; align-items:center; gap:28px; animation:loaderFade 0.5s ease 1.6s forwards; pointer-events:auto; }
+@keyframes loaderFade { to { opacity:0; visibility:hidden; pointer-events:none; } }
+.ld-num { font-family:var(--ft); font-size:clamp(90px,18vw,170px); color:var(--white); line-height:1; letter-spacing:-3px; }
+.ld-pct { color:var(--red); }
+.ld-track { width:min(280px,72vw); height:1px; background:rgba(255,255,255,0.15); }
+.ld-bar { height:1px; background:var(--red); animation:ldBarFill 1.4s cubic-bezier(0.4,0,0.2,1) forwards; }
+@keyframes ldBarFill { from{width:0%} to{width:100%} }
+.ld-txt { font-size:10px; letter-spacing:6px; color:rgba(255,255,255,0.3); text-transform:uppercase; }
+
 /* ── NAV ── */
 nav { position:fixed; top:0; left:0; right:0; z-index:500; height:64px; display:flex; align-items:center; justify-content:space-between; padding:0 28px; background:rgba(250,247,242,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
 .nav-logo { font-family:var(--ft); font-size:20px; letter-spacing:5px; color:var(--black); text-decoration:none; }
