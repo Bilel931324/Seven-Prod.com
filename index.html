@@ -123,9 +123,9 @@ nav {
 .works { background:var(--cream); padding:80px 0; }
 .works-head { padding:0 28px 32px; display:flex; justify-content:space-between; align-items:flex-end; }
 .works-count { font-size:11px; letter-spacing:3px; color:var(--grey); }
-.works-carousel { position:relative; overflow:hidden; padding:0; width:100%; }
-.works-scroll { display:flex; gap:0; transition:transform 0.6s cubic-bezier(0.22,1,0.36,1); will-change:transform; width:100%; }
-.w-card { flex-shrink:0; width:100vw; max-width:100%; display:grid; grid-template-columns:1fr 1fr; min-height:520px; background:var(--dark); cursor:pointer; position:relative; }
+.works-carousel { position:relative; width:100%; overflow:hidden; }
+.works-scroll { display:flex; width:500%; transition:transform 0.65s cubic-bezier(0.22,1,0.36,1); will-change:transform; }
+.w-card { flex-shrink:0; width:20%; display:grid; grid-template-columns:1fr 1fr; min-height:520px; background:var(--dark); cursor:pointer; }
 .w-card:nth-child(even) .w-thumb { order:2; }
 .w-card:nth-child(even) .w-info-side { order:1; }
 .w-thumb { position:relative; overflow:hidden; }
@@ -370,7 +370,7 @@ footer { background:var(--dark); color:var(--cream); padding:52px 28px 28px; }
 .tp-full-note { font-family:var(--fs); font-style:italic; font-size:13px; color:rgba(255,255,255,.25); margin-top:14px; }
 
 /* ── CAROUSEL ── */
-.works { background:var(--cream); padding:80px 0 0; overflow:hidden; }
+.works { background:var(--cream); padding:80px 0 0; }
 .works-head { padding:0 48px 48px; display:flex; justify-content:space-between; align-items:flex-end; }
 .works-count { font-size:11px; letter-spacing:3px; color:var(--grey); }
 @media (max-width:767px) {
@@ -974,7 +974,7 @@ var _ci = 0, _ct = 5;
 function goTo(n) {
   _ci = n;
   var t = document.getElementById('worksTrack');
-  if (t) t.style.transform = 'translateX(-' + (n * 100) + '%)';
+  if (t) t.style.transform = 'translateX(-' + (n * 20) + '%)';
   document.querySelectorAll('.carousel-dot').forEach(function(d, i) {
     d.classList.toggle('active', i === n);
   });
