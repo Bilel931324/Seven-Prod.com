@@ -7,15 +7,15 @@
 <style>
 /* ── POLICES SYSTÈME — aucun chargement externe requis ── */
 :root {
-  --cream:  #F5F0E8;
-  --cream2: #EDE8DF;
-  --white:  #FDFBF8;
-  --black:  #111010;
-  --dark:   #1E1D1C;
-  --red:    #C8372D;
-  --red2:   #A02820;
-  --grey:   #8A8680;
-  --light:  #D8D4CC;
+  --cream:  #F4EFE6;
+  --cream2: #EAE3D8;
+  --white:  #FAF7F2;
+  --black:  #0D0C0B;
+  --dark:   #1A1917;
+  --red:    #B8860B;
+  --red2:   #8B6508;
+  --grey:   #7A756E;
+  --light:  #C4BEB5;
   --border: rgba(17,16,16,0.10);
   --ft: Impact, 'Arial Black', Arial, sans-serif;
   --fs: Georgia, 'Times New Roman', serif;
@@ -286,6 +286,12 @@ nav {
 .success-sub { font-family:var(--fs); font-style:italic; font-size:17px; color:var(--grey); line-height:1.65; }
 
 @media (min-width:768px) {
+  .services-grid { grid-template-columns:repeat(4,1fr); }
+  .devis-wrap { flex-direction:row; align-items:flex-start; gap:40px; }
+  .devis-left { flex:0 0 300px; position:sticky; top:80px; }
+  .devis-right { flex:1; }
+  .tarifs { padding:120px 48px; }
+  .tarifs-intro { margin-bottom:72px; }
   .devis-wrap { flex-direction:row; align-items:flex-start; gap:32px; }
   .devis-left { flex:0 0 320px; position:sticky; top:80px; }
   .devis-right { flex:1; }
@@ -327,47 +333,57 @@ footer { background:var(--dark); color:var(--cream); padding:52px 28px 28px; }
 .footer-socials a:hover { color:var(--red); }
 
 
-/* ── TARIFS PREMIUM ── */
+
+/* ── SERVICES GRID (pas de prix) ── */
 .tarifs { background:var(--white); }
-.tarifs-premium { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border); margin-bottom:2px; }
-.tp-card { background:var(--cream); padding:44px 36px; display:flex; flex-direction:column; gap:0; position:relative; transition:background .3s; }
-.tp-card:hover { background:var(--cream2); }
-.tp-card.tp-featured { background:var(--red); color:white; }
-.tp-card.tp-featured:hover { background:var(--red2); }
-.tp-popular { position:absolute; top:20px; right:20px; font-size:9px; letter-spacing:3px; text-transform:uppercase; background:var(--black); color:white; padding:5px 10px; border-radius:1px; }
-.tp-num { font-size:10px; letter-spacing:4px; color:var(--light); margin-bottom:20px; }
-.tp-card.tp-featured .tp-num { color:rgba(255,255,255,.35); }
-.tp-icon { font-size:32px; margin-bottom:20px; }
-.tp-name { font-family:var(--ft); font-size:clamp(26px,3vw,36px); line-height:1; letter-spacing:-1px; margin-bottom:14px; }
-.tp-desc { font-family:var(--fs); font-style:italic; font-size:14px; color:var(--grey); line-height:1.65; margin-bottom:32px; }
-.tp-card.tp-featured .tp-desc { color:rgba(255,255,255,.6); }
-.tp-includes { display:flex; flex-direction:column; gap:10px; flex:1; margin-bottom:36px; }
-.tp-include { font-size:13px; display:flex; align-items:center; gap:10px; color:var(--dark); }
-.tp-card.tp-featured .tp-include { color:rgba(255,255,255,.85); }
-.tp-check { color:var(--red); font-weight:bold; flex-shrink:0; }
-.tp-card.tp-featured .tp-check { color:rgba(255,255,255,.6); }
-.tp-footer { display:flex; justify-content:space-between; align-items:flex-end; border-top:1px solid var(--border); padding-top:28px; margin-top:auto; }
-.tp-card.tp-featured .tp-footer { border-color:rgba(255,255,255,.15); }
-.tp-from { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--grey); margin-bottom:4px; }
-.tp-card.tp-featured .tp-from { color:rgba(255,255,255,.5); }
-.tp-price { font-family:var(--ft); font-size:clamp(32px,4vw,48px); line-height:1; letter-spacing:-1px; }
-.tp-btn { font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:bold; background:var(--black); color:white; padding:12px 22px; text-decoration:none; border-radius:2px; transition:all .25s; white-space:nowrap; }
-.tp-btn:hover { background:var(--red); }
-.tp-btn-white { background:white; color:var(--red); }
-.tp-btn-white:hover { background:rgba(255,255,255,.85); }
-.tp-full { background:var(--dark); padding:56px 60px; display:grid; grid-template-columns:1.4fr 1fr; gap:80px; align-items:center; }
-.tp-full-icon { font-size:40px; margin-bottom:16px; margin-top:16px; }
-.tp-full-name { font-family:var(--ft); font-size:clamp(40px,5vw,64px); color:white; line-height:.92; letter-spacing:-2px; margin-bottom:16px; }
-.tp-full-desc { font-family:var(--fs); font-style:italic; font-size:17px; color:rgba(255,255,255,.45); line-height:1.7; margin-bottom:28px; }
-.tp-full-includes { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.tp-include-w { font-size:13px; color:rgba(255,255,255,.6); display:flex; gap:10px; align-items:flex-start; }
-.tp-include-w span { color:var(--red); flex-shrink:0; }
-.tp-full-right { text-align:right; }
-.tp-full-from { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:rgba(255,255,255,.3); margin-bottom:8px; }
-.tp-full-price { font-family:var(--ft); font-size:clamp(64px,8vw,100px); color:white; line-height:1; letter-spacing:-3px; margin-bottom:28px; }
-.tp-full-btn { display:inline-block; background:var(--red); color:white; font-size:12px; letter-spacing:3px; text-transform:uppercase; font-weight:bold; padding:18px 36px; text-decoration:none; border-radius:2px; transition:background .25s; }
-.tp-full-btn:hover { background:var(--red2); }
-.tp-full-note { font-family:var(--fs); font-style:italic; font-size:13px; color:rgba(255,255,255,.25); margin-top:14px; }
+.tarifs-intro { margin-bottom:60px; }
+.tarifs-sub { font-family:var(--fs); font-style:italic; font-size:clamp(16px,2.5vw,19px); color:var(--grey); line-height:1.7; max-width:520px; margin-top:20px; }
+.services-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:var(--border); }
+.sv-card { background:var(--cream); padding:48px 40px; display:flex; flex-direction:column; gap:0; position:relative; transition:background .3s; cursor:pointer; }
+.sv-card:hover { background:var(--cream2); }
+.sv-card.sv-featured { background:var(--black); color:var(--white); }
+.sv-card.sv-featured:hover { background:var(--dark); }
+.sv-badge { position:absolute; top:20px; right:20px; font-size:9px; letter-spacing:3px; text-transform:uppercase; background:var(--red); color:var(--black); padding:5px 11px; border-radius:1px; font-weight:bold; }
+.sv-icon { font-size:36px; margin-bottom:20px; }
+.sv-name { font-family:var(--ft); font-size:clamp(26px,3.5vw,38px); line-height:1; letter-spacing:-1px; margin-bottom:14px; }
+.sv-desc { font-family:var(--fs); font-style:italic; font-size:14px; color:var(--grey); line-height:1.65; margin-bottom:24px; flex:1; }
+.sv-card.sv-featured .sv-desc { color:rgba(255,255,255,.5); }
+.sv-tags { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
+.sv-tags span { font-size:9px; letter-spacing:2px; text-transform:uppercase; border:1px solid var(--border); padding:4px 10px; color:var(--grey); border-radius:1px; }
+.sv-card.sv-featured .sv-tags span { border-color:rgba(255,255,255,.15); color:rgba(255,255,255,.4); }
+.sv-cta { display:inline-flex; align-items:center; gap:8px; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:bold; color:var(--black); border-bottom:1.5px solid var(--black); padding-bottom:4px; cursor:pointer; transition:all .25s; width:fit-content; }
+.sv-cta:hover { color:var(--red); border-color:var(--red); gap:14px; }
+.sv-cta-light { color:var(--red); border-color:var(--red); }
+.sv-cta-light:hover { color:white; border-color:white; }
+
+/* ── DEVIS REFONTE ── */
+.devis { background:var(--cream2); }
+.devis-top { margin-bottom:52px; }
+.devis-wrap { display:flex; flex-direction:column; gap:40px; }
+.devis-left { background:var(--black); border-radius:4px; padding:44px 36px; }
+.devis-left-brand { font-family:var(--ft); font-size:clamp(48px,8vw,72px); color:var(--white); line-height:.88; letter-spacing:-2px; margin-bottom:20px; }
+.devis-left-brand span { color:var(--red); }
+.devis-left-sub { font-family:var(--fs); font-style:italic; font-size:15px; color:rgba(255,255,255,.45); line-height:1.7; margin-bottom:32px; }
+.devis-infos { display:flex; flex-direction:column; gap:0; margin-bottom:32px; }
+.devis-info-row { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid rgba(255,255,255,.07); }
+.devis-info-row:first-child { border-top:1px solid rgba(255,255,255,.07); }
+.di-key { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:rgba(255,255,255,.3); }
+.di-val { font-family:var(--fs); font-style:italic; font-size:14px; color:rgba(255,255,255,.7); }
+.devis-reassurance { display:flex; flex-direction:column; gap:10px; }
+.dr-item { display:flex; align-items:center; gap:10px; font-size:13px; color:rgba(255,255,255,.45); }
+.dr-icon { color:var(--red); font-size:14px; flex-shrink:0; }
+
+/* Sélecteur de service */
+.svs-label { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--grey); margin-bottom:10px; }
+.svs-opts { display:flex; flex-direction:column; gap:3px; }
+.svs-opt { padding:13px 16px; border:1.5px solid var(--border); background:var(--white); cursor:pointer; font-size:14px; transition:all .2s; user-select:none; }
+.svs-opt:hover { border-color:rgba(13,12,11,.25); background:var(--cream); }
+.svs-opt.on { border-color:var(--red); background:#FBF7EE; color:var(--black); font-weight:500; }
+
+.devis-privacy { font-family:var(--fs); font-style:italic; font-size:13px; color:var(--grey); margin-top:12px; text-align:center; line-height:1.5; }
+.devis-submit-block { display:flex; flex-direction:column; align-items:stretch; }
+
+/* Fix JS pour pickSvc */
 
 /* ── CAROUSEL ── */
 .works { background:var(--cream); padding:80px 0 0; }
@@ -460,7 +476,7 @@ footer { background:var(--dark); color:var(--cream); padding:52px 28px 28px; }
 
   <div class="hero-badge">
     <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="60" cy="60" r="58" fill="#C8372D"/>
+      <circle cx="60" cy="60" r="58" fill="#B8860B"/>
       <path id="arc" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/>
       <text font-size="9" fill="rgba(255,255,255,0.8)" letter-spacing="5" font-family="Arial,sans-serif">
         <textPath href="#arc">PARIS · PHOTO · VIDÉO · 2024 ·</textPath>
@@ -602,97 +618,133 @@ footer { background:var(--dark); color:var(--cream); padding:52px 28px 28px; }
   </div>
 </section>
 
-<!-- TARIFS -->
+<!-- TARIFS + DEVIS -->
 <section class="tarifs section" id="tarifs">
-  <div class="rv">
-    <div class="s-eyebrow">Investissement</div>
-    <div class="s-title" style="margin-bottom:16px;">FORMULES<br>&amp; TARIFS</div>
-    <p style="font-family:var(--fs);font-style:italic;font-size:17px;color:var(--grey);max-width:480px;line-height:1.7;margin-bottom:56px;">Chaque projet est unique. Ces tarifs sont une base — on adapte ensemble selon ta vision.</p>
+  <div class="rv tarifs-intro">
+    <div class="s-eyebrow">Mes services</div>
+    <div class="s-title">CE QUE<br>JE CRÉE<br><span style="color:var(--red)">POUR TOI</span></div>
+    <p class="tarifs-sub">Chaque projet est unique. Décris-moi ta vision — je te reviens avec un devis personnalisé sous 24 h.</p>
   </div>
-  <div class="tarifs-premium rv">
 
-    <div class="tp-card">
-      <div class="tp-num">01</div>
-      <div class="tp-icon">📸</div>
-      <div class="tp-name">Shooting Photo</div>
-      <div class="tp-desc">Identité visuelle, press kit &amp; réseaux sociaux. Des images qui reflètent qui tu es.</div>
-      <div class="tp-includes">
-        <div class="tp-include"><span class="tp-check">✓</span> 2 heures de shooting</div>
-        <div class="tp-include"><span class="tp-check">✓</span> 30 photos retouchées</div>
-        <div class="tp-include"><span class="tp-check">✓</span> Galerie privée en ligne</div>
-        <div class="tp-include"><span class="tp-check">✓</span> Livraison sous 5 jours</div>
-      </div>
-      <div class="tp-footer">
-        <div class="tp-price-block">
-          <div class="tp-from">à partir de</div>
-          <div class="tp-price">150 €</div>
-        </div>
-        <a href="#devis" class="tp-btn">Choisir →</a>
-      </div>
+  <div class="services-grid rv">
+
+    <div class="sv-card" data-service="Shooting Photo">
+      <div class="sv-icon">📸</div>
+      <div class="sv-name">Shooting Photo</div>
+      <div class="sv-desc">Identité visuelle, press kit, réseaux sociaux. Des visuels qui t'imposent.</div>
+      <div class="sv-tags"><span>Portrait</span><span>Mode</span><span>Artiste</span></div>
+      <div class="sv-cta" onclick="selectService('Shooting Photo')">Obtenir mon devis →</div>
     </div>
 
-    <div class="tp-card tp-featured">
-      <div class="tp-popular">Le plus demandé</div>
-      <div class="tp-num">02</div>
-      <div class="tp-icon">🎬</div>
-      <div class="tp-name">Clip Vidéo</div>
-      <div class="tp-desc">Tournage, montage cinématique &amp; color grading 4K. Le contenu qui fait exploser tes écoutes.</div>
-      <div class="tp-includes">
-        <div class="tp-include"><span class="tp-check">✓</span> Journée de tournage</div>
-        <div class="tp-include"><span class="tp-check">✓</span> Jusqu'à 2 décors</div>
-        <div class="tp-include"><span class="tp-check">✓</span> Montage + color grading</div>
-        <div class="tp-include"><span class="tp-check">✓</span> Livraison 4K · 2 révisions</div>
-      </div>
-      <div class="tp-footer">
-        <div class="tp-price-block">
-          <div class="tp-from">à partir de</div>
-          <div class="tp-price">500 €</div>
-        </div>
-        <a href="#devis" class="tp-btn tp-btn-white">Choisir →</a>
-      </div>
+    <div class="sv-card sv-featured" data-service="Clip Vidéo">
+      <div class="sv-badge">Le + demandé</div>
+      <div class="sv-icon">🎬</div>
+      <div class="sv-name">Clip Vidéo</div>
+      <div class="sv-desc">Tournage cinématique, montage pro, color grading 4K. Le clip qui fait streamer.</div>
+      <div class="sv-tags"><span>Rap</span><span>R&B</span><span>Afro</span></div>
+      <div class="sv-cta sv-cta-light" onclick="selectService('Clip Vidéo')">Obtenir mon devis →</div>
     </div>
 
-    <div class="tp-card">
-      <div class="tp-num">03</div>
-      <div class="tp-icon">📱</div>
-      <div class="tp-name">Pack Réseaux</div>
-      <div class="tp-desc">Reels, TikTok, Shorts — du contenu pensé pour stopper le scroll et multiplier tes vues.</div>
-      <div class="tp-includes">
-        <div class="tp-include"><span class="tp-check">✓</span> Demi-journée de tournage</div>
-        <div class="tp-include"><span class="tp-check">✓</span> 5 vidéos format vertical</div>
-        <div class="tp-include"><span class="tp-check">✓</span> Textes &amp; musique inclus</div>
-        <div class="tp-include"><span class="tp-check">✓</span> Livraison sous 7 jours</div>
-      </div>
-      <div class="tp-footer">
-        <div class="tp-price-block">
-          <div class="tp-from">à partir de</div>
-          <div class="tp-price">300 €</div>
-        </div>
-        <a href="#devis" class="tp-btn">Choisir →</a>
-      </div>
+    <div class="sv-card" data-service="Pack Réseaux">
+      <div class="sv-icon">📱</div>
+      <div class="sv-name">Pack Réseaux</div>
+      <div class="sv-desc">Reels, TikTok, Shorts. Du contenu pensé pour exploser l'algorithme.</div>
+      <div class="sv-tags"><span>Instagram</span><span>TikTok</span><span>YouTube</span></div>
+      <div class="sv-cta" onclick="selectService('Pack Réseaux')">Obtenir mon devis →</div>
     </div>
 
-    <div class="tp-full">
-      <div class="tp-full-left">
-        <div class="tp-num" style="color:rgba(255,255,255,.3);">04</div>
-        <div class="tp-full-icon">🏆</div>
-        <div class="tp-full-name">Offre Complète</div>
-        <div class="tp-full-desc">Photo + Vidéo + Réseaux — l'identité visuelle totale. Pour les artistes qui veulent passer au niveau supérieur.</div>
-        <div class="tp-full-includes">
-          <div class="tp-include-w"><span>✓</span> 2 journées de tournage</div>
-          <div class="tp-include-w"><span>✓</span> Clip + photos + 5 vidéos réseaux</div>
-          <div class="tp-include-w"><span>✓</span> Direction artistique incluse</div>
-          <div class="tp-include-w"><span>✓</span> Livraison prioritaire</div>
-        </div>
-      </div>
-      <div class="tp-full-right">
-        <div class="tp-full-from">à partir de</div>
-        <div class="tp-full-price">900 €</div>
-        <a href="#devis" class="tp-full-btn">Demander un devis →</a>
-        <p class="tp-full-note">Tarif adapté selon le projet</p>
-      </div>
+    <div class="sv-card" data-service="Brand Content">
+      <div class="sv-icon">🏆</div>
+      <div class="sv-name">Brand Content</div>
+      <div class="sv-desc">Campagnes marques, publicités digitales, direction artistique complète.</div>
+      <div class="sv-tags"><span>Marque</span><span>Pub</span><span>DA</span></div>
+      <div class="sv-cta" onclick="selectService('Brand Content')">Obtenir mon devis →</div>
     </div>
 
+  </div>
+</section>
+
+<!-- DEVIS -->
+<section class="devis section" id="devis">
+  <div class="rv devis-top">
+    <div class="s-eyebrow">Devis gratuit · Seven-Prod</div>
+    <div class="s-title">TRAVAILLONS<br>ENSEMBLE</div>
+  </div>
+
+  <div id="devisForm" class="rv">
+    <div class="devis-wrap">
+
+      <!-- PANNEAU GAUCHE -->
+      <div class="devis-left">
+        <div class="devis-left-brand">SEVEN<br>PROD<span>.</span></div>
+        <p class="devis-left-sub">Décris-moi ton projet. Je te reviens avec un devis sur-mesure sous 24 h — par WhatsApp ou email.</p>
+        <div class="devis-infos">
+          <div class="devis-info-row"><span class="di-key">Zone</span><span class="di-val">Paris &amp; Île-de-France</span></div>
+          <div class="devis-info-row"><span class="di-key">Instagram</span><span class="di-val">@sevenprod</span></div>
+          <div class="devis-info-row"><span class="di-key">Réponse</span><span class="di-val">&lt; 24 heures</span></div>
+        </div>
+        <div class="devis-reassurance">
+          <div class="dr-item"><span class="dr-icon">✓</span>Devis 100 % gratuit</div>
+          <div class="dr-item"><span class="dr-icon">✓</span>Sans engagement</div>
+          <div class="dr-item"><span class="dr-icon">✓</span>Réponse rapide</div>
+          <div class="dr-item"><span class="dr-icon">✓</span>Tarif adapté à ton budget</div>
+        </div>
+      </div>
+
+      <!-- FORMULAIRE -->
+      <div class="devis-right">
+
+        <div class="devis-step rv">
+          <div class="step-head"><div class="step-num">1</div><div class="step-title">TON PROJET</div></div>
+          <div class="step-body">
+            <div class="sv-selector" id="svSelector">
+              <div class="svs-label">Quel type de contenu ?</div>
+              <div class="svs-opts" id="svsOpts">
+                <div class="svs-opt" onclick="pickSvc(this,'Shooting Photo')">📸 Shooting Photo</div>
+                <div class="svs-opt" onclick="pickSvc(this,'Clip Vidéo')">🎬 Clip Vidéo</div>
+                <div class="svs-opt" onclick="pickSvc(this,'Pack Réseaux')">📱 Pack Réseaux</div>
+                <div class="svs-opt" onclick="pickSvc(this,'Brand Content')">🏆 Brand Content</div>
+                <div class="svs-opt" onclick="pickSvc(this,'Autre / Plusieurs')">✨ Autre / Plusieurs</div>
+              </div>
+              <input type="hidden" id="selectedSvc" value="">
+            </div>
+            <div class="f-grp" style="margin-top:16px;">
+              <label>Décris ton projet en quelques mots</label>
+              <textarea placeholder="Ex : Je veux un clip rap, ambiance rue, Paris 18e, tournage en journée. J'ai déjà un beat. Je veux quelque chose de cinématique..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="devis-step rv">
+          <div class="step-head"><div class="step-num">2</div><div class="step-title">TES COORDONNÉES</div></div>
+          <div class="step-body">
+            <div class="f-fields">
+              <div class="f-row2">
+                <div class="f-grp"><label>Prénom / Nom d'artiste</label><input type="text" placeholder="Ton nom d'artiste"></div>
+                <div class="f-grp"><label>Instagram / TikTok</label><input type="text" placeholder="@toncompte"></div>
+              </div>
+              <div class="f-row2">
+                <div class="f-grp"><label>WhatsApp</label><input type="tel" placeholder="+33 6 XX XX XX XX"></div>
+                <div class="f-grp"><label>Date souhaitée</label><input type="date"></div>
+              </div>
+              <div class="devis-submit-block">
+                <button class="btn-submit" onclick="sendDevis()">
+                  ENVOYER MA DEMANDE <span class="btn-submit-arr">→</span>
+                </button>
+                <p class="devis-privacy">Tu recevras ton devis personnalisé par WhatsApp ou email sous 24 h.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="success-box" id="devisOk">
+    <div class="success-icon">🤝</div>
+    <div class="success-title">DEMANDE ENVOYÉE !</div>
+    <p class="success-sub">Je prépare ton devis personnalisé et reviens vers toi sous <strong style="color:var(--red);font-style:normal;">24 heures</strong>.<br>Vérifie tes DMs Instagram et WhatsApp.</p>
   </div>
 </section>
 
@@ -968,6 +1020,27 @@ function sendDevis(){
   ok.classList.add('on');
 }
 
+
+
+/* ── SÉLECTEUR SERVICE ── */
+function pickSvc(el, val) {
+  document.querySelectorAll('.svs-opt').forEach(function(o){ o.classList.remove('on'); });
+  el.classList.add('on');
+  var inp = document.getElementById('selectedSvc');
+  if (inp) inp.value = val;
+}
+function selectService(name) {
+  document.getElementById('devis').scrollIntoView({behavior:'smooth'});
+  setTimeout(function(){
+    document.querySelectorAll('.svs-opt').forEach(function(o){
+      if (o.textContent.includes(name.split(' ')[0])) {
+        o.classList.add('on');
+        var inp = document.getElementById('selectedSvc');
+        if (inp) inp.value = name;
+      }
+    });
+  }, 600);
+}
 
 /* ── CAROUSEL TRAVAUX ── */
 var _ci = 0, _ct = 5;
