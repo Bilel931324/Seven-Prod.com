@@ -248,8 +248,8 @@ nav {
 .prest-info { flex:1; min-width:0; }
 .prest-name { font-family:var(--ft); font-size:17px; line-height:1; margin-bottom:3px; }
 .prest-desc { font-size:12px; color:var(--grey); font-family:var(--fs); font-style:italic; }
-.prest-price-badge { font-family:var(--ft); font-size:22px; color:var(--light); transition:color .22s; flex-shrink:0; }
-.prest-card.on .prest-price-badge { color:var(--red); }
+
+.prest-card.on 
 .prest-radio { width:18px; height:18px; border-radius:50%; border:1.5px solid var(--light); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all .22s; }
 .prest-card.on .prest-radio { border-color:var(--red); background:var(--red); }
 .prest-card.on .prest-radio::after { content:''; width:7px; height:7px; border-radius:50%; background:white; display:block; }
@@ -263,8 +263,8 @@ nav {
 .opt-name { font-size:13px; font-weight:500; line-height:1.3; }
 .opt-check { width:16px; height:16px; border:1.5px solid var(--light); border-radius:2px; display:flex; align-items:center; justify-content:center; font-size:9px; flex-shrink:0; transition:all .22s; }
 .opt-card.on .opt-check { background:var(--red); border-color:var(--red); color:white; }
-.opt-price { font-family:var(--ft); font-size:16px; color:var(--light); transition:color .22s; }
-.opt-card.on .opt-price { color:var(--red); }
+
+.opt-card.on 
 
 /* Champs formulaire */
 .f-fields { display:flex; flex-direction:column; gap:12px; }
@@ -333,6 +333,11 @@ footer { background:var(--dark); color:var(--cream); padding:52px 28px 28px; }
 .footer-socials a:hover { color:var(--red); }
 
 
+
+
+.sv-icon { width:48px; height:48px; margin-bottom:20px; color:var(--black); }
+.sv-card.sv-featured .sv-icon { color:var(--red); }
+.sv-svg { width:100%; height:100%; }
 
 /* ── SERVICES GRID (pas de prix) ── */
 .tarifs { background:var(--white); }
@@ -629,7 +634,13 @@ footer { background:var(--dark); color:var(--cream); padding:52px 28px 28px; }
   <div class="services-grid rv">
 
     <div class="sv-card" data-service="Shooting Photo">
-      <div class="sv-icon">📸</div>
+      <div class="sv-icon"><svg class="sv-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="12" width="40" height="30" rx="3" stroke="currentColor" stroke-width="2.5"/>
+  <circle cx="24" cy="27" r="9" stroke="currentColor" stroke-width="2.5"/>
+  <circle cx="24" cy="27" r="4" stroke="currentColor" stroke-width="2"/>
+  <rect x="14" y="6" width="12" height="6" rx="2" stroke="currentColor" stroke-width="2"/>
+  <circle cx="37" cy="19" r="2" fill="currentColor"/>
+</svg></div>
       <div class="sv-name">Shooting Photo</div>
       <div class="sv-desc">Identité visuelle, press kit, réseaux sociaux. Des visuels qui t'imposent.</div>
       <div class="sv-tags"><span>Portrait</span><span>Mode</span><span>Artiste</span></div>
@@ -638,7 +649,14 @@ footer { background:var(--dark); color:var(--cream); padding:52px 28px 28px; }
 
     <div class="sv-card sv-featured" data-service="Clip Vidéo">
       <div class="sv-badge">Le + demandé</div>
-      <div class="sv-icon">🎬</div>
+      <div class="sv-icon"><svg class="sv-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="14" width="40" height="28" rx="3" stroke="currentColor" stroke-width="2.5"/>
+  <rect x="4" y="6" width="40" height="10" rx="2" stroke="currentColor" stroke-width="2.5"/>
+  <line x1="14" y1="6" x2="10" y2="16" stroke="currentColor" stroke-width="2.5"/>
+  <line x1="24" y1="6" x2="20" y2="16" stroke="currentColor" stroke-width="2.5"/>
+  <line x1="34" y1="6" x2="30" y2="16" stroke="currentColor" stroke-width="2.5"/>
+  <polygon points="20,24 20,36 32,30" fill="currentColor" opacity="0.6"/>
+</svg></div>
       <div class="sv-name">Clip Vidéo</div>
       <div class="sv-desc">Tournage cinématique, montage pro, color grading 4K. Le clip qui fait streamer.</div>
       <div class="sv-tags"><span>Rap</span><span>R&B</span><span>Afro</span></div>
@@ -646,7 +664,15 @@ footer { background:var(--dark); color:var(--cream); padding:52px 28px 28px; }
     </div>
 
     <div class="sv-card" data-service="Pack Réseaux">
-      <div class="sv-icon">📱</div>
+      <div class="sv-icon"><svg class="sv-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="13" y="4" width="22" height="40" rx="4" stroke="currentColor" stroke-width="2.5"/>
+  <line x1="13" y1="12" x2="35" y2="12" stroke="currentColor" stroke-width="2"/>
+  <line x1="13" y1="36" x2="35" y2="36" stroke="currentColor" stroke-width="2"/>
+  <circle cx="24" cy="39.5" r="1.5" fill="currentColor"/>
+  <line x1="20" y1="8" x2="28" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <path d="M19 21 Q24 17 29 21" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M16 25 Q24 19 32 25" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg></div>
       <div class="sv-name">Pack Réseaux</div>
       <div class="sv-desc">Reels, TikTok, Shorts. Du contenu pensé pour exploser l'algorithme.</div>
       <div class="sv-tags"><span>Instagram</span><span>TikTok</span><span>YouTube</span></div>
@@ -654,7 +680,13 @@ footer { background:var(--dark); color:var(--cream); padding:52px 28px 28px; }
     </div>
 
     <div class="sv-card" data-service="Brand Content">
-      <div class="sv-icon">🏆</div>
+      <div class="sv-icon"><svg class="sv-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="24,4 44,18 36,44 12,44 4,18" stroke="currentColor" stroke-width="2.5" fill="none"/>
+  <polygon points="24,4 44,18 24,14 4,18" stroke="currentColor" stroke-width="1.5" fill="currentColor" opacity="0.15"/>
+  <line x1="4" y1="18" x2="44" y2="18" stroke="currentColor" stroke-width="2"/>
+  <line x1="12" y1="44" x2="24" y2="14" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+  <line x1="36" y1="44" x2="24" y2="14" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+</svg></div>
       <div class="sv-name">Brand Content</div>
       <div class="sv-desc">Campagnes marques, publicités digitales, direction artistique complète.</div>
       <div class="sv-tags"><span>Marque</span><span>Pub</span><span>DA</span></div>
@@ -665,88 +697,7 @@ footer { background:var(--dark); color:var(--cream); padding:52px 28px 28px; }
 </section>
 
 <!-- DEVIS -->
-<section class="devis section" id="devis">
-  <div class="rv devis-top">
-    <div class="s-eyebrow">Devis gratuit · Seven-Prod</div>
-    <div class="s-title">TRAVAILLONS<br>ENSEMBLE</div>
-  </div>
 
-  <div id="devisForm" class="rv">
-    <div class="devis-wrap">
-
-      <!-- PANNEAU GAUCHE -->
-      <div class="devis-left">
-        <div class="devis-left-brand">SEVEN<br>PROD<span>.</span></div>
-        <p class="devis-left-sub">Décris-moi ton projet. Je te reviens avec un devis sur-mesure sous 24 h — par WhatsApp ou email.</p>
-        <div class="devis-infos">
-          <div class="devis-info-row"><span class="di-key">Zone</span><span class="di-val">Paris &amp; Île-de-France</span></div>
-          <div class="devis-info-row"><span class="di-key">Instagram</span><span class="di-val">@sevenprod</span></div>
-          <div class="devis-info-row"><span class="di-key">Réponse</span><span class="di-val">&lt; 24 heures</span></div>
-        </div>
-        <div class="devis-reassurance">
-          <div class="dr-item"><span class="dr-icon">✓</span>Devis 100 % gratuit</div>
-          <div class="dr-item"><span class="dr-icon">✓</span>Sans engagement</div>
-          <div class="dr-item"><span class="dr-icon">✓</span>Réponse rapide</div>
-          <div class="dr-item"><span class="dr-icon">✓</span>Tarif adapté à ton budget</div>
-        </div>
-      </div>
-
-      <!-- FORMULAIRE -->
-      <div class="devis-right">
-
-        <div class="devis-step rv">
-          <div class="step-head"><div class="step-num">1</div><div class="step-title">TON PROJET</div></div>
-          <div class="step-body">
-            <div class="sv-selector" id="svSelector">
-              <div class="svs-label">Quel type de contenu ?</div>
-              <div class="svs-opts" id="svsOpts">
-                <div class="svs-opt" onclick="pickSvc(this,'Shooting Photo')">📸 Shooting Photo</div>
-                <div class="svs-opt" onclick="pickSvc(this,'Clip Vidéo')">🎬 Clip Vidéo</div>
-                <div class="svs-opt" onclick="pickSvc(this,'Pack Réseaux')">📱 Pack Réseaux</div>
-                <div class="svs-opt" onclick="pickSvc(this,'Brand Content')">🏆 Brand Content</div>
-                <div class="svs-opt" onclick="pickSvc(this,'Autre / Plusieurs')">✨ Autre / Plusieurs</div>
-              </div>
-              <input type="hidden" id="selectedSvc" value="">
-            </div>
-            <div class="f-grp" style="margin-top:16px;">
-              <label>Décris ton projet en quelques mots</label>
-              <textarea placeholder="Ex : Je veux un clip rap, ambiance rue, Paris 18e, tournage en journée. J'ai déjà un beat. Je veux quelque chose de cinématique..."></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div class="devis-step rv">
-          <div class="step-head"><div class="step-num">2</div><div class="step-title">TES COORDONNÉES</div></div>
-          <div class="step-body">
-            <div class="f-fields">
-              <div class="f-row2">
-                <div class="f-grp"><label>Prénom / Nom d'artiste</label><input type="text" placeholder="Ton nom d'artiste"></div>
-                <div class="f-grp"><label>Instagram / TikTok</label><input type="text" placeholder="@toncompte"></div>
-              </div>
-              <div class="f-row2">
-                <div class="f-grp"><label>WhatsApp</label><input type="tel" placeholder="+33 6 XX XX XX XX"></div>
-                <div class="f-grp"><label>Date souhaitée</label><input type="date"></div>
-              </div>
-              <div class="devis-submit-block">
-                <button class="btn-submit" onclick="sendDevis()">
-                  ENVOYER MA DEMANDE <span class="btn-submit-arr">→</span>
-                </button>
-                <p class="devis-privacy">Tu recevras ton devis personnalisé par WhatsApp ou email sous 24 h.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="success-box" id="devisOk">
-    <div class="success-icon">🤝</div>
-    <div class="success-title">DEMANDE ENVOYÉE !</div>
-    <p class="success-sub">Je prépare ton devis personnalisé et reviens vers toi sous <strong style="color:var(--red);font-style:normal;">24 heures</strong>.<br>Vérifie tes DMs Instagram et WhatsApp.</p>
-  </div>
-</section>
 
 <!-- DEVIS -->
 <section class="devis section" id="devis">
@@ -989,7 +940,7 @@ function closeMenu(){
 })();
 
 /* ── CALCULATEUR DEVIS ── */
-var baseVal=0, extraVal=0;
+
 function pickMain(el,val){
   document.querySelectorAll('#mainOpts .prest-card').forEach(function(o){ o.classList.remove('on'); });
   el.classList.add('on');
