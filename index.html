@@ -417,11 +417,19 @@ footer{background:var(--dark);padding:64px 28px 28px;color:rgba(255,255,255,.35)
 .galerie-label { display:inline-block; font-size:11px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:#c8a96e; margin-bottom:18px; border-bottom:1px solid #c8a96e44; padding-bottom:8px; }
 .galerie-title { font-size:clamp(2.2rem,6vw,4.5rem); font-weight:800; letter-spacing:-0.02em; color:#f5f0e8; line-height:1; margin-bottom:20px; }
 .galerie-sub { color:#888; font-size:15px; max-width:480px; margin:0 auto; line-height:1.7; }
-.galerie-grid-premium { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto auto; gap:6px; max-width:1200px; margin:0 auto; padding:0 6px; }
+.galerie-grid-premium {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto auto auto;
+  gap:6px;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 6px;
+}
 .gal-item { position:relative; overflow:hidden; cursor:pointer; background:#111; }
 .gal-item--tall { aspect-ratio:3/4; }
 .gal-item--square { aspect-ratio:4/5; }
-.gal-item--wide { aspect-ratio:16/9; }
+.gal-item--wide { aspect-ratio:3/4; }
 .gal-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94),filter 0.5s ease; filter:brightness(0.92) saturate(1.05); }
 .gal-item:hover img { transform:scale(1.05); filter:brightness(0.65) saturate(1.1); }
 .gal-overlay { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:28px 24px; background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 60%); opacity:0; transition:opacity 0.4s ease; }
@@ -431,13 +439,27 @@ footer{background:var(--dark);padding:64px 28px 28px;color:rgba(255,255,255,.35)
 .galerie-cta { text-align:center; margin-top:56px; padding:0 24px; }
 .btn-galerie { display:inline-block; padding:16px 40px; border:1px solid #c8a96e; color:#c8a96e; font-size:13px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; text-decoration:none; transition:all 0.3s ease; }
 .btn-galerie:hover { background:#c8a96e; color:#0a0a0a; }
-@media(max-width:600px){ .galerie-grid-premium{gap:3px;padding:0 3px;} .gal-overlay{opacity:1;} }
+@media(max-width:600px){
+  .galerie-grid-premium { gap:3px; padding:0 3px; }
+  .gal-overlay { opacity:1; }
+}
 /* ===== SHOWREEL ===== */
-.section-showreel { background:#000; padding:100px 0 0; }
+.section-showreel { background:#000; padding:80px 0 0; }
 .showreel-header { text-align:center; margin-bottom:48px; padding:0 24px; }
-.showreel-container { position:relative; width:100%; max-height:85vh; overflow:hidden; }
-.showreel-video { width:100%; max-height:85vh; object-fit:cover; display:block; }
-.showreel-overlay { position:absolute; inset:0; display:flex; align-items:flex-end; padding:40px; background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 50%); pointer-events:none; }
+.showreel-container {
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  max-height:70vh;
+}
+@media(max-width:768px){
+  .showreel-container { max-height:45vh; }
+}
+.showreel-video { width:100%; height:100%; max-height:70vh; object-fit:cover; display:block; }
+@media(max-width:768px){
+  .showreel-video { max-height:45vh; }
+}
+.showreel-overlay { position:absolute; inset:0; display:flex; align-items:flex-end; padding:32px; background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 50%); pointer-events:none; }
 .showreel-badge { font-size:12px; font-weight:700; letter-spacing:0.3em; color:#c8a96e; border:1px solid #c8a96e55; padding:10px 20px; }
 /* ===== FIN ===== */</style>
 </head>
@@ -734,19 +756,19 @@ footer{background:var(--dark);padding:64px 28px 28px;color:rgba(255,255,255,.35)
       <img src="https://bilel931324.github.io/new_portrait_man.jpeg" alt="Portrait street" loading="lazy" />
       <div class="gal-overlay"><span class="gal-category">Street</span><span class="gal-name">GOLDEN LIGHT</span></div>
     </div>
-    <div class="gal-item gal-item--square">
+    <div class="gal-item gal-item--tall">
       <img src="https://bilel931324.github.io/gal3.jpeg" alt="Portrait éditorial" loading="lazy" />
       <div class="gal-overlay"><span class="gal-category">Éditorial</span><span class="gal-name">DEEP FOCUS</span></div>
     </div>
-    <div class="gal-item gal-item--square">
+    <div class="gal-item gal-item--tall">
       <img src="https://bilel931324.github.io/new_trio_women.jpeg" alt="Shooting groupe" loading="lazy" />
       <div class="gal-overlay"><span class="gal-category">Groupe</span><span class="gal-name">POWER TRIO</span></div>
     </div>
-    <div class="gal-item gal-item--wide">
+    <div class="gal-item gal-item--tall">
       <img src="https://bilel931324.github.io/gal4.jpeg" alt="Portrait N&B" loading="lazy" />
       <div class="gal-overlay"><span class="gal-category">N&amp;B</span><span class="gal-name">DARK MOOD</span></div>
     </div>
-    <div class="gal-item gal-item--wide">
+    <div class="gal-item gal-item--tall">
       <img src="https://bilel931324.github.io/new_woman_solo.jpeg" alt="Portrait glamour" loading="lazy" />
       <div class="gal-overlay"><span class="gal-category">Glamour</span><span class="gal-name">LADY BOSS</span></div>
     </div>
