@@ -574,74 +574,76 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40
 
 <script>
 // CURSOR
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-  setTimeout(() => {
-    ring.style.left = e.clientX + 'px';
-    ring.style.top = e.clientY + 'px';
-  }, 80);
+var cursor = document.getElementById('cursor');
+var ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', function(e) {
+  if(cursor) { cursor.style.left = e.clientX+'px'; cursor.style.top = e.clientY+'px'; }
+  if(ring) { setTimeout(function(){ ring.style.left = e.clientX+'px'; ring.style.top = e.clientY+'px'; }, 80); }
 });
 
 // NAV SCROLL
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+window.addEventListener('scroll', function() {
+  var nav = document.getElementById('navbar');
+  if(nav) nav.classList.toggle('scrolled', window.scrollY > 60);
 });
 
 // HERO BG
-window.addEventListener('load', () => {
-  const bg = document.getElementById('heroBg');
-  if (bg) setTimeout(() => bg.classList.add('loaded'), 100);
+window.addEventListener('load', function() {
+  var bg = document.getElementById('heroBg');
+  if(bg) setTimeout(function(){ bg.classList.add('loaded'); }, 100);
 });
 
 // MOBILE NAV
-function toggleMobileNav() {
-  document.getElementById('mobileNav').classList.toggle('open');
-}
-function closeMobileNav() {
-  document.getElementById('mobileNav').classList.remove('open');
-}
+window.toggleMobileNav = function() {
+  var nav = document.getElementById('mobileNav');
+  if(nav) nav.classList.toggle('open');
+};
+window.closeMobileNav = function() {
+  var nav = document.getElementById('mobileNav');
+  if(nav) nav.classList.remove('open');
+};
 
 // FADE UP OBSERVER
-// Subtle scroll animation desktop only
-if (window.matchMedia('(min-width:769px)').matches && !window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
-  const style = document.createElement('style');
-  style.textContent = '.fade-up{opacity:1;transform:none;}
-.fade-up.visible{opacity:1;transform:none;}';
-  document.head.appendChild(style);
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
-  },{threshold:0.05});
-  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-}
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
 
 // DEVIS FORM
-let selectedType = 'Shooting Photo';
-function selectType(el, type) {
+var selectedType = 'Shooting Photo';
+
+window.selectType = function(el, type) {
   selectedType = type;
-  document.querySelectorAll('.form-type').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.form-type').forEach(function(t) { t.classList.remove('active'); });
   el.classList.add('active');
-}
+};
 
-function sendDevis() {
-  const name = document.getElementById('fName').value.trim();
-  const insta = document.getElementById('fInsta').value.trim();
-  const project = document.getElementById('fProject').value.trim();
-  if (!name) { document.getElementById('fName').focus(); return; }
-  const msg = encodeURIComponent('Bonjour Seven-Prod ! 👋
-
-📌 Type : ' + selectedType + '
-👤 Nom : ' + name + '
-📱 Instagram : ' + (insta || 'non renseigné') + '
-📝 Projet : ' + (project || 'non renseigné') + '
-
-Merci de revenir vers moi sous 24h !');
-  window.open('https://wa.me/33651238450?text=' + msg, '_blank');
-  document.getElementById('devisForm').style.display = 'none';
-  document.getElementById('devisSuccess').classList.add('show');
-}
+window.sendDevis = function() {
+  var name = (document.getElementById('fName') || {}).value || '';
+  var insta = (document.getElementById('fInsta') || {}).value || '';
+  var project = (document.getElementById('fProject') || {}).value || '';
+  name = name.trim();
+  if(!name) {
+    var inp = document.getElementById('fName');
+    if(inp) inp.focus();
+    return;
+  }
+  var msg = 'Bonjour Seven-Prod ! 👋\n\n'
+    + '📌 Type : ' + selectedType + '\n'
+    + '👤 Nom : ' + name + '\n'
+    + '📱 Instagram : ' + (insta.trim() || 'non renseigné') + '\n'
+    + '📝 Projet : ' + (project.trim() || 'non renseigné') + '\n\n'
+    + 'Merci de revenir vers moi sous 24h !';
+  var url = 'https://wa.me/33651238450?text=' + encodeURIComponent(msg);
+  // Use location.href instead of window.open to avoid popup blockers
+  var form = document.getElementById('devisForm');
+  var success = document.getElementById('devisSuccess');
+  if(form) form.style.display = 'none';
+  if(success) success.classList.add('show');
+  setTimeout(function(){ window.location.href = url; }, 300);
+};
 </script>
 </body>
 </html>
