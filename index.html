@@ -226,21 +226,7 @@ section{padding:120px 40px;}
 .about-socials{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;}
 .about-social{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s;}
 .about-social:hover{color:var(--gold);}
-/* TESTIMONIALS */
-#testimonials{background:var(--dark);text-align:center;}
-.testi-head{margin-bottom:72px;}
-.testi-card{max-width:700px;margin:0 auto;padding:60px 48px;background:var(--card);position:relative;}
-.testi-card::before{content:'"';position:absolute;top:-20px;left:40px;font-family:'Playfair Display',serif;font-size:120px;color:var(--gold);opacity:.2;line-height:1;}
-.testi-stars{display:flex;justify-content:center;gap:4px;margin-bottom:28px;}
-.testi-stars span{color:var(--gold);font-size:14px;}
-.testi-text{font-family:'Playfair Display',serif;font-size:clamp(16px,2.5vw,22px);font-weight:700;line-height:1.5;color:var(--text);margin-bottom:32px;font-style:italic;}
-.testi-author{display:flex;align-items:center;justify-content:center;gap:16px;}
-.testi-avatar{width:48px;height:48px;border-radius:50%;background:var(--gold-dim);overflow:hidden;border:1px solid var(--gold-dim);}
-.testi-avatar img{width:100%;height:100%;object-fit:cover;}
-.testi-name{font-weight:600;font-size:14px;}
-.testi-role{font-size:12px;color:var(--muted);}
-.testi-cta{margin-top:60px;}
-/* DEVIS */
+/* DEVIS *//* DEVIS */
 #devis{background:var(--black);}
 .devis-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
 @media(max-width:768px){.devis-wrap{grid-template-columns:1fr;gap:48px;}}
@@ -330,8 +316,7 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40
     <a href="#galerie">Galerie</a>
     <a href="#services">Services</a>
     <a href="#about">À propos</a>
-    <a href="#testimonials">Avis</a>
-    <a href="#devis" class="nav-cta">Devis gratuit</a>
+        <a href="#devis" class="nav-cta">Devis gratuit</a>
   </div>
   <div class="nav-burger" id="burger" onclick="toggleMobileNav()">
     <span></span><span></span><span></span>
@@ -497,26 +482,7 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40
 </section>
 
 <!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="testi-head fade-up">
-    <div class="s-eyebrow" style="justify-content:center;"><span class="s-eyebrow-text">Ils nous font confiance</span></div>
-    <h2 class="s-title">Avis clients</h2>
-  </div>
-  <div class="testi-card fade-up">
-    <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-    <p class="testi-text">Mise en scène, cadrage et direction artistique au top. Une collaboration authentique avec un vrai professionnel de l'image. Je recommande les yeux fermés.</p>
-    <div class="testi-author">
-      <div class="testi-avatar"><img src="https://bilel931324.github.io/gal9.jpeg" alt="Chilly"/></div>
-      <div>
-        <div class="testi-name">CHILLY</div>
-        <div class="testi-role">Rappeur français · Clip vidéo</div>
-      </div>
-    </div>
-  </div>
-  <div class="testi-cta fade-up">
-    <a href="#devis" class="btn-primary">Rejoins-les — Devis gratuit</a>
-  </div>
-</section>
+
 
 <!-- DEVIS -->
 <section id="devis">
