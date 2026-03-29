@@ -106,96 +106,85 @@ section{padding:120px 40px;}
 }
 .galerie-cta{text-align:center;margin-top:60px;padding:0 40px;}
 /* ===== SHOWREEL ===== */
-#showreel{padding:0;background:#000;}
-.showreel-label{padding:80px 40px 40px;display:flex;align-items:center;gap:16px;}
+#showreel{padding:0;background:var(--black);}
+.showreel-label{padding:80px 40px 32px;display:flex;align-items:center;gap:16px;}
 .showreel-label::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
 .showreel-label-text{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);}
-.showreel-title{padding:0 40px 48px;font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,4rem);font-weight:900;line-height:1;letter-spacing:-.02em;}
+.showreel-title{padding:0 40px 56px;font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,4rem);font-weight:900;line-height:1;letter-spacing:-.02em;}
 .showreel-title em{color:var(--gold);font-style:italic;}
-/* Container: 16:9 aspect, centered, max width */
-.showreel-outer{
-  max-width:960px;
-  margin:0 auto;
-  padding:0 40px 80px;
+/* Outer layout: 3 col — left label | center video | right label */
+.showreel-stage{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:48px;
+  padding:0 40px 100px;
 }
-.showreel-cinema{
+/* Left/right decorative text */
+.showreel-side{
+  writing-mode:vertical-rl;
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--muted);
+  opacity:.5;
+  flex-shrink:0;
+}
+/* Phone frame container — 9:16 portrait */
+.showreel-phone{
   position:relative;
-  width:100%;
-  aspect-ratio:16/9;
+  width:min(340px, 90vw);
+  aspect-ratio:9/16;
+  flex-shrink:0;
+  border-radius:24px;
   overflow:hidden;
   background:#000;
+  box-shadow:0 40px 120px rgba(0,0,0,.8), 0 0 0 1px rgba(200,169,110,.15);
 }
-/* Video fills container, crops TikTok text at bottom */
-.showreel-cinema video{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:100%;
-  height:115%;
-  object-fit:cover;
-}
-/* Cinematic top+bottom black bars */
-.showreel-cinema::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;
-  height:12%;
-  background:#000;
-  z-index:2;
-}
-.showreel-cinema::after{
-  content:'';
-  position:absolute;
-  bottom:0;left:0;right:0;
-  height:18%;
-  background:#000;
-  z-index:2;
-}
-/* Grain texture overlay */
-.showreel-grain{
+/* Video fills portrait frame perfectly */
+.showreel-phone video{
   position:absolute;
   inset:0;
-  z-index:3;
-  pointer-events:none;
-  opacity:.08;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+/* Grain overlay */
+.showreel-grain{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size:128px;
 }
-/* Color grade - cinematic warm tint */
-.showreel-grade{
-  position:absolute;
-  inset:0;
-  z-index:3;
-  pointer-events:none;
-  background:linear-gradient(135deg,rgba(200,169,110,.06) 0%,rgba(0,0,0,.15) 100%);
-  mix-blend-mode:multiply;
-}
-/* Bottom info bar */
+/* Bottom bar info */
 .showreel-bar{
-  position:absolute;
-  bottom:0;left:0;right:0;
-  padding:0 24px 18px;
+  position:absolute;bottom:0;left:0;right:0;
+  padding:0 20px 20px;
   display:flex;align-items:center;justify-content:space-between;
-  z-index:4;
+  z-index:3;
+  background:linear-gradient(to top,rgba(0,0,0,.85) 0%,transparent 100%);
+  padding-top:48px;
 }
 .showreel-badge{
-  font-size:10px;font-weight:700;letter-spacing:.3em;
+  font-size:10px;font-weight:700;letter-spacing:.25em;
   color:var(--gold);border:1px solid var(--gold-dim);
-  padding:7px 16px;background:rgba(0,0,0,.6);
+  padding:6px 14px;background:rgba(0,0,0,.5);
   backdrop-filter:blur(4px);
 }
-.showreel-tag{font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.35);text-transform:uppercase;}
-/* Left+right subtle vignette */
+.showreel-tag{font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.4);text-transform:uppercase;}
+/* Vignette sides */
 .showreel-vignette{
-  position:absolute;inset:0;z-index:3;pointer-events:none;
-  box-shadow:inset 60px 0 80px rgba(0,0,0,.5),inset -60px 0 80px rgba(0,0,0,.5);
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  box-shadow:inset 0 0 60px rgba(0,0,0,.4);
 }
 @media(max-width:768px){
-  .showreel-outer{padding:0 0 60px;}
-  .showreel-label{padding:60px 24px 32px;}
-  .showreel-title{padding:0 24px 36px;}
-  .showreel-bar{padding:0 16px 14px;}
+  .showreel-stage{padding:0 16px 64px;gap:0;}
+  .showreel-side{display:none;}
+  .showreel-phone{width:min(300px,85vw);border-radius:18px;}
+  .showreel-label{padding:60px 24px 28px;}
+  .showreel-title{padding:0 24px 40px;}
 }
 /* ===== FIN SHOWREEL ===== */
 /* SERVICES */
@@ -419,19 +408,20 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40
 <section id="showreel" style="padding:0;">
   <div class="showreel-label fade-up"><span class="showreel-label-text">Behind the lens</span></div>
   <div class="showreel-title fade-up">En <em>mouvement</em></div>
-  <div class="showreel-outer">
-    <div class="showreel-cinema">
+  <div class="showreel-stage">
+    <div class="showreel-side fade-up">Seven-Prod · Paris · 2025</div>
+    <div class="showreel-phone">
       <video autoplay muted loop playsinline preload="none">
         <source src="https://bilel931324.github.io/showreel.mp4" type="video/mp4"/>
       </video>
       <div class="showreel-grain"></div>
-      <div class="showreel-grade"></div>
       <div class="showreel-vignette"></div>
       <div class="showreel-bar">
         <div class="showreel-badge">▶ Showreel 2025</div>
-        <div class="showreel-tag">Seven-Prod · Paris</div>
+        <div class="showreel-tag">Paris</div>
       </div>
     </div>
+    <div class="showreel-side fade-up">Photographe · Vidéaste · Artiste</div>
   </div>
 </section>
 
