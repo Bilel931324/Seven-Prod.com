@@ -1,1252 +1,592 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SEVEN-PROD — Photographe & Vidéaste Paris</title>
-<meta name="description" content="Photographe & Vidéaste à Paris — Clips rap, shootings artistiques, brand content. Des images qui font réagir.">
+<meta name="description" content="Photographe & vidéaste Paris. Shooting photo, clips rap, contenu réseaux. Pour rappeurs, influenceurs, artistes & marques."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --cream:  #F4EFE6;
-  --cream2: #EAE3D8;
-  --white:  #FAF7F2;
-  --black:  #0D0C0B;
-  --dark:   #1A1917;
-  --red:    #B8860B;
-  --red2:   #8B6508;
-  --grey:   #7A756E;
-  --light:  #C4BEB5;
-  --border: rgba(13,12,11,0.10);
-  --ft: Impact,'Arial Black',Arial,sans-serif;
-  --fs: Georgia,'Times New Roman',serif;
-  --fb: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --gold:#c8a96e;
+  --gold-dim:#c8a96e44;
+  --black:#070707;
+  --dark:#0f0f0f;
+  --card:#141414;
+  --text:#f0ece4;
+  --muted:#888;
+  --border:#ffffff11;
 }
-*,::before,::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;overflow-x:hidden}
-body{background:var(--white);color:var(--black);font-family:var(--fb);overflow-x:hidden;max-width:100vw}
-
-/* ── LOADER ── */
-#loader{position:fixed;inset:0;z-index:9999;background:var(--black);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:28px;animation:loaderFade .5s ease 1.6s forwards;pointer-events:auto}
-@keyframes loaderFade{100%{opacity:0;visibility:hidden;pointer-events:none}}
-.ld-num{font-family:var(--ft);font-size:clamp(90px,18vw,170px);color:var(--white);line-height:1;letter-spacing:-2px}
-.ld-pct{font-size:.35em;color:var(--red);vertical-align:super;margin-left:2px}
-.ld-track{width:120px;height:2px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
-.ld-bar{height:100%;width:0;background:var(--red);animation:ldFill 1.5s ease forwards}
-@keyframes ldFill{100%{width:100%}}
-.ld-txt{font-size:9px;letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,.2)}
-
-/* ── NAV ── */
-nav{position:fixed;top:0;width:100%;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:0 28px;height:64px;background:rgba(244,239,230,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);overflow:hidden}
-.nav-logo{font-family:var(--ft);font-size:24px;text-decoration:none;color:var(--black);letter-spacing:1px}
-.nav-desk{display:flex;align-items:center;gap:32px}
-.nav-desk ul{display:flex;gap:24px;list-style:none}
-.nav-desk a{font-size:12px;letter-spacing:1px;color:var(--grey);text-decoration:none;transition:color .2s}
-.nav-desk a:hover{color:var(--black)}
-.nav-cta{background:var(--red);color:var(--white);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:bold;padding:10px 20px;text-decoration:none;border-radius:2px;transition:background .2s;white-space:nowrap}
-.nav-cta:hover{background:var(--red2)}
-.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
-.ham span{display:block;width:24px;height:2px;background:var(--black);transition:.3s}
-.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.ham.open span:nth-child(2){opacity:0}
-.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
-/* ── MOBILE NAV ── */
-.mob-nav{display:none;position:fixed;inset:64px 0 0;background:var(--white);z-index:499;flex-direction:column;padding:28px;overflow-y:auto;border-top:1px solid var(--border)}
-.mob-nav.open{display:flex}
-.mob-nav a{font-family:var(--ft);font-size:36px;letter-spacing:2px;color:var(--black);text-decoration:none;padding:16px 0;border-bottom:1px solid var(--border);transition:color .2s}
-.mob-nav a:hover{color:var(--red)}
-.mob-nav .m-cta{margin-top:24px;background:var(--red);color:var(--white);font-family:var(--fb);font-size:13px;letter-spacing:3px;text-transform:uppercase;font-weight:bold;padding:18px;text-align:center;border-bottom:none;border-radius:2px}
-
-/* ── HERO ── */
-.hero{min-height:100vh;padding:80px 28px 52px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;background:var(--cream)}
-.hero-deco{position:absolute;top:0;right:0;width:48%;height:100%;background:var(--dark);clip-path:polygon(18% 0,100% 0,100% 100%,0% 100%)}
-.hero-badge{position:absolute;top:88px;right:28px;width:100px;height:100px;border-radius:50%;border:2px solid var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;z-index:2}
-.badge-center{font-family:var(--ft);font-size:14px;color:var(--white);letter-spacing:1px}
-#arc{position:absolute;inset:0;animation:spin 15s linear infinite}
-@keyframes spin{100%{transform:rotate(360deg)}}
-.hero-content{position:relative;z-index:2;max-width:600px}
-.hero-eyebrow{display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:16px}
-.hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--red);flex-shrink:0}
-.hero-h1{font-family:var(--ft);font-size:clamp(58px,14vw,130px);line-height:.9;letter-spacing:-1px;margin-bottom:28px}
-.hero-h1 .sub-it{display:block;font-family:var(--fs);font-style:italic;font-weight:400;font-size:.42em;color:var(--red);letter-spacing:4px;margin-bottom:6px}
-.hero-desc{font-family:var(--fs);font-style:italic;font-size:clamp(15px,3.5vw,18px);color:var(--grey);line-height:1.7;max-width:380px;margin-bottom:24px}
-.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px}
-.btn-fill{display:inline-flex;align-items:center;gap:10px;background:var(--black);color:var(--white);font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:bold;padding:14px 24px;text-decoration:none;border-radius:2px;transition:background .25s}
-.btn-fill:hover{background:var(--red)}
-.btn-border{display:inline-flex;align-items:center;gap:10px;border:2px solid var(--black);color:var(--black);font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:bold;padding:12px 22px;text-decoration:none;border-radius:2px;transition:.25s}
-.btn-border:hover{border-color:var(--red);color:var(--red)}
-.hero-stats{display:flex;gap:28px;padding-top:24px;border-top:1px solid var(--border)}
-.h-stat-num{font-family:var(--ft);font-size:26px;line-height:1}
-.h-stat-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-top:4px}
-
-/* ── TICKER ── */
-.ticker{background:var(--black);padding:14px 0;overflow:hidden;white-space:nowrap;max-width:100vw}
-.ticker-inner{display:inline-flex;animation:tickMove 20s linear infinite}
-@keyframes tickMove{100%{transform:translateX(-50%)}}
-.t-item{font-family:var(--ft);font-size:13px;letter-spacing:4px;padding:0 30px;color:rgba(255,255,255,.35);text-transform:uppercase}
-.t-dot{color:var(--red);padding:0 6px;font-size:11px}
-
-/* ── SECTIONS ── */
-.section{padding:90px 28px;overflow:hidden}
-.s-eyebrow{display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:14px}
-.s-eyebrow::before{content:'';width:28px;height:1px;background:var(--red)}
-.s-title{font-family:var(--ft);font-size:clamp(34px,8vw,72px);line-height:.92;letter-spacing:-1px}
-
-/* ── WORKS / PORTFOLIO ── */
-.works{background:var(--black);padding:0;overflow:hidden}
-.works-head{display:flex;justify-content:space-between;align-items:flex-end;padding:40px 52px 28px;border-bottom:1px solid rgba(255,255,255,.07)}
-.works-head-left .s-eyebrow{color:var(--red);margin-bottom:6px}
-.works-head-left .s-title{font-family:var(--ft);font-size:clamp(24px,3.5vw,42px);color:var(--white);line-height:.92;letter-spacing:-1px}
-.works-head-right{text-align:right}
-.works-count{font-family:var(--ft);font-size:clamp(28px,4vw,52px);color:rgba(255,255,255,.07);line-height:1;letter-spacing:-2px}
-.works-count-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:4px}
-.works-carousel{position:relative;overflow:hidden;max-width:100%}
-.works-track{display:flex;transition:transform .72s cubic-bezier(.4,0,.2,1);width:1000%}
-.w-slide{width:10%;position:relative;overflow:hidden;flex-shrink:0}
-.w-slide-img{width:100%;height:clamp(380px,60vw,620px);overflow:hidden;position:relative}
-.w-slide-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.4,0,.2,1)}
-.w-slide.active .w-slide-img img{transform:scale(1.03)}
-.w-slide-overlay{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(13,12,11,.85))}
-.w-slide-content{position:absolute;bottom:0;left:0;right:0;padding:28px 52px;z-index:2}
-.w-slide-meta-row{display:flex;align-items:center;gap:14px;margin-bottom:8px}
-.w-slide-num{font-size:11px;letter-spacing:3px;color:var(--red)}
-.w-slide-type{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5)}
-.w-slide-title{font-family:var(--ft);font-size:clamp(32px,5vw,56px);color:var(--white);line-height:.95;letter-spacing:-1px;margin-bottom:8px}
-.w-slide-tags{display:flex;gap:8px;flex-wrap:wrap}
-.w-slide-tags span{font-size:9px;letter-spacing:2px;text-transform:uppercase;border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.5);padding:4px 10px}
-.works-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 52px;border-top:1px solid rgba(255,255,255,.06);background:var(--black);overflow:hidden}
-.works-dots{display:flex;gap:6px;align-items:center;flex-shrink:1;min-width:0;overflow:hidden}
-.carousel-dot{width:24px;height:2px;background:rgba(255,255,255,.12);border:none;padding:0;cursor:pointer;transition:.4s}
-.carousel-dot.active{background:var(--red);width:40px}
-.works-arrows{display:flex;gap:10px}
-.c-arrow{width:44px;height:44px;border:1px solid rgba(255,255,255,.15);border-radius:50%;background:transparent;color:white;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:.3s}
-.c-arrow:hover{border-color:var(--red);color:var(--red)}
-
-/* ── GALLERY GRID ── */
-.gallery{background:var(--black);padding:80px 28px;overflow:hidden}
-.gallery .s-eyebrow{color:var(--red);justify-content:center;margin-bottom:10px}
-.gallery .s-title{color:var(--white);text-align:center;margin-bottom:12px}
-.gallery-sub{font-family:var(--fs);font-style:italic;color:rgba(255,255,255,.4);font-size:15px;text-align:center;margin-bottom:40px}
-.gallery-grid{columns:2;column-gap:6px;overflow:hidden}
-.gallery-item{break-inside:avoid;margin-bottom:6px;overflow:hidden;border-radius:2px;position:relative;cursor:pointer}
-.gallery-item img{width:100%;display:block;transition:transform .6s cubic-bezier(.4,0,.2,1),filter .6s}
-.gallery-item:hover img{transform:scale(1.05)}
-.gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 60%,rgba(0,0,0,.4));opacity:0;transition:opacity .4s}
-.gallery-item:hover::after{opacity:1}
-@media(min-width:768px){.gallery{padding:100px 48px}.gallery-grid{columns:3;column-gap:10px}.gallery-item{margin-bottom:10px}}
-@media(min-width:1100px){.gallery-grid{columns:4;column-gap:12px}.gallery-item{margin-bottom:12px}}
-
-/* ── ABOUT ── */
-.about{background:var(--white)}
-.about-grid{display:flex;flex-direction:column;gap:48px;margin-top:24px}
-.about-photo{position:relative;overflow:hidden;aspect-ratio:3/4;border-radius:2px}
-.about-photo img{width:100%;height:100%;object-fit:cover}
-.about-tag{position:absolute;bottom:16px;left:16px;background:var(--red);color:white;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:7px 12px}
-.about-text{display:flex;flex-direction:column}
-.about-p{font-family:var(--fs);font-style:italic;font-size:clamp(16px,4vw,19px);color:var(--grey);line-height:1.75;margin-bottom:32px}
-.about-p strong{color:var(--black);font-style:normal}
-.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid var(--border)}
-.stat-box{background:var(--cream);padding:20px}
-.stat-num{font-family:var(--ft);font-size:42px;line-height:1}
-.stat-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-top:4px}
-
-/* ── SERVICES ── */
-.tarifs{background:var(--white)}
-.tarifs-intro{margin-bottom:60px}
-.tarifs-sub{font-family:var(--fs);font-style:italic;font-size:clamp(16px,2.5vw,19px);color:var(--grey);line-height:1.7;max-width:520px;margin-top:20px}
-.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border)}
-.sv-card{background:var(--cream);padding:48px 40px;display:flex;flex-direction:column;gap:16px;position:relative;transition:background .3s}
-.sv-card:hover{background:var(--cream2)}
-.sv-featured{background:var(--black);color:var(--white)}
-.sv-featured:hover{background:var(--dark)}
-.sv-icon{width:44px;height:44px;opacity:.35}
-.sv-icon svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.2}
-.sv-featured .sv-icon{opacity:.5;color:var(--white)}
-.sv-name{font-family:var(--ft);font-size:clamp(24px,3vw,34px);letter-spacing:-1px}
-.sv-desc{font-family:var(--fs);font-style:italic;font-size:14px;color:var(--grey);line-height:1.7}
-.sv-featured .sv-desc{color:rgba(255,255,255,.45)}
-.sv-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
-.sv-tags span{font-size:9px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--border);color:var(--grey);padding:4px 10px}
-.sv-featured .sv-tags span{border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.4)}
-.sv-cta{margin-top:auto;display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;color:var(--black);border-bottom:1px solid var(--border);padding-bottom:6px;transition:.25s}
-.sv-cta:hover{color:var(--red);border-color:var(--red);gap:14px}
-.sv-cta-light{color:var(--red);border-color:var(--red)}
-.sv-cta-light:hover{color:white;border-color:white}
-.svc-badge{position:absolute;top:16px;right:16px;background:var(--red);color:white;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 10px}
-
-/* ── DEVIS ── */
-.devis{background:var(--cream2)}
-.devis-top{margin-bottom:52px}
-.devis-wrap{display:flex;flex-direction:column;gap:40px}
-.devis-left{background:var(--black);border-radius:4px;padding:44px 36px}
-.devis-left-brand{font-family:var(--ft);font-size:clamp(48px,8vw,72px);color:var(--white);line-height:.88;letter-spacing:-2px;margin-bottom:20px}
-.devis-left-brand span{color:var(--red)}
-.devis-left-sub{font-family:var(--fs);font-style:italic;font-size:15px;color:rgba(255,255,255,.45);line-height:1.7;margin-bottom:32px}
-.devis-infos{display:flex;flex-direction:column;gap:0;margin-bottom:32px}
-.devis-info-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07)}
-.devis-info-row:first-child{border-top:1px solid rgba(255,255,255,.07)}
-.di-key{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.3)}
-.di-val{font-family:var(--fs);font-style:italic;font-size:14px;color:rgba(255,255,255,.7)}
-.devis-reassurance{display:flex;flex-direction:column;gap:10px}
-.dr-item{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.4)}
-.dr-icon{color:var(--red);flex-shrink:0}
-.devis-right{background:var(--white);border-radius:4px;overflow:hidden;border:1px solid var(--border)}
-.devis-step{border-bottom:1px solid var(--border);margin-bottom:0}
-.step-head{display:flex;align-items:center;gap:16px;padding:18px 24px;border-bottom:1px solid var(--border)}
-.step-num{width:32px;height:32px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;font-family:var(--ft);font-size:14px;color:var(--red);flex-shrink:0}
-.step-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:bold}
-.step-body{padding:24px}
-.svs-opts{display:flex;flex-wrap:wrap;gap:8px}
-.svs-opt{padding:10px 16px;border:1px solid var(--border);font-size:12px;letter-spacing:1px;cursor:pointer;transition:.2s;background:var(--white);color:var(--black);border-radius:2px}
-.svs-opt:hover{border-color:var(--red);color:var(--red)}
-.svs-opt.on{background:var(--black);color:var(--white);border-color:var(--black)}
-.f-grp{margin-bottom:16px}
-.f-grp label{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:6px;font-weight:bold}
-.f-grp input,.f-grp textarea{width:100%;padding:14px 16px;border:1px solid var(--border);background:var(--cream);font-family:var(--fs);font-style:italic;font-size:14px;color:var(--black);border-radius:2px;outline:none;transition:border-color .2s}
-.f-grp input:focus,.f-grp textarea:focus{border-color:var(--red)}
-.f-grp textarea{min-height:100px;resize:vertical}
-.f-row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.btn-submit{width:100%;padding:18px;background:var(--black);color:var(--white);border:none;border-radius:2px;font-family:var(--ft);font-size:15px;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:background .25s;display:flex;align-items:center;justify-content:center;gap:12px;margin-top:8px}
-.btn-submit:hover{background:var(--red)}
-.btn-submit-arr{font-size:18px}
-.devis-privacy{font-family:var(--fs);font-style:italic;font-size:13px;color:var(--grey);margin-top:10px;text-align:center;line-height:1.5}
-
-/* ── SUCCESS BOX ── */
-.success-box{display:none;background:var(--black);border-radius:4px;overflow:hidden;min-height:400px;position:relative}
-.success-box.visible{display:block}
-.success-inner{padding:60px 48px;position:relative;z-index:2;display:flex;flex-direction:column;align-items:flex-start}
-.success-box::before{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:linear-gradient(135deg,transparent,rgba(184,134,11,.06));pointer-events:none}
-.success-eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:16px}
-.success-title{font-family:var(--ft);font-size:clamp(40px,8vw,64px);color:var(--white);line-height:.9;margin-bottom:8px}
-.success-title span{color:var(--red)}
-.success-subtitle{font-family:var(--fs);font-style:italic;font-size:15px;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:40px;max-width:420px}
-.success-steps{display:flex;flex-direction:column;gap:18px;margin-bottom:40px;width:100%}
-.success-step{display:flex;align-items:center;gap:16px}
-.success-step-num{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-family:var(--ft);font-size:14px;color:rgba(255,255,255,.3);flex-shrink:0;transition:.4s}
-.success-step-num.done{background:var(--red);border-color:var(--red);color:white}
-.success-step-text{font-size:13px;color:rgba(255,255,255,.45);line-height:1.5}
-.success-cta{display:inline-flex;align-items:center;gap:12px;background:var(--red);color:white;font-family:var(--ft);font-size:12px;letter-spacing:3px;text-transform:uppercase;padding:16px 32px;text-decoration:none;border-radius:2px;transition:background .25s;cursor:pointer;border:none}
-.success-cta:hover{background:var(--red2)}
-
-/* ── TESTIMONIALS ── */
-.testimonials{background:var(--cream)}
-.test-list{display:flex;flex-direction:column;gap:2px;margin-top:30px}
-.test-card{background:var(--white);border:1px solid var(--border);padding:26px 22px;transition:border-color .25s}
-.test-card:hover{border-color:var(--red)}
-.test-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:10px}
-.test-author{display:flex;align-items:center;gap:12px}
-.test-av{width:44px;height:44px;border-radius:50%;background:var(--dark);color:white;display:flex;align-items:center;justify-content:center;font-family:var(--ft);font-size:18px;flex-shrink:0}
-.test-name{font-family:var(--ft);font-size:17px;letter-spacing:1px}
-.test-role{font-size:11px;color:var(--grey);margin-top:2px}
-.test-stars{color:var(--red);font-size:13px;letter-spacing:2px;flex-shrink:0}
-.test-quote{font-family:var(--fs);font-style:italic;font-size:clamp(15px,4vw,18px);line-height:1.7;color:var(--grey)}
-.test-quote strong{color:var(--black);font-style:normal}
-.test-proof{display:block;font-family:var(--fb);font-size:11px;letter-spacing:2px;color:var(--red);margin-top:14px;text-transform:uppercase}
-
-/* ── FOOTER ── */
-footer{background:var(--dark);padding:64px 28px 28px;color:rgba(255,255,255,.35);overflow:hidden}
-.footer-logo{font-family:var(--ft);font-size:clamp(48px,10vw,80px);color:var(--white);line-height:.85;letter-spacing:-2px;margin-bottom:40px}
-.footer-logo span{color:var(--red)}
-.footer-cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-bottom:36px}
-.footer-col-h{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:14px}
-.footer-col a{display:block;font-family:var(--fs);font-style:italic;font-size:14px;color:rgba(255,255,255,.45);text-decoration:none;margin-bottom:8px;transition:color .2s}
-.footer-col a:hover{color:var(--red)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
-.footer-copy{font-size:11px;color:rgba(255,255,255,.25)}
-.footer-socials{display:flex;gap:24px;align-items:center}
-.footer-socials a{color:rgba(255,255,255,.7);text-decoration:none;transition:color .3s,transform .3s;display:flex;align-items:center}
-.footer-socials a:hover{color:var(--red);transform:scale(1.15)}
-.footer-socials svg{width:28px;height:28px}
-
-/* ── SCROLL REVEAL ── */
-.rv{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s}
-.rv.on{opacity:1;transform:none}
-
-/* ── RESPONSIVE ── */
-@media(min-width:768px){
-  nav{padding:0 48px}
-  .nav-desk{display:flex !important}
-  .ham{display:none !important}
-  .hero{padding:80px 48px 60px}
-  .hero-badge{top:108px;right:48px;width:116px;height:116px}
-  .section{padding:110px 48px}
-  .about-grid{flex-direction:row;align-items:center;gap:80px}
-  .about-photo{flex:0 0 360px;aspect-ratio:3/4}
-  .about-text{flex:1}
-  .footer-cols{grid-template-columns:repeat(4,1fr)}
-  footer{padding:76px 48px 36px}
-  .devis-wrap{flex-direction:row}
-  .devis-left{flex:0 0 380px}
-  .devis-right{flex:1}
-}
-@media(max-width:767px){
-  .nav-desk{display:none}
-  .ham{display:flex}
-  .services-grid{grid-template-columns:1fr}
-  .f-row2{grid-template-columns:1fr}
-  .works-head{padding:28px 20px 18px}
-  .w-slide-content{padding:20px}
-  .works-nav{padding:14px 20px}
-}
-@media(max-width:480px){
-  .f-row2{grid-template-columns:1fr}
-}
-
-/* ===== GALERIE PREMIUM ===== */
-.section-galerie-premium {
-  background: #0a0a0a;
-  padding: 120px 0 80px;
-  overflow: hidden;
-}
-.galerie-header {
-  text-align: center;
-  margin-bottom: 64px;
-  padding: 0 24px;
-}
-.galerie-label {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #c8a96e;
-  margin-bottom: 18px;
-  border-bottom: 1px solid #c8a96e44;
-  padding-bottom: 8px;
-}
-.galerie-title {
-  font-size: clamp(2.2rem, 6vw, 4.5rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: #f5f0e8;
-  line-height: 1;
-  margin-bottom: 20px;
-}
-.galerie-sub {
-  color: #888;
-  font-size: 15px;
-  max-width: 480px;
-  margin: 0 auto;
-  line-height: 1.7;
-}
-.galerie-grid-premium {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 6px;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 6px;
-}
-.gal-item {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  background: #111;
-}
-.gal-item--tall { aspect-ratio: 3/4; }
-.gal-item--square { aspect-ratio: 4/5; }
-.gal-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease;
-  filter: brightness(0.92) saturate(1.05);
-}
-.gal-item:hover img {
-  transform: scale(1.05);
-  filter: brightness(0.7) saturate(1.1);
-}
-.gal-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 28px 24px;
-  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.gal-item:hover .gal-overlay { opacity: 1; }
-.gal-category {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #c8a96e;
-  margin-bottom: 6px;
-}
-.gal-name {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #fff;
-  text-transform: uppercase;
-}
-.galerie-cta {
-  text-align: center;
-  margin-top: 56px;
-  padding: 0 24px;
-}
-.btn-galerie {
-  display: inline-block;
-  padding: 16px 40px;
-  border: 1px solid #c8a96e;
-  color: #c8a96e;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-.btn-galerie:hover {
-  background: #c8a96e;
-  color: #0a0a0a;
-}
-@media (max-width: 600px) {
-  .galerie-grid-premium { gap: 4px; padding: 0 4px; }
-  .gal-overlay { opacity: 1; }
-}
-/* ===== FIN GALERIE PREMIUM ===== */
-/* ===== GALERIE 6 PHOTOS ===== */
-.section-galerie-premium { background:#0a0a0a; padding:120px 0 80px; overflow:hidden; }
-.galerie-header { text-align:center; margin-bottom:64px; padding:0 24px; }
-.galerie-label { display:inline-block; font-size:11px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:#c8a96e; margin-bottom:18px; border-bottom:1px solid #c8a96e44; padding-bottom:8px; }
-.galerie-title { font-size:clamp(2.2rem,6vw,4.5rem); font-weight:800; letter-spacing:-0.02em; color:#f5f0e8; line-height:1; margin-bottom:20px; }
-.galerie-sub { color:#888; font-size:15px; max-width:480px; margin:0 auto; line-height:1.7; }
-.galerie-grid-premium {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  grid-template-rows:auto auto auto;
-  gap:6px;
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 6px;
-}
-.gal-item { position:relative; overflow:hidden; cursor:pointer; background:#111; }
-.gal-item--tall { aspect-ratio:3/4; }
-.gal-item--square { aspect-ratio:4/5; }
-.gal-item--wide { aspect-ratio:3/4; }
-.gal-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94),filter 0.5s ease; filter:brightness(0.92) saturate(1.05); }
-.gal-item:hover img { transform:scale(1.05); filter:brightness(0.65) saturate(1.1); }
-.gal-overlay { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:28px 24px; background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 60%); opacity:0; transition:opacity 0.4s ease; }
-.gal-item:hover .gal-overlay { opacity:1; }
-.gal-category { font-size:10px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:#c8a96e; margin-bottom:6px; }
-.gal-name { font-size:18px; font-weight:700; letter-spacing:0.05em; color:#fff; text-transform:uppercase; }
-.galerie-cta { text-align:center; margin-top:56px; padding:0 24px; }
-.btn-galerie { display:inline-block; padding:16px 40px; border:1px solid #c8a96e; color:#c8a96e; font-size:13px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; text-decoration:none; transition:all 0.3s ease; }
-.btn-galerie:hover { background:#c8a96e; color:#0a0a0a; }
-@media(max-width:600px){
-  .galerie-grid-premium { gap:3px; padding:0 3px; }
-  .gal-overlay { opacity:1; }
-}
-/* ===== SHOWREEL ===== */
-.section-showreel { background:#000; padding:80px 0 0; }
-.showreel-header { text-align:center; margin-bottom:48px; padding:0 24px; }
-.showreel-container {
-  position:relative;
-  width:100%;
-  overflow:hidden;
-  max-height:70vh;
-}
+html{scroll-behavior:smooth;font-size:16px;}
+body{background:var(--black);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:400;overflow-x:hidden;cursor:none;}
+/* CURSOR */
+.cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s,width .3s,height .3s;mix-blend-mode:difference;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .08s,width .3s,height .3s,opacity .3s;opacity:0.5;}
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--black);}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:24px 40px;transition:background .4s,padding .4s;}
+nav.scrolled{background:rgba(7,7,7,.95);backdrop-filter:blur(12px);padding:16px 40px;border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--text);text-decoration:none;letter-spacing:-.01em;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{background:var(--gold);color:var(--black);padding:10px 24px;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:opacity .3s;}
+.nav-cta:hover{opacity:.85;}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-burger span{display:block;width:24px;height:1.5px;background:var(--text);transition:all .3s;}
+/* MOBILE NAV */
+.mobile-nav{position:fixed;inset:0;background:var(--black);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;opacity:0;pointer-events:none;transition:opacity .4s;}
+.mobile-nav.open{opacity:1;pointer-events:all;}
+.mobile-nav a{font-family:'Playfair Display',serif;font-size:clamp(28px,8vw,52px);font-weight:700;color:var(--text);text-decoration:none;transition:color .3s;}
+.mobile-nav a:hover{color:var(--gold);}
+/* HERO */
+#hero{position:relative;height:100svh;min-height:600px;display:flex;align-items:flex-end;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url('https://bilel931324.github.io/gal2.jpeg') center/cover no-repeat;filter:brightness(.45);transform:scale(1.05);transition:transform 8s ease;}
+.hero-bg.loaded{transform:scale(1);}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,7,7,1) 0%,rgba(7,7,7,.4) 50%,transparent 100%);}
+.hero-content{position:relative;z-index:1;padding:0 40px 80px;max-width:900px;}
+.hero-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
+.hero-eyebrow span{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);}
+.hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--gold);}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,9vw,7.5rem);font-weight:900;line-height:.95;letter-spacing:-.03em;color:var(--text);margin-bottom:32px;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-sub{font-size:16px;font-weight:300;color:rgba(240,236,228,.7);max-width:480px;line-height:1.7;margin-bottom:48px;}
+.hero-btns{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.btn-primary{display:inline-block;background:var(--gold);color:var(--black);padding:16px 36px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:opacity .3s;}
+.btn-primary:hover{opacity:.85;}
+.btn-ghost{display:inline-block;border:1px solid rgba(255,255,255,.25);color:var(--text);padding:16px 36px;font-size:12px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:border-color .3s,color .3s;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.hero-stats{position:absolute;right:40px;bottom:80px;display:flex;flex-direction:column;gap:32px;z-index:1;}
+.hero-stat{text-align:right;}
+.hero-stat-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--gold);line-height:1;}
+.hero-stat-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+/* TICKER */
+.ticker{background:var(--gold);padding:14px 0;overflow:hidden;white-space:nowrap;}
+.ticker-track{display:inline-flex;animation:ticker 22s linear infinite;}
+.ticker-track span{font-size:12px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--black);padding:0 40px;}
+.ticker-track span::before{content:'✦';margin-right:40px;font-size:8px;}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+/* SECTIONS */
+section{padding:120px 40px;}
+.s-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.s-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.s-eyebrow-text{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:.95;letter-spacing:-.03em;color:var(--text);}
+/* GALERIE */
+#galerie{padding:120px 0;background:var(--black);}
+.galerie-head{padding:0 40px;margin-bottom:60px;}
+.galerie-head .s-title{max-width:600px;}
+.galerie-head p{margin-top:16px;color:var(--muted);font-size:15px;max-width:480px;line-height:1.7;}
+.galerie-grid{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(3,auto);gap:4px;}
+.gal-item{position:relative;overflow:hidden;background:var(--card);}
+.gal-item:nth-child(1){aspect-ratio:3/4;}
+.gal-item:nth-child(2){aspect-ratio:3/4;}
+.gal-item:nth-child(3){aspect-ratio:3/4;}
+.gal-item:nth-child(4){aspect-ratio:3/4;}
+.gal-item:nth-child(5){aspect-ratio:3/4;}
+.gal-item:nth-child(6){aspect-ratio:3/4;}
+.gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.46,.45,.94),filter .5s;filter:brightness(.9);}
+.gal-item:hover img{transform:scale(1.06);filter:brightness(.6);}
+.gal-meta{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 20px;background:linear-gradient(to top,rgba(7,7,7,.85) 0%,transparent 55%);opacity:0;transition:opacity .4s;}
+.gal-item:hover .gal-meta{opacity:1;}
+.gal-cat{font-size:9px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.gal-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);}
+.gal-item.placeholder{background:var(--card);display:flex;align-items:center;justify-content:center;}
+.gal-item.placeholder::after{content:'BIENTÔT';font-size:9px;letter-spacing:.3em;color:var(--muted);}
 @media(max-width:768px){
-  .showreel-container { max-height:45vh; }
+  .galerie-grid{gap:3px;}
+  .gal-meta{opacity:1;}
 }
-.showreel-video { width:100%; height:100%; max-height:70vh; object-fit:cover; display:block; }
+.galerie-cta{text-align:center;margin-top:60px;padding:0 40px;}
+/* SHOWREEL */
+#showreel{padding:0;background:var(--black);position:relative;}
+.showreel-label{padding:80px 40px 40px;display:flex;align-items:center;gap:16px;}
+.showreel-label::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.showreel-label-text{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);}
+.showreel-title{padding:0 40px 48px;font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,4rem);font-weight:900;line-height:1;letter-spacing:-.02em;}
+.showreel-title em{color:var(--gold);font-style:italic;}
+.showreel-wrap{position:relative;width:100%;overflow:hidden;}
+.showreel-wrap video{width:100%;height:56vw;max-height:620px;object-fit:cover;display:block;}
 @media(max-width:768px){
-  .showreel-video { max-height:45vh; }
+  .showreel-wrap video{height:56vw;max-height:280px;}
 }
-.showreel-overlay { position:absolute; inset:0; display:flex; align-items:flex-end; padding:32px; background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 50%); pointer-events:none; }
-.showreel-badge { font-size:12px; font-weight:700; letter-spacing:0.3em; color:#c8a96e; border:1px solid #c8a96e55; padding:10px 20px; }
-/* ===== FIN ===== */</style>
+.showreel-bar{position:absolute;bottom:0;left:0;right:0;padding:24px 32px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to top,rgba(7,7,7,.9),transparent);}
+.showreel-badge{font-size:11px;font-weight:700;letter-spacing:.3em;color:var(--gold);border:1px solid var(--gold-dim);padding:8px 18px;}
+.showreel-tag{font-size:11px;letter-spacing:.15em;color:rgba(255,255,255,.4);text-transform:uppercase;}
+/* SERVICES */
+#services{background:var(--dark);}
+.services-header{margin-bottom:72px;}
+.services-header p{margin-top:20px;color:var(--muted);font-size:15px;max-width:480px;line-height:1.7;}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}
+@media(max-width:768px){.services-grid{grid-template-columns:1fr;}}
+.service-card{background:var(--card);padding:40px;position:relative;overflow:hidden;transition:background .3s;}
+.service-card:hover{background:#1a1a1a;}
+.service-card::before{content:attr(data-num);position:absolute;top:24px;right:28px;font-family:'Playfair Display',serif;font-size:80px;font-weight:900;color:var(--border);line-height:1;}
+.service-icon{width:44px;height:44px;border:1px solid var(--gold-dim);display:flex;align-items:center;justify-content:center;margin-bottom:28px;color:var(--gold);font-size:18px;}
+.service-name{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-bottom:12px;}
+.service-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px;}
+.service-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.service-tag{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dim);padding:4px 12px;}
+.service-cta{display:block;margin-top:32px;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--text);text-decoration:none;transition:color .3s;}
+.service-cta:hover{color:var(--gold);}
+.service-cta::after{content:' →';}
+/* ABOUT */
+#about{background:var(--black);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+@media(max-width:768px){#about{grid-template-columns:1fr;gap:48px;}}
+.about-img{position:relative;}
+.about-img img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;filter:brightness(.85);}
+.about-badge{position:absolute;bottom:32px;left:-20px;background:var(--gold);color:var(--black);padding:16px 24px;}
+.about-badge-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;line-height:1;}
+.about-badge-text{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;}
+.about-content .s-eyebrow{margin-bottom:24px;}
+.about-content .s-title{margin-bottom:28px;}
+.about-content p{color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:16px;}
+.about-content p strong{color:var(--text);font-weight:500;}
+.about-socials{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;}
+.about-social{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s;}
+.about-social:hover{color:var(--gold);}
+/* TESTIMONIALS */
+#testimonials{background:var(--dark);text-align:center;}
+.testi-head{margin-bottom:72px;}
+.testi-card{max-width:700px;margin:0 auto;padding:60px 48px;background:var(--card);position:relative;}
+.testi-card::before{content:'"';position:absolute;top:-20px;left:40px;font-family:'Playfair Display',serif;font-size:120px;color:var(--gold);opacity:.2;line-height:1;}
+.testi-stars{display:flex;justify-content:center;gap:4px;margin-bottom:28px;}
+.testi-stars span{color:var(--gold);font-size:14px;}
+.testi-text{font-family:'Playfair Display',serif;font-size:clamp(16px,2.5vw,22px);font-weight:700;line-height:1.5;color:var(--text);margin-bottom:32px;font-style:italic;}
+.testi-author{display:flex;align-items:center;justify-content:center;gap:16px;}
+.testi-avatar{width:48px;height:48px;border-radius:50%;background:var(--gold-dim);overflow:hidden;border:1px solid var(--gold-dim);}
+.testi-avatar img{width:100%;height:100%;object-fit:cover;}
+.testi-name{font-weight:600;font-size:14px;}
+.testi-role{font-size:12px;color:var(--muted);}
+.testi-cta{margin-top:60px;}
+/* DEVIS */
+#devis{background:var(--black);}
+.devis-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+@media(max-width:768px){.devis-wrap{grid-template-columns:1fr;gap:48px;}}
+.devis-info .s-title{margin-bottom:24px;}
+.devis-info p{color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:40px;}
+.devis-items{display:flex;flex-direction:column;gap:16px;}
+.devis-item{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted);}
+.devis-item::before{content:'✓';color:var(--gold);font-weight:700;font-size:12px;}
+.devis-form{background:var(--card);padding:48px;border:1px solid var(--border);}
+.form-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:32px;}
+.form-group{margin-bottom:20px;}
+.form-label{display:block;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.form-input,.form-textarea,.form-select{width:100%;background:var(--black);border:1px solid var(--border);color:var(--text);padding:14px 16px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .3s;appearance:none;}
+.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:var(--gold);}
+.form-textarea{resize:vertical;min-height:100px;}
+.form-types{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
+.form-type{background:var(--black);border:1px solid var(--border);padding:12px;cursor:pointer;text-align:center;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:all .3s;}
+.form-type.active,.form-type:hover{border-color:var(--gold);color:var(--gold);}
+.btn-submit{width:100%;background:var(--gold);color:var(--black);padding:18px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;transition:opacity .3s;margin-top:8px;}
+.btn-submit:hover{opacity:.85;}
+/* SUCCESS */
+.devis-success{display:none;text-align:center;padding:60px 20px;}
+.devis-success.show{display:block;}
+.devis-success-icon{font-size:48px;margin-bottom:24px;}
+.devis-success h3{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:16px;}
+.devis-success p{color:var(--muted);font-size:15px;line-height:1.7;}
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40px 40px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:60px;}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr;}}
+.footer-brand{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;margin-bottom:16px;}
+.footer-brand span{color:var(--gold);}
+.footer-desc{font-size:14px;color:var(--muted);line-height:1.7;max-width:280px;}
+.footer-col-title{font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.footer-links{display:flex;flex-direction:column;gap:12px;}
+.footer-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .3s;}
+.footer-links a:hover{color:var(--text);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:32px;border-top:1px solid var(--border);flex-wrap:wrap;gap:16px;}
+.footer-copy{font-size:12px;color:var(--muted);}
+.footer-socials{display:flex;gap:20px;}
+.footer-socials a{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s;}
+.footer-socials a:hover{color:var(--gold);}
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:20px 24px;}
+  nav.scrolled{padding:14px 24px;}
+  .nav-links,.nav-cta{display:none;}
+  .nav-burger{display:flex;}
+  #hero .hero-content{padding:0 24px 80px;}
+  .hero-stats{display:none;}
+  section{padding:80px 24px;}
+  #galerie{padding:80px 0;}
+  .galerie-head{padding:0 24px;margin-bottom:40px;}
+  .galerie-cta{padding:0 24px;}
+  #about{padding:80px 24px;}
+  .about-badge{left:0;}
+  #devis{padding:80px 24px;}
+  .devis-form{padding:32px 24px;}
+  footer{padding:48px 24px 32px;}
+  .showreel-label{padding:60px 24px 32px;}
+  .showreel-title{padding:0 24px 36px;}
+  .showreel-bar{padding:16px 20px;}
+}
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+</style>
 </head>
 <body>
 
-<!-- ── LOADER ── -->
-<div id="loader">
-  <div class="ld-num" id="ldNum">0<span class="ld-pct">%</span></div>
-  <div class="ld-track"><div class="ld-bar"></div></div>
-  <div class="ld-txt">Seven-Prod · Paris</div>
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#galerie" onclick="closeMobileNav()">Galerie</a>
+  <a href="#services" onclick="closeMobileNav()">Services</a>
+  <a href="#about" onclick="closeMobileNav()">À propos</a>
+  <a href="#devis" onclick="closeMobileNav()">Devis gratuit</a>
 </div>
 
-<!-- ── NAV ── -->
-<nav>
-  <a href="#accueil" class="nav-logo">S.</a>
-  <div class="nav-desk">
-    <ul>
-      <li><a href="#works">Travaux</a></li>
-      <li><a href="#galerie">Galerie</a></li>
-      <li><a href="#about">À propos</a></li>
-      <li><a href="#tarifs">Tarifs</a></li>
-      <li><a href="#testimonials">Avis</a></li>
-    </ul>
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">S<span>.</span></a>
+  <div class="nav-links">
+    <a href="#galerie">Galerie</a>
+    <a href="#services">Services</a>
+    <a href="#about">À propos</a>
+    <a href="#testimonials">Avis</a>
     <a href="#devis" class="nav-cta">Devis gratuit</a>
   </div>
-  <button class="ham" id="hamBtn" onclick="toggleMenu()">
+  <div class="nav-burger" id="burger" onclick="toggleMobileNav()">
     <span></span><span></span><span></span>
-  </button>
+  </div>
 </nav>
 
-<!-- ── MOBILE NAV ── -->
-<div class="mob-nav" id="mobNav">
-  <a href="#works" onclick="closeMenu()">Travaux</a>
-  <a href="#galerie" onclick="closeMenu()">Galerie</a>
-  <a href="#about" onclick="closeMenu()">À propos</a>
-  <a href="#tarifs" onclick="closeMenu()">Tarifs</a>
-  <a href="#testimonials" onclick="closeMenu()">Avis clients</a>
-  <a href="#devis" class="m-cta" onclick="closeMenu()">Devis gratuit →</a>
-</div>
-
-<!-- ── HERO ── -->
-<section class="hero" id="accueil">
-  <div class="hero-deco"></div>
-
-  <div class="hero-badge">
-    <svg id="arc" viewBox="0 0 100 100" width="100%" height="100%">
-      <defs>
-        <path id="cp" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/>
-      </defs>
-      <text font-size="8.5" fill="rgba(255,255,255,.3)" letter-spacing="5" font-family="sans-serif" text-transform="uppercase">
-        <textPath href="#cp">PARIS · PHOTO · VIDÉO · 2025 ·</textPath>
-      </text>
-    </svg>
-    <span class="badge-center">sprd</span>
-  </div>
-
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-gradient"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Photographe & Vidéaste — Paris</div>
-    <h1 class="hero-h1">
-      <span class="sub-it">des images</span>
-      QUI FONT<br>RÉAGIR
-    </h1>
-    <p class="hero-desc">Rappeurs, influenceurs, artistes —<br>je capture ce que les mots ne peuvent pas dire.</p>
-    <div class="hero-btns">
-      <a href="#devis" class="btn-fill">Devis gratuit →</a>
-      <a href="#works" class="btn-border">Voir mes travaux</a>
+    <div class="hero-eyebrow">
+      <span>Paris · Photo · Vidéo · 2025</span>
     </div>
-    <div class="hero-stats">
-      <div><div class="h-stat-num">50+</div><div class="h-stat-lbl">Shootings</div></div>
-      <div><div class="h-stat-num">★ 5/5</div><div class="h-stat-lbl">Satisfaction</div></div>
+    <h1 class="hero-title">Des images<br/>qui font <em>réagir</em></h1>
+    <p class="hero-sub">Rappeurs, influenceurs, artistes — je capture ce que les mots ne peuvent pas dire. Des visuels cinématiques à la hauteur de ton talent.</p>
+    <div class="hero-btns">
+      <a href="#devis" class="btn-primary">Devis gratuit</a>
+      <a href="#galerie" class="btn-ghost">Voir la galerie</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">50+</div>
+      <div class="hero-stat-label">Shootings</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">★ 5</div>
+      <div class="hero-stat-label">Satisfaction</div>
     </div>
   </div>
 </section>
 
-<!-- ── TICKER ── -->
+<!-- TICKER -->
 <div class="ticker">
-  <div class="ticker-inner">
-    <span class="t-item">Photographe</span><span class="t-dot">✦</span>
-    <span class="t-item">Vidéaste</span><span class="t-dot">✦</span>
-    <span class="t-item">Clips Rap</span><span class="t-dot">✦</span>
-    <span class="t-item">Influenceurs</span><span class="t-dot">✦</span>
-    <span class="t-item">Brand Content</span><span class="t-dot">✦</span>
-    <span class="t-item">Paris</span><span class="t-dot">✦</span>
-    <span class="t-item">Photographe</span><span class="t-dot">✦</span>
-    <span class="t-item">Vidéaste</span><span class="t-dot">✦</span>
-    <span class="t-item">Clips Rap</span><span class="t-dot">✦</span>
-    <span class="t-item">Influenceurs</span><span class="t-dot">✦</span>
-    <span class="t-item">Brand Content</span><span class="t-dot">✦</span>
-    <span class="t-item">Paris</span><span class="t-dot">✦</span>
+  <div class="ticker-track" id="tickerTrack">
+    <span>Photographe</span><span>Vidéaste</span><span>Clips Rap</span><span>Influenceurs</span><span>Brand Content</span><span>Paris</span><span>Portrait</span><span>Éditorial</span>
+    <span>Photographe</span><span>Vidéaste</span><span>Clips Rap</span><span>Influenceurs</span><span>Brand Content</span><span>Paris</span><span>Portrait</span><span>Éditorial</span>
   </div>
 </div>
 
-<!-- ── PORTFOLIO ── -->
-<section class="works" id="works">
-  <div class="works-head">
-    <div class="works-head-left">
-      <div class="s-eyebrow">Portfolio</div>
-      <div class="s-title">MES TRAVAUX</div>
+<!-- GALERIE -->
+<section id="galerie">
+  <div class="galerie-head fade-up">
+    <div class="s-eyebrow"><span class="s-eyebrow-text">Portfolio</span></div>
+    <h2 class="s-title">La Galerie</h2>
+    <p>Portraits, clips, éditorial — chaque image raconte une histoire unique.</p>
+  </div>
+  <div class="galerie-grid">
+    <div class="gal-item fade-up">
+      <img src="https://bilel931324.github.io/gal2.jpeg" alt="Portrait studio" loading="lazy" onerror="this.parentElement.classList.add('placeholder');this.remove();"/>
+      <div class="gal-meta"><div class="gal-cat">Portrait</div><div class="gal-name">Studio Session</div></div>
     </div>
-    <div class="works-head-right">
-      <div class="works-count">10</div>
-      <div class="works-count-lbl">projets</div>
+    <div class="gal-item fade-up">
+      <img src="https://bilel931324.github.io/new_portrait_man.jpeg" alt="Portrait street" loading="lazy" onerror="this.parentElement.classList.add('placeholder');this.remove();"/>
+      <div class="gal-meta"><div class="gal-cat">Street</div><div class="gal-name">Golden Light</div></div>
+    </div>
+    <div class="gal-item fade-up">
+      <img src="https://bilel931324.github.io/gal3.jpeg" alt="Portrait éditorial" loading="lazy" onerror="this.parentElement.classList.add('placeholder');this.remove();"/>
+      <div class="gal-meta"><div class="gal-cat">Éditorial</div><div class="gal-name">Deep Focus</div></div>
+    </div>
+    <div class="gal-item fade-up">
+      <img src="https://bilel931324.github.io/new_trio_women.jpeg" alt="Shooting groupe" loading="lazy" onerror="this.parentElement.classList.add('placeholder');this.remove();"/>
+      <div class="gal-meta"><div class="gal-cat">Groupe</div><div class="gal-name">Power Trio</div></div>
+    </div>
+    <div class="gal-item fade-up">
+      <img src="https://bilel931324.github.io/gal4.jpeg" alt="Portrait N&B" loading="lazy" onerror="this.parentElement.classList.add('placeholder');this.remove();"/>
+      <div class="gal-meta"><div class="gal-cat">N&amp;B</div><div class="gal-name">Dark Mood</div></div>
+    </div>
+    <div class="gal-item fade-up">
+      <img src="https://bilel931324.github.io/new_woman_solo.jpeg" alt="Portrait glamour" loading="lazy" onerror="this.parentElement.classList.add('placeholder');this.remove();"/>
+      <div class="gal-meta"><div class="gal-cat">Glamour</div><div class="gal-name">Lady Boss</div></div>
     </div>
   </div>
-  <div class="works-carousel">
-    <div class="works-track" id="worksTrack">
-
-      <div class="w-slide active">
-        <div class="w-slide-img">
-          <img src="photo1.jpeg" alt="Shooting — Seven-Prod">
-          <div class="w-slide-overlay"></div>
-        </div>
-        <div class="w-slide-content">
-          <div class="w-slide-meta-row">
-            <span class="w-slide-num">01/10</span>
-            <span class="w-slide-type">Portrait · Portrait</span>
-          </div>
-          <div class="w-slide-title">SHADOW PLAY</div>
-          <div class="w-slide-tags"><span>Portrait</span><span>Mood</span></div>
-        </div>
-      </div>
-
-      <div class="w-slide">
-        <div class="w-slide-img">
-          <img src="photo2.jpeg" alt="Shooting — Seven-Prod">
-          <div class="w-slide-overlay"></div>
-        </div>
-        <div class="w-slide-content">
-          <div class="w-slide-meta-row">
-            <span class="w-slide-num">02/10</span>
-            <span class="w-slide-type">Street · Artistique</span>
-          </div>
-          <div class="w-slide-title">DARK SIDE</div>
-          <div class="w-slide-tags"><span>Artiste</span><span>Clair-Obscur</span></div>
-        </div>
-      </div>
-
-      <div class="w-slide">
-        <div class="w-slide-img">
-          <img src="photo3.jpeg" alt="Shooting — Seven-Prod">
-          <div class="w-slide-overlay"></div>
-        </div>
-        <div class="w-slide-content">
-          <div class="w-slide-meta-row">
-            <span class="w-slide-num">03/10</span>
-            <span class="w-slide-type">Studio · Néon</span>
-          </div>
-          <div class="w-slide-title">GREEN LIGHT</div>
-          <div class="w-slide-tags"><span>Studio</span><span>Ambiance</span></div>
-        </div>
-      </div>
-
-      <div class="w-slide">
-        <div class="w-slide-img">
-          <img src="photo4.jpeg" alt="Shooting — Seven-Prod">
-          <div class="w-slide-overlay"></div>
-        </div>
-        <div class="w-slide-content">
-          <div class="w-slide-meta-row">
-            <span class="w-slide-num">04/10</span>
-            <span class="w-slide-type">Portrait · Mode</span>
-          </div>
-          <div class="w-slide-title">BLIND SHOT</div>
-          <div class="w-slide-tags"><span>Mode</span><span>Cinématique</span></div>
-        </div>
-      </div>
-
-      <div class="w-slide">
-        <div class="w-slide-img">
-          <img src="photo5.jpeg" alt="Shooting — Seven-Prod">
-          <div class="w-slide-overlay"></div>
-        </div>
-        <div class="w-slide-content">
-          <div class="w-slide-meta-row">
-            <span class="w-slide-num">05/10</span>
-            <span class="w-slide-type">Portrait · Identité</span>
-          </div>
-          <div class="w-slide-title">RAW ENERGY</div>
-          <div class="w-slide-tags"><span>Face</span><span>Editorial</span></div>
-        </div>
-      </div>
-
-      <div class="w-slide">
-        <div class="w-slide-img">
-          <img src="WhatsApp Image 2026-03-27 at 01.14.41.jpeg" alt="Portrait — Seven-Prod">
-          <div class="w-slide-overlay"></div>
-        </div>
-        <div class="w-slide-content">
-          <div class="w-slide-meta-row">
-            <span class="w-slide-num">06/10</span>
-            <span class="w-slide-type">Portrait · Artistique</span>
-          </div>
-          <div class="w-slide-title">MOOD SHOT</div>
-          <div class="w-slide-tags"><span>Artiste</span><span>Studio</span></div>
-        </div>
-      </div>
-
-      <div class="w-slide">
-        <div class="w-slide-img">
-          <img src="WhatsApp Image 2026-03-27 at 01.14.41 (1).jpeg" alt="Street — Seven-Prod">
-          <div class="w-slide-overlay"></div>
-        </div>
-        <div class="w-slide-content">
-          <div class="w-slide-meta-row">
-            <span class="w-slide-num">07/10</span>
-            <span class="w-slide-type">Street · Mode</span>
-          </div>
-          <div class="w-slide-title">URBAN STYLE</div>
-          <div class="w-slide-tags"><span>Influenceur</span><span>Paris</span></div>
-        </div>
-      </div>
-
-      <div class="w-slide">
-        <div class="w-slide-img">
-          <img src="WhatsApp Image 2026-03-27 at 01.14.41 (2).jpeg" alt="Duo — Seven-Prod">
-          <div class="w-slide-overlay"></div>
-        </div>
-        <div class="w-slide-content">
-          <div class="w-slide-meta-row">
-            <span class="w-slide-num">08/10</span>
-            <span class="w-slide-type">Duo · Reportage</span>
-          </div>
-          <div class="w-slide-title">PARIS VIBES</div>
-          <div class="w-slide-tags"><span>Content</span><span>Couleur</span></div>
-        </div>
-      </div>
-
-      <div class="w-slide">
-        <div class="w-slide-img">
-          <img src="WhatsApp Image 2026-03-27 at 01.15.11.jpeg" alt="Portrait — Seven-Prod">
-          <div class="w-slide-overlay"></div>
-        </div>
-        <div class="w-slide-content">
-          <div class="w-slide-meta-row">
-            <span class="w-slide-num">09/10</span>
-            <span class="w-slide-type">Portrait · Lumière</span>
-          </div>
-          <div class="w-slide-title">GOLDEN HOUR</div>
-          <div class="w-slide-tags"><span>Portrait</span><span>Naturel</span></div>
-        </div>
-      </div>
-
-      <div class="w-slide">
-        <div class="w-slide-img">
-          <img src="WhatsApp Image 2026-03-27 at 01.15.56.jpeg" alt="Street — Seven-Prod">
-          <div class="w-slide-overlay"></div>
-        </div>
-        <div class="w-slide-content">
-          <div class="w-slide-meta-row">
-            <span class="w-slide-num">10/10</span>
-            <span class="w-slide-type">Street · Portrait</span>
-          </div>
-          <div class="w-slide-title">STREET CAST</div>
-          <div class="w-slide-tags"><span>Mode</span><span>Editorial</span></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <div class="works-nav">
-    <div class="works-dots" id="carouselDots">
-      <button class="carousel-dot active" onclick="goTo(0)"></button>
-      <button class="carousel-dot" onclick="goTo(1)"></button>
-      <button class="carousel-dot" onclick="goTo(2)"></button>
-      <button class="carousel-dot" onclick="goTo(3)"></button>
-      <button class="carousel-dot" onclick="goTo(4)"></button>
-      <button class="carousel-dot" onclick="goTo(5)"></button>
-      <button class="carousel-dot" onclick="goTo(6)"></button>
-      <button class="carousel-dot" onclick="goTo(7)"></button>
-      <button class="carousel-dot" onclick="goTo(8)"></button>
-      <button class="carousel-dot" onclick="goTo(9)"></button>
-    </div>
-    <div id="carouselProgress" style="flex:1;height:2px;background:rgba(255,255,255,.06);margin:0 20px;border-radius:2px;overflow:hidden"></div>
-    <div class="works-arrows">
-      <button class="c-arrow" onclick="carouselPrev()">←</button>
-      <button class="c-arrow" onclick="carouselNext()">→</button>
-    </div>
+  <div class="galerie-cta fade-up">
+    <a href="#devis" class="btn-primary">Obtenir mon shooting</a>
   </div>
 </section>
 
-<!-- ── GALERIE ── -->
-<section id="galerie" class="section-galerie-premium">
-  <div class="galerie-header">
-    <span class="galerie-label">Shooting Studio</span>
-    <h2 class="galerie-title">LA GALERIE</h2>
-    <p class="galerie-sub">Portraits, éditorial, direction artistique — chaque image raconte une histoire.</p>
-  </div>
-  <div class="galerie-grid-premium">
-    <div class="gal-item gal-item--tall">
-      <img src="https://bilel931324.github.io/gal2.jpeg" alt="Portrait studio" loading="lazy" />
-      <div class="gal-overlay"><span class="gal-category">Portrait</span><span class="gal-name">STUDIO SESSION</span></div>
-    </div>
-    <div class="gal-item gal-item--tall">
-      <img src="https://bilel931324.github.io/new_portrait_man.jpeg" alt="Portrait street" loading="lazy" />
-      <div class="gal-overlay"><span class="gal-category">Street</span><span class="gal-name">GOLDEN LIGHT</span></div>
-    </div>
-    <div class="gal-item gal-item--tall">
-      <img src="https://bilel931324.github.io/gal3.jpeg" alt="Portrait éditorial" loading="lazy" />
-      <div class="gal-overlay"><span class="gal-category">Éditorial</span><span class="gal-name">DEEP FOCUS</span></div>
-    </div>
-    <div class="gal-item gal-item--tall">
-      <img src="https://bilel931324.github.io/new_trio_women.jpeg" alt="Shooting groupe" loading="lazy" />
-      <div class="gal-overlay"><span class="gal-category">Groupe</span><span class="gal-name">POWER TRIO</span></div>
-    </div>
-    <div class="gal-item gal-item--tall">
-      <img src="https://bilel931324.github.io/gal4.jpeg" alt="Portrait N&B" loading="lazy" />
-      <div class="gal-overlay"><span class="gal-category">N&amp;B</span><span class="gal-name">DARK MOOD</span></div>
-    </div>
-    <div class="gal-item gal-item--tall">
-      <img src="https://bilel931324.github.io/new_woman_solo.jpeg" alt="Portrait glamour" loading="lazy" />
-      <div class="gal-overlay"><span class="gal-category">Glamour</span><span class="gal-name">LADY BOSS</span></div>
-    </div>
-  </div>
-  <div class="galerie-cta">
-    <a href="#devis" class="btn-galerie">Obtenir mon shooting →</a>
-  </div>
-</section>
-
-<section id="showreel" class="section-showreel">
-  <div class="showreel-header">
-    <span class="galerie-label">Behind the lens</span>
-    <h2 class="galerie-title">EN MOUVEMENT</h2>
-    <p class="galerie-sub">Pas juste des photos — une vision. Découvre l'univers Seven-Prod en vidéo.</p>
-  </div>
-  <div class="showreel-container">
-    <video class="showreel-video" autoplay muted loop playsinline poster="https://bilel931324.github.io/gal2.jpeg">
-      <source src="https://bilel931324.github.io/showreel.mp4" type="video/mp4" />
+<!-- SHOWREEL -->
+<section id="showreel" style="padding:0;">
+  <div class="showreel-label fade-up"><span class="showreel-label-text">Behind the lens</span></div>
+  <div class="showreel-title fade-up">En <em>mouvement</em></div>
+  <div class="showreel-wrap">
+    <video autoplay muted loop playsinline preload="none">
+      <source src="https://bilel931324.github.io/showreel.mp4" type="video/mp4"/>
     </video>
-    <div class="showreel-overlay">
-      <div class="showreel-badge">▶ SHOWREEL</div>
+    <div class="showreel-bar">
+      <div class="showreel-badge">▶ Showreel 2025</div>
+      <div class="showreel-tag">Seven-Prod · Paris</div>
     </div>
   </div>
 </section>
 
-<!-- ── ABOUT ── -->
-<section class="section about" id="about">
-  <div class="rv">
-    <div class="s-eyebrow">À propos</div>
-    <div class="s-title">L'IMAGE<br>QUI PARLE<br><span style="color:var(--red)">POUR TOI</span></div>
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header fade-up">
+    <div class="s-eyebrow"><span class="s-eyebrow-text">Prestations</span></div>
+    <h2 class="s-title">Ce que je crée<br/>pour toi</h2>
+    <p>Chaque projet est unique. Décris-moi ta vision — devis personnalisé sous 24 h.</p>
   </div>
-  <div class="about-grid rv">
-    <div class="about-photo">
-      <img src="photo5.jpeg" alt="Seven-Prod Paris">
-      <div class="about-tag">Seven-Prod · Paris</div>
+  <div class="services-grid">
+    <div class="service-card fade-up" data-num="01">
+      <div class="service-icon">◈</div>
+      <div class="service-name">Shooting Photo</div>
+      <div class="service-desc">Identité visuelle, press kit, réseaux sociaux. Des visuels qui t'imposent et t'installent durablement.</div>
+      <div class="service-tags"><span class="service-tag">Portrait</span><span class="service-tag">Mode</span><span class="service-tag">Artiste</span></div>
+      <a href="#devis" class="service-cta">Obtenir mon devis</a>
     </div>
-    <div class="about-text">
-      <p class="about-p">Dans un monde où tout le monde poste, <strong>tes visuels doivent arrêter le scroll</strong>. Je crée des contenus cinématiques pour artistes et créateurs qui veulent une image à la hauteur de leur talent.</p>
-      <div class="stats-grid">
-        <div class="stat-box">
-          <div class="stat-num" data-count="50" data-suffix="+">0</div>
-          <small class="stat-lbl">Shootings réalisés</small>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num" data-count="100" data-suffix="%">0</div>
-          <small class="stat-lbl">De satisfaction</small>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num" data-count="1" data-suffix=" an">0</div>
-          <small class="stat-lbl">D'expérience</small>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num" data-count="24" data-suffix="h">0</div>
-          <small class="stat-lbl">Délai de réponse</small>
-        </div>
-      </div>
+    <div class="service-card fade-up" data-num="02">
+      <div class="service-icon">▷</div>
+      <div class="service-name">Clip Vidéo</div>
+      <div class="service-desc">Tournage cinématique, montage pro, color grading 4K. Le clip qui fait streamer et qui reste en tête.</div>
+      <div class="service-tags"><span class="service-tag">Rap</span><span class="service-tag">R&amp;B</span><span class="service-tag">Afro</span></div>
+      <a href="#devis" class="service-cta">Obtenir mon devis</a>
     </div>
-  </div>
-</section>
-
-<!-- ── SERVICES ── -->
-<section class="section tarifs" id="tarifs">
-  <div class="rv tarifs-intro">
-    <div class="s-eyebrow">Mes services</div>
-    <div class="s-title">CE QUE<br>JE CRÉE<br><span style="color:var(--red)">POUR TOI</span></div>
-    <p class="tarifs-sub">Chaque projet est unique. Décris-moi ta vision — je te reviens avec un devis personnalisé sous 24 h.</p>
-  </div>
-
-  <div class="services-grid rv">
-    <div class="sv-card">
-      <div class="sv-icon">
-        <svg viewBox="0 0 44 44"><rect x="6" y="8" width="32" height="28" rx="3"/><circle cx="22" cy="22" r="7"/><circle cx="14" cy="14" r="2"/></svg>
-      </div>
-      <div class="sv-name">Shooting Photo</div>
-      <p class="sv-desc">Identité visuelle, press kit, réseaux sociaux. Des visuels qui t'imposent.</p>
-      <div class="sv-tags"><span>Portrait</span><span>Mode</span><span>Artiste</span></div>
-      <a href="#devis" class="sv-cta" onclick="selectService('Shooting Photo')">Obtenir mon devis <span>→</span></a>
+    <div class="service-card fade-up" data-num="03">
+      <div class="service-icon">◉</div>
+      <div class="service-name">Pack Réseaux</div>
+      <div class="service-desc">Reels, TikTok, Shorts. Du contenu pensé pour exploser l'algorithme et fidéliser ta communauté.</div>
+      <div class="service-tags"><span class="service-tag">Instagram</span><span class="service-tag">TikTok</span><span class="service-tag">YouTube</span></div>
+      <a href="#devis" class="service-cta">Obtenir mon devis</a>
     </div>
-
-    <div class="sv-card sv-featured">
-      <span class="svc-badge">Le + demandé</span>
-      <div class="sv-icon">
-        <svg viewBox="0 0 44 44"><rect x="4" y="6" width="36" height="32" rx="3"/><polygon points="18,15 30,22 18,29"/></svg>
-      </div>
-      <div class="sv-name">Clip Vidéo</div>
-      <p class="sv-desc">Tournage cinématique, montage pro, color grading 4K. Le clip qui fait streamer.</p>
-      <div class="sv-tags"><span>Rap</span><span>R&B</span><span>Afro</span></div>
-      <a href="#devis" class="sv-cta sv-cta-light" onclick="selectService('Clip Vidéo')">Obtenir mon devis <span>→</span></a>
-    </div>
-
-    <div class="sv-card">
-      <div class="sv-icon">
-        <svg viewBox="0 0 44 44"><rect x="10" y="4" width="24" height="36" rx="3"/><line x1="18" y1="36" x2="26" y2="36"/></svg>
-      </div>
-      <div class="sv-name">Pack Réseaux</div>
-      <p class="sv-desc">Reels, TikTok, Shorts. Du contenu pensé pour exploser l'algorithme.</p>
-      <div class="sv-tags"><span>Instagram</span><span>TikTok</span><span>YouTube</span></div>
-      <a href="#devis" class="sv-cta" onclick="selectService('Pack Réseaux')">Obtenir mon devis <span>→</span></a>
-    </div>
-
-    <div class="sv-card">
-      <div class="sv-icon">
-        <svg viewBox="0 0 44 44"><polygon points="22,4 38,14 38,30 22,40 6,30 6,14"/></svg>
-      </div>
-      <div class="sv-name">Brand Content</div>
-      <p class="sv-desc">Campagnes marques, publicités digitales, direction artistique complète.</p>
-      <div class="sv-tags"><span>Marque</span><span>Pub</span><span>DA</span></div>
-      <a href="#devis" class="sv-cta" onclick="selectService('Brand Content')">Obtenir mon devis <span>→</span></a>
+    <div class="service-card fade-up" data-num="04">
+      <div class="service-icon">◇</div>
+      <div class="service-name">Brand Content</div>
+      <div class="service-desc">Campagnes marques, publicités digitales, direction artistique complète. L'image premium de ta marque.</div>
+      <div class="service-tags"><span class="service-tag">Marque</span><span class="service-tag">Pub</span><span class="service-tag">DA</span></div>
+      <a href="#devis" class="service-cta">Obtenir mon devis</a>
     </div>
   </div>
 </section>
 
-<!-- ── DEVIS ── -->
-<section class="section devis" id="devis">
-  <div class="devis-top rv">
-    <div class="s-eyebrow">Devis gratuit · Seven-Prod</div>
-    <div class="s-title">TRAVAILLONS<br>ENSEMBLE</div>
-  </div>
-
-  <div class="devis-wrap" id="devisForm">
-    <div class="devis-left rv">
-      <div class="devis-left-brand">SEVEN<br>PROD<span>.</span></div>
-      <p class="devis-left-sub">Décris-moi ton projet. Je te reviens avec un devis sur-mesure sous 24 h — par WhatsApp ou email.</p>
-      <div class="devis-infos">
-        <div class="devis-info-row"><span class="di-key">Zone</span><span class="di-val">Paris & Île-de-France</span></div>
-        <div class="devis-info-row"><span class="di-key">Instagram</span><span class="di-val">@S7vn_932</span></div>
-        <div class="devis-info-row"><span class="di-key">Réponse</span><span class="di-val">&lt; 24 heures</span></div>
-      </div>
-      <div class="devis-reassurance">
-        <div class="dr-item"><span class="dr-icon">✓</span>Devis 100 % gratuit</div>
-        <div class="dr-item"><span class="dr-icon">✓</span>Sans engagement</div>
-        <div class="dr-item"><span class="dr-icon">✓</span>Tarif adapté à ton budget</div>
-      </div>
-    </div>
-
-    <div class="devis-right rv">
-      <div class="devis-step">
-        <div class="step-head">
-          <span class="step-num">1</span>
-          <span class="step-title">Ton projet</span>
-        </div>
-        <div class="step-body">
-          <div style="margin-bottom:12px">
-            <label style="display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:8px;font-weight:bold">Quel type de contenu ?</label>
-            <div class="svs-opts" id="svsOpts">
-              <div class="svs-opt" onclick="pickSvc(this,'Shooting Photo')">Shooting Photo</div>
-              <div class="svs-opt" onclick="pickSvc(this,'Clip Vidéo')">Clip Vidéo</div>
-              <div class="svs-opt" onclick="pickSvc(this,'Pack Réseaux')">Pack Réseaux</div>
-              <div class="svs-opt" onclick="pickSvc(this,'Brand Content')">Brand Content</div>
-              <div class="svs-opt" onclick="pickSvc(this,'Autre / Plusieurs')">Autre / Plusieurs</div>
-            </div>
-            <input type="hidden" id="selectedSvc" value="">
-          </div>
-          <div class="f-grp">
-            <label for="devisProjet">Décris ton projet</label>
-            <textarea id="devisProjet" placeholder="Lieu, ambiance, références visuelles, date souhaitée... Plus tu es précis, plus mon devis sera adapté."></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="devis-step">
-        <div class="step-head">
-          <span class="step-num">2</span>
-          <span class="step-title">Tes coordonnées</span>
-        </div>
-        <div class="step-body">
-          <div class="f-grp">
-            <label for="devisNom">Prénom / Nom d'artiste</label>
-            <input type="text" id="devisNom" placeholder="Ton nom d'artiste">
-          </div>
-          <div class="f-row2">
-            <div class="f-grp">
-              <label for="devisInsta">Instagram / TikTok</label>
-              <input type="text" id="devisInsta" placeholder="@toncompte">
-            </div>
-            <div class="f-grp">
-              <label for="devisWA">WhatsApp</label>
-              <input type="tel" id="devisWA" placeholder="+33 6 XX XX XX XX">
-            </div>
-          </div>
-          <div class="f-grp">
-            <label for="devisDate">Date souhaitée</label>
-            <input type="date" id="devisDate">
-          </div>
-          <button class="btn-submit" onclick="sendDevis()">Envoyer ma demande <span class="btn-submit-arr">→</span></button>
-          <p class="devis-privacy">Tu recevras ton devis personnalisé sous 24 h par WhatsApp ou email.</p>
-        </div>
-      </div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-img fade-up">
+    <img src="https://bilel931324.github.io/gal5.jpeg" alt="Seven-Prod Paris"/>
+    <div class="about-badge">
+      <div class="about-badge-num">50+</div>
+      <div class="about-badge-text">Shootings réalisés</div>
     </div>
   </div>
-
-  <!-- SUCCESS -->
-  <div class="success-box" id="devisOk">
-    <div class="success-inner">
-      <div class="success-eyebrow">Demande reçue · Seven-Prod Paris</div>
-      <div class="success-title">C'EST<br><span>PARTI.</span></div>
-      <p class="success-subtitle">Ton projet est entre de bonnes mains. Je prépare ton devis personnalisé et reviens vers toi très rapidement.</p>
-      <div class="success-steps">
-        <div class="success-step">
-          <span class="success-step-num done">✓</span>
-          <span class="success-step-text">Demande envoyée — j'ai bien reçu ton projet</span>
-        </div>
-        <div class="success-step">
-          <span class="success-step-num">2</span>
-          <span class="success-step-text">Analyse du projet — je prépare ton devis sur-mesure</span>
-        </div>
-        <div class="success-step">
-          <span class="success-step-num">3</span>
-          <span class="success-step-text">Réponse sous 24 h — par WhatsApp ou email</span>
-        </div>
-      </div>
-      <button class="success-cta" onclick="resetForm()">Envoyer une autre demande →</button>
+  <div class="about-content">
+    <div class="s-eyebrow fade-up"><span class="s-eyebrow-text">À propos</span></div>
+    <h2 class="s-title fade-up">L'image qui<br/>parle pour toi</h2>
+    <p class="fade-up">Dans un monde où tout le monde poste, <strong>tes visuels doivent arrêter le scroll</strong>. Je crée des contenus cinématiques pour artistes et créateurs qui veulent une image à la hauteur de leur talent.</p>
+    <p class="fade-up">Basé à Paris, je travaille avec des rappeurs, influenceurs, artistes et marques qui ont compris que l'image, c'est tout.</p>
+    <div class="about-socials fade-up">
+      <a href="https://instagram.com/S7vn_932" target="_blank" class="about-social">↗ Instagram</a>
+      <a href="https://www.snapchat.com/add/bebeto_93200" target="_blank" class="about-social">↗ Snapchat</a>
+      <a href="https://tiktok.com/@shooter2958" target="_blank" class="about-social">↗ TikTok</a>
     </div>
   </div>
 </section>
 
-<!-- ── TESTIMONIALS ── -->
-<section class="section testimonials" id="testimonials">
-  <div class="rv">
-    <div class="s-eyebrow">Collaboration</div>
-    <div class="s-title">ILS ONT<br><span style="color:var(--red)">TOURNÉ</span><br>AVEC NOUS</div>
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testi-head fade-up">
+    <div class="s-eyebrow" style="justify-content:center;"><span class="s-eyebrow-text">Ils nous font confiance</span></div>
+    <h2 class="s-title">Avis clients</h2>
   </div>
-  <div class="test-list rv">
-    <div class="test-card">
-      <div class="test-top">
-        <div class="test-author">
-          <div class="test-av">C</div>
-          <div>
-            <div class="test-name">CHILLY</div>
-            <div class="test-role">Rappeur français</div>
-          </div>
-        </div>
-        <div class="test-stars">★★★★★</div>
+  <div class="testi-card fade-up">
+    <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+    <p class="testi-text">Mise en scène, cadrage et direction artistique au top. Une collaboration authentique avec un vrai professionnel de l'image. Je recommande les yeux fermés.</p>
+    <div class="testi-author">
+      <div class="testi-avatar"><img src="https://bilel931324.github.io/gal9.jpeg" alt="Chilly"/></div>
+      <div>
+        <div class="testi-name">CHILLY</div>
+        <div class="testi-role">Rappeur français · Clip vidéo</div>
       </div>
-      <div class="test-quote">
-        Tournage de clip réalisé par Seven-Prod. <strong>Mise en scène, cadrage et direction artistique</strong> — une collaboration authentique avec un artiste de la scène rap française.
-      </div>
-      <span class="test-proof">Clip vidéo · Seven-Prod Paris</span>
     </div>
+  </div>
+  <div class="testi-cta fade-up">
+    <a href="#devis" class="btn-primary">Rejoins-les — Devis gratuit</a>
+  </div>
+</section>
 
-    <div class="test-card">
-      <div class="test-top">
-        <div class="test-author">
-          <div class="test-av">+</div>
-          <div>
-            <div class="test-name">TON PROJET ?</div>
-            <div class="test-role">Artiste · Influenceur · Marque</div>
-          </div>
-        </div>
+<!-- DEVIS -->
+<section id="devis">
+  <div class="devis-wrap">
+    <div class="devis-info fade-up">
+      <div class="s-eyebrow"><span class="s-eyebrow-text">Contact</span></div>
+      <h2 class="s-title">Travaillons<br/>ensemble</h2>
+      <p>Décris-moi ton projet. Je te reviens avec un devis sur-mesure sous 24 h — par WhatsApp ou email.</p>
+      <div class="devis-items">
+        <div class="devis-item">Zone Paris &amp; Île-de-France</div>
+        <div class="devis-item">Devis 100 % gratuit &amp; sans engagement</div>
+        <div class="devis-item">Réponse sous 24 heures</div>
+        <div class="devis-item">Tarif adapté à ton budget</div>
+        <div class="devis-item">Instagram : @S7vn_932</div>
       </div>
-      <div class="test-quote">
-        Tu veux un shooting ou un clip qui <strong>te démarque vraiment</strong> ? Décris-moi ta vision — je m'occupe du reste. Chaque projet est traité avec la même exigence.
+    </div>
+    <div class="devis-form fade-up" id="devisForm">
+      <div class="form-title">Ton projet en quelques mots</div>
+      <div class="form-types" id="formTypes">
+        <div class="form-type active" onclick="selectType(this,'Shooting Photo')">Photo</div>
+        <div class="form-type" onclick="selectType(this,'Clip Vidéo')">Clip</div>
+        <div class="form-type" onclick="selectType(this,'Pack Réseaux')">Réseaux</div>
+        <div class="form-type" onclick="selectType(this,'Brand Content')">Brand</div>
       </div>
-      <a href="#devis" class="test-proof" style="text-decoration:none">Demander un devis gratuit →</a>
+      <div class="form-group">
+        <label class="form-label">Prénom / Nom d'artiste</label>
+        <input class="form-input" id="fName" type="text" placeholder="Ex: Chilly, @Influenceur93..."/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Instagram / TikTok</label>
+        <input class="form-input" id="fInsta" type="text" placeholder="@tonprofil"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Décris ton projet</label>
+        <textarea class="form-textarea" id="fProject" placeholder="Date souhaitée, ambiance, références..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="sendDevis()">Envoyer ma demande →</button>
+    </div>
+    <div class="devis-success" id="devisSuccess">
+      <div class="devis-success-icon">✦</div>
+      <h3>C'est parti !</h3>
+      <p>Ton projet est entre de bonnes mains. Je prépare ton devis personnalisé et reviens vers toi sous 24 h.</p>
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">SEVEN<br>PROD<span>.</span></div>
-  <div class="footer-cols">
+  <div class="footer-grid">
     <div>
-      <div class="footer-col-h">Navigation</div>
-      <a href="#accueil">Accueil</a>
-      <a href="#works">Travaux</a>
-      <a href="#about">À propos</a>
-      <a href="#tarifs">Tarifs</a>
+      <div class="footer-brand">Seven<span>.</span>Prod</div>
+      <p class="footer-desc">Photographe &amp; Vidéaste Paris. Des visuels cinématiques pour artistes, rappeurs, influenceurs et marques.</p>
     </div>
     <div>
-      <div class="footer-col-h">Services</div>
-      <a href="#devis" onclick="selectService('Shooting Photo')">Shooting Photo</a>
-      <a href="#devis" onclick="selectService('Clip Vidéo')">Clip Vidéo</a>
-      <a href="#devis" onclick="selectService('Pack Réseaux')">Pack Réseaux</a>
-      <a href="#devis" onclick="selectService('Brand Content')">Offre Complète</a>
+      <div class="footer-col-title">Navigation</div>
+      <div class="footer-links">
+        <a href="#galerie">Galerie</a>
+        <a href="#services">Services</a>
+        <a href="#about">À propos</a>
+        <a href="#testimonials">Avis</a>
+      </div>
     </div>
     <div>
-      <div class="footer-col-h">Réseaux sociaux</div>
-      <a href="https://instagram.com/S7vn_932" target="_blank">Instagram</a>
-      <a href="https://www.snapchat.com/add/bebeto_93200" target="_blank">Snapchat</a>
-      <a href="https://tiktok.com/@shooter2958" target="_blank">TikTok</a>
+      <div class="footer-col-title">Services</div>
+      <div class="footer-links">
+        <a href="#devis">Shooting Photo</a>
+        <a href="#devis">Clip Vidéo</a>
+        <a href="#devis">Pack Réseaux</a>
+        <a href="#devis">Brand Content</a>
+      </div>
     </div>
     <div>
-      <div class="footer-col-h">Contact</div>
-      <a href="https://instagram.com/S7vn_932" target="_blank">Instagram</a>
-      <a href="https://www.snapchat.com/add/bebeto_93200" target="_blank">Snapchat</a>
+      <div class="footer-col-title">Réseaux</div>
+      <div class="footer-links">
+        <a href="https://instagram.com/S7vn_932" target="_blank">Instagram</a>
+        <a href="https://www.snapchat.com/add/bebeto_93200" target="_blank">Snapchat</a>
+        <a href="https://tiktok.com/@shooter2958" target="_blank">TikTok</a>
+      </div>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="footer-copy">© 2025 Seven-Prod — Paris, France</div>
     <div class="footer-socials">
-      <a href="https://instagram.com/S7vn_932" target="_blank" title="Instagram">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-      </a>
-      <a href="https://www.snapchat.com/add/bebeto_93200" target="_blank" title="Snapchat">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.166.053C6.844.053 4.095 3.55 4.095 7.38c0 1.272.348 2.556.928 3.574.14.244.196.462.098.716-.084.218-.196.418-.292.6-.168.322-.35.632-.196.98.154.348.532.476.862.56.272.068.588.136.72.18-.098.218-.462.6-.742.826-.616.5-1.492.85-2.336.876-.41.012-.732.172-.882.548-.196.486.19.918.5 1.162.828.65 1.776 1.1 2.8 1.384.112.032.21.07.28.156.092.108.102.258.146.4.058.19.2.476.616.476.28 0 .63-.098 1.108-.2.572-.122 1.33-.082 1.776.132.862.414 1.618 1.342 3.23 1.342h.11c1.612 0 2.37-.928 3.23-1.342.446-.214 1.204-.254 1.776-.132.478.102.828.2 1.108.2.416 0 .558-.286.616-.476.044-.142.054-.292.146-.4.07-.086.168-.124.28-.156 1.024-.284 1.972-.734 2.8-1.384.31-.244.696-.676.5-1.162-.15-.376-.472-.536-.882-.548-.844-.026-1.72-.376-2.336-.876-.28-.226-.644-.608-.742-.826.132-.044.448-.112.72-.18.33-.084.708-.212.862-.56.154-.348-.028-.658-.196-.98-.096-.182-.208-.382-.292-.6-.098-.254-.042-.472.098-.716.58-1.018.928-2.302.928-3.574 0-3.83-2.75-7.327-8.07-7.327z"/></svg>
-      </a>
-      <a href="https://tiktok.com/@shooter2958" target="_blank" title="TikTok">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.16v-3.44a4.85 4.85 0 01-3.77-1.26V6.69h3.77z"/></svg>
-      </a>
+      <a href="https://instagram.com/S7vn_932" target="_blank">Instagram</a>
+      <a href="https://tiktok.com/@shooter2958" target="_blank">TikTok</a>
     </div>
   </div>
 </footer>
 
 <script>
-/* ── LOADER ── */
-(function(){
-  var el=document.getElementById('ldNum');var n=0;
-  var iv=setInterval(function(){
-    n+=Math.floor(Math.random()*8)+5;if(n>100)n=100;
-    el.innerHTML=n+'<span class="ld-pct">%</span>';
-    if(n>=100)clearInterval(iv);
-  },18);
-  setTimeout(function(){
-    clearInterval(iv);
-    var ldr=document.getElementById('loader');
-    ldr.style.transition='opacity 0.4s';ldr.style.opacity='0';ldr.style.pointerEvents='none';
-    setTimeout(function(){ldr.style.display='none'},420);
-  },2200);
-})();
-
-/* ── MENU MOBILE ── */
-function toggleMenu(){
-  document.getElementById('hamBtn').classList.toggle('open');
-  document.getElementById('mobNav').classList.toggle('open');
-}
-function closeMenu(){
-  document.getElementById('hamBtn').classList.remove('open');
-  document.getElementById('mobNav').classList.remove('open');
-}
-
-/* ── SCROLL REVEAL ── */
-(function(){
-  var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(e,i){
-      if(e.isIntersecting) setTimeout(function(){e.target.classList.add('on')},i*80);
-    });
-  },{threshold:0.07});
-  document.querySelectorAll('.rv').forEach(function(el){obs.observe(el)});
-})();
-
-/* ── COMPTEURS ANIMÉS ── */
-(function(){
-  var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(!entry.isIntersecting)return;
-      var el=entry.target;
-      var target=parseInt(el.getAttribute('data-count'),10);
-      var suffix=el.getAttribute('data-suffix')||'+';
-      var cur=0,step=target/55;
-      var t=setInterval(function(){
-        cur+=step;if(cur>=target){cur=target;clearInterval(t)}
-        el.textContent=Math.floor(cur)+suffix;
-      },20);
-      obs.unobserve(el);
-    });
-  },{threshold:0.5});
-  document.querySelectorAll('[data-count]').forEach(function(el){obs.observe(el)});
-})();
-
-/* ── SERVICE PICKER ── */
-function pickSvc(el,val){
-  document.querySelectorAll('.svs-opt').forEach(function(o){o.classList.remove('on')});
-  el.classList.add('on');
-  var inp=document.getElementById('selectedSvc');
-  if(inp)inp.value=val;
-}
-function selectService(name){
-  document.getElementById('devis').scrollIntoView({behavior:'smooth'});
-  setTimeout(function(){
-    document.querySelectorAll('.svs-opt').forEach(function(o){
-      if(o.textContent.trim()===name){
-        o.classList.add('on');
-        var inp=document.getElementById('selectedSvc');
-        if(inp)inp.value=name;
-      }
-    });
-  },600);
-}
-
-/* ── ENVOI DU FORMULAIRE VIA WHATSAPP ── */
-function sendDevis(){
-  var nom=document.getElementById('devisNom').value.trim();
-  var wa=document.getElementById('devisWA').value.trim();
-  var insta=document.getElementById('devisInsta').value.trim();
-  var projet=document.getElementById('devisProjet').value.trim();
-  var date=document.getElementById('devisDate').value;
-  var service=document.getElementById('selectedSvc').value||'Non précisé';
-
-  /* Validation */
-  var valid=true;
-  if(!nom){document.getElementById('devisNom').style.borderColor='#c0392b';valid=false}
-  if(!wa){document.getElementById('devisWA').style.borderColor='#c0392b';valid=false}
-  if(!valid)return;
-
-  /* Construire le message WhatsApp */
-  var msg='🎬 *Nouvelle demande Seven-Prod*\n\n';
-  msg+='*Nom :* '+nom+'\n';
-  if(insta)msg+='*Insta :* '+insta+'\n';
-  msg+='*WhatsApp :* '+wa+'\n';
-  msg+='*Service :* '+service+'\n';
-  if(date)msg+='*Date souhaitée :* '+date+'\n';
-  if(projet)msg+='\n*Projet :*\n'+projet;
-
-  /* IMPORTANT : Remplace ce numéro par ton vrai numéro WhatsApp */
-  var phoneNumber='33751238450';
-  var waUrl='https://wa.me/'+phoneNumber+'?text='+encodeURIComponent(msg);
-
-  /* Ouvrir WhatsApp */
-  window.open(waUrl,'_blank');
-
-  /* Afficher confirmation */
-  document.getElementById('devisForm').style.display='none';
-  var ok=document.getElementById('devisOk');
-  ok.classList.add('visible');ok.style.display='block';
-  var steps=ok.querySelectorAll('.success-step-num:not(.done)');
-  steps.forEach(function(s,i){
-    setTimeout(function(){s.classList.add('done');s.textContent='✓'},(i+1)*1200);
-  });
-}
-function resetForm(){
-  document.getElementById('devisOk').classList.remove('visible');
-  document.getElementById('devisOk').style.display='none';
-  document.getElementById('devisForm').style.display='';
-  document.getElementById('devisNom').value='';
-  document.getElementById('devisWA').value='';
-  document.getElementById('devisInsta').value='';
-  document.getElementById('devisProjet').value='';
-  document.getElementById('devisDate').value='';
-  document.getElementById('selectedSvc').value='';
-  document.querySelectorAll('.svs-opt').forEach(function(o){o.classList.remove('on')});
-  document.getElementById('devisNom').style.borderColor='';
-  document.getElementById('devisWA').style.borderColor='';
-}
-
-/* ── CAROUSEL ── */
-(function(){
-  var TOTAL=10,DELAY=4500,cur=0,timer=null,isAnimating=false,isPaused=false;
-  function getEls(){return{track:document.getElementById('worksTrack'),dots:document.querySelectorAll('.carousel-dot'),progress:document.getElementById('carouselProgress'),slides:document.querySelectorAll('.w-slide')}}
-  function goToSlide(n){
-    var els=getEls();if(!els.track||isAnimating||n===cur)return;
-    isAnimating=true;
-    if(els.slides[cur])els.slides[cur].classList.remove('active');
-    cur=n;
-    els.track.style.transform='translateX(-'+(cur*10)+'%)';
-    setTimeout(function(){if(els.slides[cur])els.slides[cur].classList.add('active');isAnimating=false},100);
-    els.dots.forEach(function(d,i){d.classList.toggle('active',i===cur)});
-    resetProgress(els.progress);
-  }
-  function resetProgress(el){
-    if(!el)return;el.style.transition='none';el.style.width='0%';
-    setTimeout(function(){if(!isPaused){el.style.transition='width '+DELAY+'ms linear';el.style.width='100%'}},40);
-  }
-  function startAuto(){stopAuto();isPaused=false;var els=getEls();resetProgress(els.progress);timer=setInterval(function(){if(!isPaused)goToSlide((cur+1)%TOTAL)},DELAY)}
-  function stopAuto(){clearInterval(timer);timer=null}
-  function init(){
-    var els=getEls();if(!els.track)return;
-    if(els.slides[0])els.slides[0].classList.add('active');
-    var sx=0;
-    els.track.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;isPaused=true},{passive:true});
-    els.track.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>45)dx<0?goToSlide((cur+1)%TOTAL):goToSlide((cur-1+TOTAL)%TOTAL);setTimeout(function(){isPaused=false;startAuto()},2500)},{passive:true});
-    var section=document.getElementById('works');
-    if(section){section.addEventListener('mouseenter',function(){isPaused=true;var p=document.getElementById('carouselProgress');if(p)p.style.transition='none'});section.addEventListener('mouseleave',function(){startAuto()})}
-    startAuto();
-  }
-  window.goTo=function(n){isPaused=true;stopAuto();goToSlide(n);setTimeout(startAuto,3000)};
-  window.carouselNext=function(){window.goTo((cur+1)%TOTAL)};
-  window.carouselPrev=function(){window.goTo((cur-1+TOTAL)%TOTAL)};
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-})();
-
-/* ── SMOOTH SCROLL ── */
-document.querySelectorAll('a[href^="#"]').forEach(function(a){
-  a.addEventListener('click',function(e){
-    var id=a.getAttribute('href');var t=document.querySelector(id);
-    if(t){e.preventDefault();closeMenu();t.scrollIntoView({behavior:'smooth'})}
-  });
+// CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  setTimeout(() => {
+    ring.style.left = e.clientX + 'px';
+    ring.style.top = e.clientY + 'px';
+  }, 80);
 });
+
+// NAV SCROLL
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// HERO BG
+window.addEventListener('load', () => {
+  const bg = document.getElementById('heroBg');
+  if (bg) setTimeout(() => bg.classList.add('loaded'), 100);
+});
+
+// MOBILE NAV
+function toggleMobileNav() {
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+function closeMobileNav() {
+  document.getElementById('mobileNav').classList.remove('open');
+}
+
+// FADE UP OBSERVER
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// DEVIS FORM
+let selectedType = 'Shooting Photo';
+function selectType(el, type) {
+  selectedType = type;
+  document.querySelectorAll('.form-type').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function sendDevis() {
+  const name = document.getElementById('fName').value.trim();
+  const insta = document.getElementById('fInsta').value.trim();
+  const project = document.getElementById('fProject').value.trim();
+  if (!name) { document.getElementById('fName').focus(); return; }
+  const msg = encodeURIComponent('Bonjour Seven-Prod ! 👋
+
+📌 Type : ' + selectedType + '
+👤 Nom : ' + name + '
+📱 Instagram : ' + (insta || 'non renseigné') + '
+📝 Projet : ' + (project || 'non renseigné') + '
+
+Merci de revenir vers moi sous 24h !');
+  window.open('https://wa.me/33612345678?text=' + msg, '_blank');
+  document.getElementById('devisForm').style.display = 'none';
+  document.getElementById('devisSuccess').classList.add('show');
+}
 </script>
 </body>
 </html>
