@@ -290,35 +290,35 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40
 .slider-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
 .slider-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.4rem);font-weight:900;line-height:1;letter-spacing:-.03em;}
 .slider-title em{color:var(--gold);font-style:italic;}
-.slider-wrap{position:relative;width:100%;overflow:hidden;}
-.slider-track{position:relative;height:75vh;min-height:480px;max-height:700px;}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;}
-.slide.active{opacity:1;}
-.slide img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.85);}
-.slide-caption{position:absolute;bottom:0;left:0;right:0;padding:28px 40px;background:linear-gradient(to top,rgba(7,7,7,.85) 0%,transparent 100%);display:flex;align-items:center;justify-content:space-between;}
-.slide-num{font-size:11px;font-weight:600;letter-spacing:.3em;color:var(--gold);font-family:'DM Sans',sans-serif;}
-.slide-label{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);}
+.slider-wrap{position:relative;width:100%;background:var(--black);display:flex;flex-direction:column;align-items:center;padding:0 48px 0;}
+.slider-track{position:relative;width:min(400px,88vw);aspect-ratio:3/4;flex-shrink:0;}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;}
+.slide.active{opacity:1;z-index:1;}
+.slide img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;}
+.slide-caption{position:absolute;bottom:0;left:0;right:0;padding:20px 22px;background:linear-gradient(to top,rgba(7,7,7,.9) 0%,transparent 100%);display:flex;align-items:center;justify-content:space-between;z-index:2;}
+.slide-num{font-size:11px;font-weight:600;letter-spacing:.3em;color:var(--gold);}
+.slide-label{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);}
 /* Progress bar */
-.slider-progress{height:2px;background:rgba(255,255,255,.08);margin:0;}
-.slider-bar{height:100%;background:var(--gold);width:20%;transition:width .1s linear;}
+.slider-progress{width:min(400px,88vw);height:2px;background:rgba(255,255,255,.1);margin-top:2px;}
+.slider-bar{height:100%;background:var(--gold);width:0%;transition:width .08s linear;}
 /* Dots */
-.slider-dots{display:flex;justify-content:center;gap:10px;padding:20px 0;}
+.slider-dots{display:flex;justify-content:center;gap:10px;padding:18px 0;}
 .dot{width:6px;height:6px;border-radius:50%;background:var(--muted);cursor:pointer;transition:background .3s,transform .3s;}
-.dot.active{background:var(--gold);transform:scale(1.4);}
-/* Arrows */
-.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(7,7,7,.7);border:1px solid var(--border);color:var(--text);width:48px;height:48px;font-size:18px;cursor:pointer;z-index:10;transition:border-color .3s,color .3s;backdrop-filter:blur(4px);}
+.dot.active{background:var(--gold);transform:scale(1.5);}
+/* Arrows — positionnées par rapport au track */
+.slider-arrows-wrap{position:relative;width:min(400px,88vw);height:0;}
+.slider-arrow{position:absolute;top:0;transform:translateY(calc(-1 * (min(400px,88vw) * 4/3 / 2) - 22px));background:rgba(7,7,7,.75);border:1px solid var(--border);color:var(--text);width:44px;height:44px;font-size:16px;cursor:pointer;z-index:10;transition:border-color .3s,color .3s;display:flex;align-items:center;justify-content:center;}
 .slider-arrow:hover{border-color:var(--gold);color:var(--gold);}
-.slider-prev{left:20px;}
-.slider-next{right:20px;}
-@media(max-width:768px){
-  .slider-section{padding:60px 0;}
-  .slider-header{padding:0 20px;flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:28px;}
-  .slider-track{height:88vw;min-height:320px;max-height:520px;}
-  .slide-caption{padding:20px 20px;}
+.slider-prev{left:-22px;}
+.slider-next{right:-22px;}
+@media(max-width:600px){
+  .slider-section{padding:48px 0;}
+  .slider-header{padding:0 20px;flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:24px;}
+  .slider-wrap{padding:0 32px 0;}
+  .slider-track{width:min(320px,82vw);}
+  .slider-progress{width:min(320px,82vw);}
+  .slider-arrows-wrap{width:min(320px,82vw);}
   .slide-label{font-size:16px;}
-  .slider-arrow{width:38px;height:38px;font-size:14px;}
-  .slider-prev{left:10px;}
-  .slider-next{right:10px;}
 }
 </style>
 </head>
@@ -483,8 +483,10 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40
       <span class="dot" onclick="goSlide(3)"></span>
       <span class="dot" onclick="goSlide(4)"></span>
     </div>
-    <button class="slider-arrow slider-prev" onclick="moveSlide(-1)">←</button>
-    <button class="slider-arrow slider-next" onclick="moveSlide(1)">→</button>
+    <div class="slider-arrows-wrap">
+      <button class="slider-arrow slider-prev" onclick="moveSlide(-1)">←</button>
+      <button class="slider-arrow slider-next" onclick="moveSlide(1)">→</button>
+    </div>
   </div>
 </section>
 
@@ -773,57 +775,65 @@ window.sendDevis=function(){
   if(success)success.classList.add('show');
   setTimeout(function(){window.location.href=url;},300);
 // SLIDER
-var slides=document.querySelectorAll('.slide');
-var dots=document.querySelectorAll('.dot');
-var bar=document.getElementById('sliderBar');
-var total=slides.length;
-var cur=0;
-var sliderTimer,progressTimer,progressVal=0;
-var INTERVAL=4000;
+(function(){
+  var slides=document.querySelectorAll('.slide');
+  var dots=document.querySelectorAll('.dot');
+  var bar=document.getElementById('sliderBar');
+  var total=slides.length;
+  if(!total) return;
+  var cur=0;
+  var sliderTimer=null,progressTimer=null,progressVal=0;
+  var INTERVAL=3500;
 
-function goSlide(n){
-  slides[cur].classList.remove('active');
-  dots[cur].classList.remove('active');
-  cur=(n+total)%total;
-  slides[cur].classList.add('active');
-  dots[cur].classList.add('active');
-  resetProgress();
-}
-function moveSlide(dir){clearInterval(sliderTimer);clearInterval(progressTimer);goSlide(cur+dir);startAuto();}
-function resetProgress(){
-  progressVal=0;
-  if(bar)bar.style.width='0%';
-  clearInterval(progressTimer);
-  progressTimer=setInterval(function(){
-    progressVal+=100/(INTERVAL/50);
-    if(bar)bar.style.width=Math.min(progressVal,100)+'%';
-  },50);
-}
-function startAuto(){
-  clearInterval(sliderTimer);
-  sliderTimer=setInterval(function(){goSlide(cur+1);},INTERVAL);
-  resetProgress();
-}
+  function goSlide(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur=((n%total)+total)%total;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    resetProgress();
+  }
+  window.goSlide=goSlide;
+  window.moveSlide=function(dir){
+    clearInterval(sliderTimer);
+    clearInterval(progressTimer);
+    goSlide(cur+dir);
+    startAuto();
+  };
+  function resetProgress(){
+    progressVal=0;
+    if(bar) bar.style.width='0%';
+    clearInterval(progressTimer);
+    progressTimer=setInterval(function(){
+      progressVal+=100/(INTERVAL/50);
+      if(bar) bar.style.width=Math.min(progressVal,100)+'%';
+    },50);
+  }
+  function startAuto(){
+    clearInterval(sliderTimer);
+    resetProgress();
+    sliderTimer=setInterval(function(){ goSlide(cur+1); }, INTERVAL);
+  }
 
-// Init only if slider exists
-if(slides.length){goSlide(0);startAuto();}
+  // Init
+  slides[0].classList.add('active');
+  if(dots.length) dots[0].classList.add('active');
+  startAuto();
 
-// Pause on hover
-var wrap=document.querySelector('.slider-wrap');
-if(wrap){
-  wrap.addEventListener('mouseenter',function(){clearInterval(sliderTimer);clearInterval(progressTimer);});
-  wrap.addEventListener('mouseleave',function(){startAuto();});
-}
-
-// Touch swipe
-var touchX=0;
-if(wrap){
-  wrap.addEventListener('touchstart',function(e){touchX=e.touches[0].clientX;},{passive:true});
-  wrap.addEventListener('touchend',function(e){
-    var dx=e.changedTouches[0].clientX-touchX;
-    if(Math.abs(dx)>40){clearInterval(sliderTimer);clearInterval(progressTimer);goSlide(cur+(dx<0?1:-1));startAuto();}
-  },{passive:true});
-}
+  // Pause on hover
+  var wrap=document.querySelector('.slider-wrap');
+  if(wrap){
+    wrap.addEventListener('mouseenter',function(){clearInterval(sliderTimer);clearInterval(progressTimer);});
+    wrap.addEventListener('mouseleave',function(){startAuto();});
+    // Touch swipe
+    var touchX=0;
+    wrap.addEventListener('touchstart',function(e){touchX=e.touches[0].clientX;},{passive:true});
+    wrap.addEventListener('touchend',function(e){
+      var dx=e.changedTouches[0].clientX-touchX;
+      if(Math.abs(dx)>40){clearInterval(sliderTimer);clearInterval(progressTimer);goSlide(cur+(dx<0?1:-1));startAuto();}
+    },{passive:true});
+  }
+})();
 
 </body>
 </html>
