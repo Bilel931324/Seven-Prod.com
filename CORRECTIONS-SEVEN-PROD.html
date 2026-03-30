@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════╗
+  ║  SEVEN-PROD — CORRECTIONS À APPLIQUER                  ║
+  ║  Bilel, suis ce guide pour fixer ton site               ║
+  ╚══════════════════════════════════════════════════════════╝
+
+  RÉSUMÉ DES BUGS TROUVÉS :
+  ─────────────────────────
+  1. Le <script> est dans un IIFE → les fonctions goSlide(), sendDevis(), 
+     selectType() sont INVISIBLES pour les onclick du HTML
+  2. </script> manquant → le navigateur ne sait pas où le JS finit
+  3. moveSlide() est appelé par les flèches mais n'est jamais défini
+  4. Pas de og:image → pas de preview quand on partage le lien
+  5. Pas de favicon → icône générique dans l'onglet
+  6. Lien "Avis" dans le footer → pointe vers #testimonials qui n'existe pas
+  7. © 2025 → on est en 2026
+  8. Images WhatsApp avec espaces dans le nom → certaines cassent
+
+  ══════════════════════════════════════════════════════════
+  CORRECTION 1 : AJOUTER DANS LE <head> (après la balise <meta name="description">)
+  ══════════════════════════════════════════════════════════
+-->
+
+<!-- COPIER CES LIGNES DANS TON <head> : -->
+<meta property="og:title" content="SEVEN-PROD — Photographe & Vidéaste Paris">
+<meta property="og:description" content="Shooting photo, clips rap, contenu réseaux. Pour rappeurs, influenceurs, artistes & marques.">
+<meta property="og:image" content="https://seven-prod.github.io/Seven-Prod.com/gal1.jpeg">
+<meta property="og:url" content="https://seven-prod.github.io/Seven-Prod.com/">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/jpeg" href="gal1.jpeg">
+
+<!--
+  ══════════════════════════════════════════════════════════
+  CORRECTION 2 : DANS LE FOOTER — supprimer la ligne "Avis"
+  ══════════════════════════════════════════════════════════
+  
+  SUPPRIMER cette ligne du footer :
+      <a href="#testimonials">Avis</a>
+
+  ET REMPLACER :
+      © 2025 Seven-Prod
+  PAR :
+      © 2026 Seven-Prod
+
+
+  ══════════════════════════════════════════════════════════
+  CORRECTION 3 : RENOMMER CES IMAGES dans le repo GitHub
+  ══════════════════════════════════════════════════════════
+  
+  Renommer les fichiers (supprimer espaces et parenthèses) :
+  
+  WhatsApp Image 2026-03-27 at 01.14.41 (1).jpeg  →  wa-street-1.jpeg
+  WhatsApp Image 2026-03-27 at 01.14.41 (2).jpeg  →  wa-street-2.jpeg
+  WhatsApp Image 2026-03-27 at 01.14.41.jpeg       →  wa-street-3.jpeg
+  WhatsApp Image 2026-03-27 at 01.15.11.jpeg       →  wa-brand.jpeg
+  WhatsApp Image 2026-03-27 at 01.15.56.jpeg       →  wa-mode.jpeg
+  WhatsApp Image 2026-03-27 at 22.07.41.jpeg       →  wa-seance-1.jpeg
+  WhatsApp Image 2026-03-27 at 22.07.20 (1).jpeg   →  wa-seance-2.jpeg
+  WhatsApp Image 2026-03-27 at 22.07.20 (2).jpeg   →  wa-seance-3.jpeg
+  WhatsApp Image 2026-03-27 at 22.07.20 (3).jpeg   →  wa-seance-4.jpeg
+  WhatsApp Image 2026-03-27 at 22.07.20.jpeg       →  wa-seance-5.jpeg
+
+  PUIS mettre à jour les src="" dans le HTML pour utiliser les nouveaux noms.
+
+
+  ══════════════════════════════════════════════════════════
+  CORRECTION 4 : SUPPRIMER les fichiers inutiles du repo
+  ══════════════════════════════════════════════════════════
+  
+  Supprimer ces fichiers parasites :
+  - index (1).html
+  - index (2).html
+  - index (3).html
+  - index (4).html
+
+
+  ══════════════════════════════════════════════════════════
+  CORRECTION 5 : REMPLACER TOUT le bloc <script>...</script>
+  ══════════════════════════════════════════════════════════
+  
+  Supprime TOUT depuis <script> jusqu'à la fin du fichier (avant </body></html>)
+  et remplace par le bloc ci-dessous.
+  
+  IMPORTANT : Ce script est EN DEHORS d'un IIFE, donc toutes les fonctions
+  sont accessibles globalement par les onclick="" du HTML.
+-->
+
+<script>
+/* ═══════════════════════════════════════════
+   SEVEN-PROD — Script corrigé v2
+   ═══════════════════════════════════════════ */
+
+/* ── Navbar scroll ── */
+(function(){
+  const nav = document.getElementById('navbar');
+  if(!nav) return;
+  let last = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if(y > 80) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+    if(y > last && y > 300) nav.classList.add('nav-hidden');
+    else nav.classList.remove('nav-hidden');
+    last = y;
+  });
+  /* smooth scroll pour les ancres */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); }
+    });
+  });
+})();
+
+/* ── Ticker animation (déjà CSS, rien à faire) ── */
+
+/* ── Intersection Observer — animations on scroll ── */
+(function(){
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.15});
+  document.querySelectorAll('.porto-section, .service-card, .about-block, #devis').forEach(el => obs.observe(el));
+})();
+
+/* ── SLIDER (Séances exclusives) ── */
+var cur = 0;
+var slideCount = 0;
+var sliderTimer = null;
+var progressTimer = null;
+var SLIDE_DELAY = 5000;
+
+function goSlide(n) {
+  var slides = document.querySelectorAll('.slide');
+  var dots = document.querySelectorAll('.slider-dots .dot');
+  var bar = document.getElementById('sliderBar');
+  slideCount = slides.length;
+  if(slideCount === 0) return;
+
+  cur = ((n % slideCount) + slideCount) % slideCount;
+
+  slides.forEach(function(s, i) {
+    s.classList.remove('active');
+    s.style.opacity = '0';
+  });
+  slides[cur].classList.add('active');
+  slides[cur].style.opacity = '1';
+
+  dots.forEach(function(d, i) {
+    d.classList.toggle('active', i === cur);
+  });
+
+  resetProgress();
+}
+
+function moveSlide(dir) {
+  clearInterval(sliderTimer);
+  clearInterval(progressTimer);
+  goSlide(cur + dir);
+  startAuto();
+}
+
+function resetProgress() {
+  var bar = document.getElementById('sliderBar');
+  if(!bar) return;
+  bar.style.transition = 'none';
+  bar.style.width = '0%';
+  setTimeout(function() {
+    bar.style.transition = 'width ' + SLIDE_DELAY + 'ms linear';
+    bar.style.width = '100%';
+  }, 50);
+}
+
+function startAuto() {
+  clearInterval(sliderTimer);
+  clearInterval(progressTimer);
+  sliderTimer = setInterval(function() {
+    goSlide(cur + 1);
+  }, SLIDE_DELAY);
+}
+
+/* Init slider */
+document.addEventListener('DOMContentLoaded', function() {
+  var slides = document.querySelectorAll('.slide');
+  slideCount = slides.length;
+  if(slideCount > 0) {
+    goSlide(0);
+    startAuto();
+  }
+
+  /* Touch support */
+  var wrap = document.querySelector('.slider-wrap');
+  if(wrap) {
+    var touchX = 0;
+    wrap.addEventListener('touchstart', function(e) {
+      touchX = e.changedTouches[0].clientX;
+      clearInterval(sliderTimer);
+      clearInterval(progressTimer);
+    }, {passive: true});
+    wrap.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - touchX;
+      if(Math.abs(dx) > 40) {
+        goSlide(cur + (dx < 0 ? 1 : -1));
+      }
+      startAuto();
+    }, {passive: true});
+  }
+});
+
+/* ── FORMULAIRE DEVIS ── */
+var selectedType = 'Shooting Photo';
+
+function selectType(el, type) {
+  selectedType = type;
+  document.querySelectorAll('.form-type').forEach(function(t) {
+    t.classList.remove('active');
+  });
+  el.classList.add('active');
+}
+
+function sendDevis() {
+  var name = document.getElementById('fName')?.value || document.querySelector('[name="fName"]')?.value || '';
+  var insta = document.getElementById('fInsta')?.value || document.querySelector('[name="fInsta"]')?.value || '';
+  var project = document.getElementById('fProject')?.value || document.querySelector('[name="fProject"]')?.value || '';
+
+  if(!name.trim()) {
+    alert('Merci d\'indiquer ton prénom ou nom d\'artiste.');
+    return;
+  }
+  if(!project.trim()) {
+    alert('Décris ton projet en quelques mots.');
+    return;
+  }
+
+  /* Construire le message WhatsApp */
+  var msg = '🎬 *Nouvelle demande de devis — Seven-Prod*\n\n'
+    + '📋 *Type :* ' + selectedType + '\n'
+    + '👤 *Nom :* ' + name + '\n'
+    + '📱 *Insta/TikTok :* ' + (insta || 'Non renseigné') + '\n'
+    + '📝 *Projet :* ' + project;
+
+  /* Remplace par ton numéro WhatsApp (format international sans +) */
+  var phoneNumber = '33XXXXXXXXX'; /* ← METS TON NUMÉRO ICI */
+  var waURL = 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(msg);
+
+  /* Afficher écran de confirmation */
+  var formDiv = document.querySelector('.devis-form-wrap') || document.querySelector('#devis .glass-form');
+  var confirmDiv = document.querySelector('.devis-confirm');
+  if(formDiv) formDiv.style.display = 'none';
+  if(confirmDiv) confirmDiv.style.display = 'flex';
+
+  /* Ouvrir WhatsApp après un court délai */
+  setTimeout(function() {
+    window.open(waURL, '_blank');
+  }, 800);
+}
+
+/* ── VIDEO — autoplay quand visible ── */
+(function(){
+  var videos = document.querySelectorAll('video');
+  if(videos.length === 0) return;
+  var vidObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if(e.isIntersecting) e.target.play().catch(function(){});
+      else e.target.pause();
+    });
+  }, {threshold: 0.3});
+  videos.forEach(function(v) { vidObs.observe(v); });
+})();
+
+/* ── MENU MOBILE (si hamburger) ── */
+(function(){
+  var burger = document.querySelector('.nav-toggle, .hamburger, .menu-toggle');
+  var menu = document.querySelector('.nav-links, .nav-menu');
+  if(burger && menu) {
+    burger.addEventListener('click', function() {
+      menu.classList.toggle('open');
+      burger.classList.toggle('active');
+    });
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        menu.classList.remove('open');
+        burger.classList.remove('active');
+      });
+    });
+  }
+})();
+</script>
+
+<!--
+  ══════════════════════════════════════════════════════════
+  FIN DES CORRECTIONS
+  ══════════════════════════════════════════════════════════
+  
+  CHECKLIST AVANT DE PUBLIER :
+  ☐ Remplacer le <script> actuel par celui ci-dessus
+  ☐ Ajouter les balises og: et favicon dans le <head>
+  ☐ Mettre ton vrai numéro WhatsApp (ligne phoneNumber)
+  ☐ Supprimer le lien "Avis" du footer
+  ☐ Changer © 2025 → © 2026
+  ☐ Renommer les images WhatsApp + mettre à jour les src
+  ☐ Supprimer index (1-4).html du repo
+  ☐ Commit + push → attendre 5-10 min pour le CDN GitHub Pages
+-->
