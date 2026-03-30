@@ -22,13 +22,16 @@
 }
 html{scroll-behavior:smooth;font-size:16px;}
 body{background:var(--black);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:400;overflow-x:hidden;cursor:none;}
+
 /* CURSOR */
 .cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s,width .3s,height .3s;mix-blend-mode:difference;}
 .cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .08s,width .3s,height .3s,opacity .3s;opacity:0.5;}
+
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:var(--black);}
 ::-webkit-scrollbar-thumb{background:var(--gold-dim);}
+
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:24px 40px;transition:background .4s,padding .4s;}
 nav.scrolled{background:rgba(7,7,7,.95);backdrop-filter:blur(12px);padding:16px 40px;border-bottom:1px solid var(--border);}
@@ -37,15 +40,17 @@ nav.scrolled{background:rgba(7,7,7,.95);backdrop-filter:blur(12px);padding:16px 
 .nav-links{display:flex;align-items:center;gap:32px;}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;}
 .nav-links a:hover{color:var(--gold);}
-.nav-cta{background:var(--gold);color:var(--black);padding:10px 24px;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:opacity .3s;}
+.nav-cta{background:var(--gold);color:var(--black) !important;padding:10px 24px;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:opacity .3s;}
 .nav-cta:hover{opacity:.85;}
 .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
 .nav-burger span{display:block;width:24px;height:1.5px;background:var(--text);transition:all .3s;}
+
 /* MOBILE NAV */
 .mobile-nav{position:fixed;inset:0;background:var(--black);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;opacity:0;pointer-events:none;transition:opacity .4s;}
 .mobile-nav.open{opacity:1;pointer-events:all;}
 .mobile-nav a{font-family:'Playfair Display',serif;font-size:clamp(28px,8vw,52px);font-weight:700;color:var(--text);text-decoration:none;transition:color .3s;}
 .mobile-nav a:hover{color:var(--gold);}
+
 /* HERO */
 #hero{position:relative;height:100svh;min-height:600px;display:flex;align-items:flex-end;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;background:url('gal2.jpeg') center/cover no-repeat;filter:brightness(.45);transform:scale(1.05);transition:transform 8s ease;}
@@ -67,124 +72,98 @@ nav.scrolled{background:rgba(7,7,7,.95);backdrop-filter:blur(12px);padding:16px 
 .hero-stat{text-align:right;}
 .hero-stat-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--gold);line-height:1;}
 .hero-stat-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+
 /* TICKER */
 .ticker{background:var(--gold);padding:14px 0;overflow:hidden;white-space:nowrap;}
 .ticker-track{display:inline-flex;animation:ticker 22s linear infinite;}
 .ticker-track span{font-size:12px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--black);padding:0 40px;}
 .ticker-track span::before{content:'✦';margin-right:40px;font-size:8px;}
 @keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
-/* SECTIONS */
-section{padding:120px 40px;}
-.s-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
-.s-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
-.s-eyebrow-text{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);}
-.s-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:.95;letter-spacing:-.03em;color:var(--text);}
-/* GALERIE */
-#galerie{padding:120px 0;background:var(--black);}
-.galerie-head{padding:0 40px;margin-bottom:60px;}
-.galerie-head .s-title{max-width:600px;}
-.galerie-head p{margin-top:16px;color:var(--muted);font-size:15px;max-width:480px;line-height:1.7;}
-.galerie-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;}
-.gal-item{position:relative;overflow:hidden;background:var(--card);}
-.gal-item:nth-child(1){aspect-ratio:3/4;}
-.gal-item:nth-child(2){aspect-ratio:3/4;}
-.gal-item:nth-child(3){aspect-ratio:3/4;}
-.gal-item:nth-child(4){aspect-ratio:3/4;}
-.gal-item:nth-child(5){aspect-ratio:3/4;}
-.gal-item:nth-child(6){aspect-ratio:3/4;}
-.gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.46,.45,.94),filter .5s;filter:brightness(.9);}
-.gal-item:hover img{transform:scale(1.06);filter:brightness(.6);}
-.gal-meta{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 20px;background:linear-gradient(to top,rgba(7,7,7,.85) 0%,transparent 55%);opacity:0;transition:opacity .4s;}
-.gal-item:hover .gal-meta{opacity:1;}
-.gal-cat{font-size:9px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
-.gal-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);}
-.gal-item.placeholder{background:var(--card);display:flex;align-items:center;justify-content:center;}
-.gal-item.placeholder::after{content:'BIENTÔT';font-size:9px;letter-spacing:.3em;color:var(--muted);}
+
+/* ─── SHARED SECTION STYLES ─── */
+.porto-section{padding:100px 0;background:var(--black);}
+.porto-section+.porto-section{border-top:1px solid var(--border);}
+.porto-header{display:flex;align-items:flex-end;justify-content:space-between;padding:0 40px;margin-bottom:48px;gap:24px;flex-wrap:wrap;}
+.porto-num{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.porto-num::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.porto-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3.8rem);font-weight:900;line-height:1;letter-spacing:-.03em;color:var(--text);}
+.porto-title em{font-style:italic;color:var(--gold);}
+.porto-desc{margin-top:12px;font-size:14px;color:var(--muted);max-width:360px;line-height:1.7;}
+.porto-cta-link{display:inline-block;border:1px solid var(--border);color:var(--muted);padding:12px 28px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .3s;white-space:nowrap;align-self:flex-end;}
+.porto-cta-link:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ─── SHARED IMAGE ITEM ─── */
+.pi{position:relative;overflow:hidden;background:var(--card);}
+.pi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.25,.46,.45,.94),filter .6s;}
+.pi:hover img{transform:scale(1.07);filter:brightness(.55);}
+.pi-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 22px;background:linear-gradient(to top,rgba(7,7,7,.9) 0%,transparent 60%);opacity:0;transition:opacity .4s;}
+.pi:hover .pi-overlay{opacity:1;}
+.pi-cat{font-size:9px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.pi-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);line-height:1.1;}
+
+/* ─── SECTION 1 : FEATURED — 1 grand + 2 droite ─── */
+.porto-featured-grid{display:grid;grid-template-columns:55% 45%;grid-template-rows:auto auto;gap:4px;}
+.pi-feat-main{grid-column:1;grid-row:1/span 2;aspect-ratio:3/4.2;}
+.pi-feat-top{grid-column:2;grid-row:1;aspect-ratio:4/3;}
+.pi-feat-bot{grid-column:2;grid-row:2;aspect-ratio:4/3;}
+
+/* ─── SECTION 2 : PORTRAIT STUDIO — 2×2 ─── */
+.porto-portrait-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;}
+.pi-portrait{aspect-ratio:3/4;}
+
+/* ─── SECTION 3 : STREET & LIFESTYLE — 2/3 + 1/3 ─── */
+.porto-street-grid{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:auto auto;gap:4px;}
+.pi-street-main{grid-column:1;grid-row:1/span 2;aspect-ratio:4/5;}
+.pi-street-top{grid-column:2;grid-row:1;aspect-ratio:3/4;}
+.pi-street-bot{grid-column:2;grid-row:2;aspect-ratio:3/4;}
+
+/* ─── SECTION 4 : BRAND & MOTION — 2 images + panneau CTA ─── */
+.porto-brand-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;align-items:stretch;}
+.pi-brand{aspect-ratio:3/4;}
+.brand-cta-panel{background:var(--gold);display:flex;flex-direction:column;justify-content:space-between;padding:48px 40px;min-height:340px;}
+.brand-cta-label{font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(7,7,7,.45);margin-bottom:12px;}
+.brand-cta-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.5vw,2.6rem);font-weight:900;color:var(--black);line-height:1.05;letter-spacing:-.02em;}
+.brand-cta-sub{font-size:13px;color:rgba(7,7,7,.6);line-height:1.65;margin-top:14px;}
+.brand-cta-btn{display:inline-block;background:var(--black);color:var(--gold);padding:14px 28px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;margin-top:36px;transition:opacity .3s;align-self:flex-start;}
+.brand-cta-btn:hover{opacity:.8;}
+
+/* RESPONSIVE GALERIES */
 @media(max-width:768px){
-  .galerie-grid{grid-template-columns:repeat(2,1fr);gap:3px;}
-  .gal-meta{opacity:1;}
+  .porto-header{padding:0 24px;margin-bottom:32px;}
+  .porto-featured-grid{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
+  .pi-feat-main{grid-column:1;grid-row:1;aspect-ratio:3/4;}
+  .pi-feat-top{grid-column:1;grid-row:2;aspect-ratio:4/3;}
+  .pi-feat-bot{grid-column:1;grid-row:3;aspect-ratio:4/3;}
+  .porto-portrait-grid{grid-template-columns:1fr;}
+  .pi-portrait{aspect-ratio:4/3;}
+  .porto-street-grid{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
+  .pi-street-main{grid-column:1;grid-row:1;aspect-ratio:4/3;}
+  .pi-street-top{grid-column:1;grid-row:2;aspect-ratio:4/3;}
+  .pi-street-bot{grid-column:1;grid-row:3;aspect-ratio:4/3;}
+  .porto-brand-grid{grid-template-columns:1fr;}
+  .pi-brand{aspect-ratio:4/3;}
+  .brand-cta-panel{min-height:260px;padding:36px 28px;}
+  .pi-overlay{opacity:1;}
 }
-.galerie-cta{text-align:center;margin-top:60px;padding:0 40px;}
-/* ===== SHOWREEL ===== */
+
+/* SHOWREEL */
 #showreel{padding:0;background:var(--black);}
 .showreel-label{padding:80px 40px 32px;display:flex;align-items:center;gap:16px;}
 .showreel-label::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
 .showreel-label-text{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);}
 .showreel-title{padding:0 40px 56px;font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,4rem);font-weight:900;line-height:1;letter-spacing:-.02em;}
 .showreel-title em{color:var(--gold);font-style:italic;}
-/* Stage: center the phone */
-.showreel-stage{
-  display:flex;align-items:center;justify-content:center;gap:48px;
-  padding:0 40px 100px;
-}
-.showreel-side{
-  writing-mode:vertical-rl;font-size:10px;font-weight:600;
-  letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
-  opacity:.4;flex-shrink:0;
-}
-/* Phone frame — true 9:16 portrait */
-.showreel-phone{
-  position:relative;
-  width:min(320px,80vw);
-  aspect-ratio:9/16;
-  flex-shrink:0;
-  border-radius:20px;
-  overflow:hidden;
-  background:#000;
-  box-shadow:0 40px 100px rgba(0,0,0,.85),0 0 0 1px rgba(200,169,110,.2);
-}
-.showreel-phone video{
-  width:100%;height:100%;
-  object-fit:cover;display:block;
-}
-/* TEXT MASKER — covers the TikTok caption zone (middle 40%) */
-.showreel-text-mask{
-  position:absolute;
-  left:0;right:0;
-  top:35%;height:40%;
-  z-index:3;
-  background:linear-gradient(
-    to bottom,
-    rgba(7,7,7,0) 0%,
-    rgba(7,7,7,0.92) 20%,
-    rgba(7,7,7,0.96) 50%,
-    rgba(7,7,7,0.92) 80%,
-    rgba(7,7,7,0) 100%
-  );
-  display:flex;align-items:center;justify-content:center;
-  flex-direction:column;gap:8px;
-}
-/* Text over the mask — branded */
-.showreel-mask-title{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(18px,5vw,26px);
-  font-weight:900;color:var(--text);
-  letter-spacing:-.01em;text-align:center;
-  line-height:1.2;
-}
+.showreel-stage{display:flex;align-items:center;justify-content:center;gap:48px;padding:0 40px 100px;}
+.showreel-side{writing-mode:vertical-rl;font-size:10px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);opacity:.4;flex-shrink:0;}
+.showreel-phone{position:relative;width:min(320px,80vw);aspect-ratio:9/16;flex-shrink:0;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 40px 100px rgba(0,0,0,.85),0 0 0 1px rgba(200,169,110,.2);}
+.showreel-phone video{width:100%;height:100%;object-fit:cover;display:block;}
+.showreel-text-mask{position:absolute;left:0;right:0;top:35%;height:40%;z-index:3;background:linear-gradient(to bottom,rgba(7,7,7,0) 0%,rgba(7,7,7,.92) 20%,rgba(7,7,7,.96) 50%,rgba(7,7,7,.92) 80%,rgba(7,7,7,0) 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;}
+.showreel-mask-title{font-family:'Playfair Display',serif;font-size:clamp(18px,5vw,26px);font-weight:900;color:var(--text);letter-spacing:-.01em;text-align:center;line-height:1.2;}
 .showreel-mask-title em{color:var(--gold);font-style:italic;}
-.showreel-mask-sub{
-  font-size:10px;font-weight:600;letter-spacing:.25em;
-  text-transform:uppercase;color:var(--gold);opacity:.8;
-}
-/* Top vignette */
-.showreel-top{
-  position:absolute;top:0;left:0;right:0;height:22%;z-index:2;
-  background:linear-gradient(to bottom,rgba(7,7,7,.7),transparent);
-}
-/* Bottom bar */
-.showreel-bar{
-  position:absolute;bottom:0;left:0;right:0;padding:0 18px 18px;
-  display:flex;align-items:center;justify-content:space-between;
-  z-index:4;
-  background:linear-gradient(to top,rgba(7,7,7,.9) 0%,transparent 100%);
-  padding-top:48px;
-}
-.showreel-badge{
-  font-size:9px;font-weight:700;letter-spacing:.25em;
-  color:var(--gold);border:1px solid var(--gold-dim);
-  padding:6px 12px;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);
-}
+.showreel-mask-sub{font-size:10px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);opacity:.8;}
+.showreel-top{position:absolute;top:0;left:0;right:0;height:22%;z-index:2;background:linear-gradient(to bottom,rgba(7,7,7,.7),transparent);}
+.showreel-bar{position:absolute;bottom:0;left:0;right:0;padding:0 18px 18px;display:flex;align-items:center;justify-content:space-between;z-index:4;background:linear-gradient(to top,rgba(7,7,7,.9) 0%,transparent 100%);padding-top:48px;}
+.showreel-badge{font-size:9px;font-weight:700;letter-spacing:.25em;color:var(--gold);border:1px solid var(--gold-dim);padding:6px 12px;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);}
 .showreel-tag{font-size:9px;letter-spacing:.12em;color:rgba(255,255,255,.35);text-transform:uppercase;}
 @media(max-width:768px){
   .showreel-stage{padding:0 0 60px;gap:0;}
@@ -193,9 +172,13 @@ section{padding:120px 40px;}
   .showreel-label{padding:60px 24px 28px;}
   .showreel-title{padding:0 24px 40px;}
 }
-/* ===== FIN SHOWREEL ===== */
+
 /* SERVICES */
-#services{background:var(--dark);}
+#services{background:var(--dark);padding:120px 40px;}
+.s-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.s-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.s-eyebrow-text{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:.95;letter-spacing:-.03em;color:var(--text);}
 .services-header{margin-bottom:72px;}
 .services-header p{margin-top:20px;color:var(--muted);font-size:15px;max-width:480px;line-height:1.7;}
 .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}
@@ -211,9 +194,10 @@ section{padding:120px 40px;}
 .service-cta{display:block;margin-top:32px;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--text);text-decoration:none;transition:color .3s;}
 .service-cta:hover{color:var(--gold);}
 .service-cta::after{content:' →';}
+
 /* ABOUT */
-#about{background:var(--black);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
-@media(max-width:768px){#about{grid-template-columns:1fr;gap:48px;}}
+#about{background:var(--black);padding:120px 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+@media(max-width:768px){#about{grid-template-columns:1fr;gap:48px;padding:80px 24px;}}
 .about-img{position:relative;}
 .about-img img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;filter:brightness(.85);}
 .about-badge{position:absolute;bottom:32px;left:-20px;background:var(--gold);color:var(--black);padding:16px 24px;}
@@ -226,8 +210,9 @@ section{padding:120px 40px;}
 .about-socials{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;}
 .about-social{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s;}
 .about-social:hover{color:var(--gold);}
-/* DEVIS *//* DEVIS */
-#devis{background:var(--black);}
+
+/* DEVIS */
+#devis{background:var(--black);padding:120px 40px;}
 .devis-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
 @media(max-width:768px){.devis-wrap{grid-template-columns:1fr;gap:48px;}}
 .devis-info .s-title{margin-bottom:24px;}
@@ -239,20 +224,20 @@ section{padding:120px 40px;}
 .form-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:32px;}
 .form-group{margin-bottom:20px;}
 .form-label{display:block;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-.form-input,.form-textarea,.form-select{width:100%;background:var(--black);border:1px solid var(--border);color:var(--text);padding:14px 16px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .3s;appearance:none;}
-.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:var(--gold);}
+.form-input,.form-textarea{width:100%;background:var(--black);border:1px solid var(--border);color:var(--text);padding:14px 16px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .3s;}
+.form-input:focus,.form-textarea:focus{border-color:var(--gold);}
 .form-textarea{resize:vertical;min-height:100px;}
 .form-types{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
 .form-type{background:var(--black);border:1px solid var(--border);padding:12px;cursor:pointer;text-align:center;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:all .3s;}
 .form-type.active,.form-type:hover{border-color:var(--gold);color:var(--gold);}
 .btn-submit{width:100%;background:var(--gold);color:var(--black);padding:18px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;transition:opacity .3s;margin-top:8px;}
 .btn-submit:hover{opacity:.85;}
-/* SUCCESS */
 .devis-success{display:none;text-align:center;padding:60px 20px;}
 .devis-success.show{display:block;}
 .devis-success-icon{font-size:48px;margin-bottom:24px;}
 .devis-success h3{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:16px;}
 .devis-success p{color:var(--muted);font-size:15px;line-height:1.7;}
+
 /* FOOTER */
 footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40px 40px;}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:60px;}
@@ -270,7 +255,8 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40
 .footer-socials{display:flex;gap:20px;}
 .footer-socials a{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s;}
 .footer-socials a:hover{color:var(--gold);}
-/* RESPONSIVE */
+
+/* RESPONSIVE GENERAL */
 @media(max-width:900px){
   nav{padding:20px 24px;}
   nav.scrolled{padding:14px 24px;}
@@ -278,32 +264,23 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40
   .nav-burger{display:flex;}
   #hero .hero-content{padding:0 24px 80px;}
   .hero-stats{display:none;}
-  section{padding:80px 24px;}
-  #galerie{padding:80px 0;}
-  .galerie-head{padding:0 24px;margin-bottom:40px;}
-  .galerie-cta{padding:0 24px;}
-  #about{padding:80px 24px;}
-  .about-badge{left:0;}
+  #services{padding:80px 24px;}
   #devis{padding:80px 24px;}
   .devis-form{padding:32px 24px;}
   footer{padding:48px 24px 32px;}
-  .showreel-label{padding:60px 24px 32px;}
-  .showreel-title{padding:0 24px 36px;}
-  .showreel-bar{padding:16px 20px;}
+  .about-badge{left:0;}
 }
-/* ANIMATIONS */
 .fade-up{opacity:1;transform:none;}
 </style>
 </head>
 <body>
 
-<!-- CURSOR -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
-  <a href="#galerie" onclick="closeMobileNav()">Galerie</a>
+  <a href="#featured" onclick="closeMobileNav()">Galerie</a>
   <a href="#services" onclick="closeMobileNav()">Services</a>
   <a href="#about" onclick="closeMobileNav()">À propos</a>
   <a href="#devis" onclick="closeMobileNav()">Devis gratuit</a>
@@ -313,10 +290,10 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40
 <nav id="navbar">
   <a href="#hero" class="nav-logo">S<span>.</span></a>
   <div class="nav-links">
-    <a href="#galerie">Galerie</a>
+    <a href="#featured">Galerie</a>
     <a href="#services">Services</a>
     <a href="#about">À propos</a>
-        <a href="#devis" class="nav-cta">Devis gratuit</a>
+    <a href="#devis" class="nav-cta">Devis gratuit</a>
   </div>
   <div class="nav-burger" id="burger" onclick="toggleMobileNav()">
     <span></span><span></span><span></span>
@@ -328,114 +305,162 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-gradient"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">
-      <span>Paris · Photo · Vidéo · 2025</span>
-    </div>
+    <div class="hero-eyebrow"><span>Paris · Photo · Vidéo · 2025</span></div>
     <h1 class="hero-title">Des images<br/>qui font <em>réagir</em></h1>
     <p class="hero-sub">Rappeurs, influenceurs, artistes — je capture ce que les mots ne peuvent pas dire. Des visuels cinématiques à la hauteur de ton talent.</p>
     <div class="hero-btns">
       <a href="#devis" class="btn-primary">Devis gratuit</a>
-      <a href="#galerie" class="btn-ghost">Voir la galerie</a>
+      <a href="#featured" class="btn-ghost">Voir la galerie</a>
     </div>
   </div>
   <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-num">50+</div>
-      <div class="hero-stat-label">Shootings</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">★ 5</div>
-      <div class="hero-stat-label">Satisfaction</div>
-    </div>
+    <div class="hero-stat"><div class="hero-stat-num">50+</div><div class="hero-stat-label">Shootings</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">★ 5</div><div class="hero-stat-label">Satisfaction</div></div>
   </div>
 </section>
 
 <!-- TICKER -->
 <div class="ticker">
-  <div class="ticker-track" id="tickerTrack">
+  <div class="ticker-track">
     <span>Photographe</span><span>Vidéaste</span><span>Clips Rap</span><span>Influenceurs</span><span>Brand Content</span><span>Paris</span><span>Portrait</span><span>Éditorial</span>
     <span>Photographe</span><span>Vidéaste</span><span>Clips Rap</span><span>Influenceurs</span><span>Brand Content</span><span>Paris</span><span>Portrait</span><span>Éditorial</span>
   </div>
 </div>
 
-<!-- GALERIE -->
-<section id="galerie">
-  <div class="galerie-head fade-up">
-    <div class="s-eyebrow"><span class="s-eyebrow-text">Portfolio</span></div>
-    <h2 class="s-title">La Galerie</h2>
-    <p>Portraits, clips, éditorial — chaque image raconte une histoire unique.</p>
+<!-- ══════════════════════════
+     01 — FEATURED
+     Sélection signature : 1 grand portrait + 2 images droite
+     Objectif : impact immédiat, diversité, accroche
+     ══════════════════════════ -->
+<section class="porto-section" id="featured">
+  <div class="porto-header">
+    <div>
+      <div class="porto-num">01 — Portfolio</div>
+      <h2 class="porto-title">La sélection<br/><em>signature</em></h2>
+      <p class="porto-desc">Les visuels qui définissent l'identité Seven-Prod. Cinématique, tranchant, mémorable.</p>
+    </div>
+    <a href="#devis" class="porto-cta-link">Réserver mon shooting</a>
   </div>
-  <div class="galerie-grid">
-      <div class="gal-item">
-        <img src="gal1.jpeg" alt="Seven-Prod shooting Paris" loading="lazy">
-        <div class="gal-meta"><span class="gal-type">Portrait</span></div>
-      </div>
-      <div class="gal-item">
-        <img src="WhatsApp Image 2026-03-27 at 01.14.41 (1).jpeg" alt="Seven-Prod urban style" loading="lazy">
-        <div class="gal-meta"><span class="gal-type">Street Mode</span></div>
-      </div>
-      <div class="gal-item">
-        <img src="gal3.jpeg" alt="Seven-Prod portrait" loading="lazy">
-        <div class="gal-meta"><span class="gal-type">Artistique</span></div>
-      </div>
-      <div class="gal-item">
-        <img src="WhatsApp Image 2026-03-27 at 01.14.41 (2).jpeg" alt="Seven-Prod duo Paris" loading="lazy">
-        <div class="gal-meta"><span class="gal-type">Reportage</span></div>
-      </div>
-      <div class="gal-item">
-        <img src="gal5.jpeg" alt="Seven-Prod shooting" loading="lazy">
-        <div class="gal-meta"><span class="gal-type">Editorial</span></div>
-      </div>
-      <div class="gal-item">
-        <img src="WhatsApp Image 2026-03-27 at 01.15.56.jpeg" alt="Seven-Prod street cast" loading="lazy">
-        <div class="gal-meta"><span class="gal-type">Mode</span></div>
-      </div>
-      <div class="gal-item">
-        <img src="gal6.jpeg" alt="Seven-Prod portrait" loading="lazy">
-        <div class="gal-meta"><span class="gal-type">Portrait</span></div>
-      </div>
-      <div class="gal-item">
-        <img src="WhatsApp Image 2026-03-27 at 01.15.11.jpeg" alt="Seven-Prod brand content" loading="lazy">
-        <div class="gal-meta"><span class="gal-type">Brand Content</span></div>
-      </div>
-      <div class="gal-item">
-        <img src="chilly-shooting.jpeg" alt="Seven-Prod shooting" loading="lazy">
-        <div class="gal-meta"><span class="gal-type">Tournage</span></div>
-      </div>
-    </div></div>
+  <div class="porto-featured-grid">
+    <div class="pi pi-feat-main">
+      <img src="new_woman_solo.jpeg" alt="Portrait glamour" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Glamour</div><div class="pi-name">Lady Boss</div></div>
     </div>
-    <div class="gal-item fade-up">
-      <img src="new_portrait_man.jpeg" alt="Portrait street" loading="lazy" onerror="this.parentElement.classList.add('placeholder');this.remove();"/>
-      <div class="gal-meta"><div class="gal-cat">Street</div><div class="gal-name">Golden Light</div></div>
+    <div class="pi pi-feat-top">
+      <img src="gal1.jpeg" alt="Portrait solo" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Portrait</div><div class="pi-name">Solo Shot</div></div>
     </div>
-    <div class="gal-item fade-up">
-      <img src="gal3.jpeg" alt="Portrait éditorial" loading="lazy" onerror="this.parentElement.classList.add('placeholder');this.remove();"/>
-      <div class="gal-meta"><div class="gal-cat">Éditorial</div><div class="gal-name">Deep Focus</div></div>
+    <div class="pi pi-feat-bot">
+      <img src="new_trio_women.jpeg" alt="Shooting groupe" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Groupe</div><div class="pi-name">Power Trio</div></div>
     </div>
-    <div class="gal-item fade-up">
-      <img src="new_trio_women.jpeg" alt="Shooting groupe" loading="lazy" onerror="this.parentElement.classList.add('placeholder');this.remove();"/>
-      <div class="gal-meta"><div class="gal-cat">Groupe</div><div class="gal-name">Power Trio</div></div>
-    </div>
-    <div class="gal-item fade-up">
-      <img src="gal4.jpeg" alt="Portrait N&B" loading="lazy" onerror="this.parentElement.classList.add('placeholder');this.remove();"/>
-      <div class="gal-meta"><div class="gal-cat">N&amp;B</div><div class="gal-name">Dark Mood</div></div>
-    </div>
-    <div class="gal-item fade-up">
-      <img src="new_woman_solo.jpeg" alt="Portrait glamour" loading="lazy" onerror="this.parentElement.classList.add('placeholder');this.remove();"/>
-      <div class="gal-meta"><div class="gal-cat">Glamour</div><div class="gal-name">Lady Boss</div></div>
-    </div>
-  </div>
-  <div class="galerie-cta fade-up">
-    <a href="#devis" class="btn-primary">Obtenir mon shooting</a>
   </div>
 </section>
 
-<!-- SHOWREEL -->
+<!-- ══════════════════════════
+     02 — PORTRAIT STUDIO
+     4 portraits 2×2 — maîtrise artistique
+     Objectif : crédibilité, presse, identité artiste
+     ══════════════════════════ -->
+<section class="porto-section" id="portrait-studio">
+  <div class="porto-header">
+    <div>
+      <div class="porto-num">02 — Portrait Studio</div>
+      <h2 class="porto-title">L'art du<br/><em>portrait</em></h2>
+      <p class="porto-desc">Press kit, identité artiste, éditorial. Chaque portrait est une déclaration visuelle.</p>
+    </div>
+    <a href="#devis" class="porto-cta-link">Shooting portrait</a>
+  </div>
+  <div class="porto-portrait-grid">
+    <div class="pi pi-portrait">
+      <img src="gal3.jpeg" alt="Portrait artistique" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Artistique</div><div class="pi-name">Deep Focus</div></div>
+    </div>
+    <div class="pi pi-portrait">
+      <img src="new_portrait_man.jpeg" alt="Portrait Golden Light" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Street</div><div class="pi-name">Golden Light</div></div>
+    </div>
+    <div class="pi pi-portrait">
+      <img src="gal4.jpeg" alt="Portrait N&B" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">N&amp;B</div><div class="pi-name">Dark Mood</div></div>
+    </div>
+    <div class="pi pi-portrait">
+      <img src="gal5.jpeg" alt="Portrait éditorial" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Éditorial</div><div class="pi-name">Press Kit</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     03 — STREET & LIFESTYLE
+     1 grand gauche + 2 droite — énergie urbaine
+     Objectif : influenceurs, réseaux, lifestyle
+     ══════════════════════════ -->
+<section class="porto-section" id="street-lifestyle">
+  <div class="porto-header">
+    <div>
+      <div class="porto-num">03 — Street &amp; Lifestyle</div>
+      <h2 class="porto-title">Dans la<br/><em>rue</em></h2>
+      <p class="porto-desc">Contenu lifestyle pour arrêter le scroll. Réels, TikTok, Instagram — format natif.</p>
+    </div>
+    <a href="#devis" class="porto-cta-link">Pack réseaux</a>
+  </div>
+  <div class="porto-street-grid">
+    <div class="pi pi-street-main">
+      <img src="WhatsApp Image 2026-03-27 at 01.15.56.jpeg" alt="Street mode" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Mode</div><div class="pi-name">Street Cast</div></div>
+    </div>
+    <div class="pi pi-street-top">
+      <img src="WhatsApp Image 2026-03-27 at 01.14.41 (1).jpeg" alt="Urban style" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Urban</div><div class="pi-name">City Vibes</div></div>
+    </div>
+    <div class="pi pi-street-bot">
+      <img src="WhatsApp Image 2026-03-27 at 01.14.41 (2).jpeg" alt="Duo Paris" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Duo</div><div class="pi-name">Paris Nights</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     04 — BRAND & MOTION
+     2 images + panneau CTA doré — conversion
+     Objectif : marques, clips, closer le client
+     ══════════════════════════ -->
+<section class="porto-section" id="brand-motion">
+  <div class="porto-header">
+    <div>
+      <div class="porto-num">04 — Brand &amp; Motion</div>
+      <h2 class="porto-title">Pour les<br/><em>marques</em></h2>
+      <p class="porto-desc">Campagnes, clips, brand content. L'image premium qui convertit et qui dure.</p>
+    </div>
+    <a href="#devis" class="porto-cta-link">Brand Content</a>
+  </div>
+  <div class="porto-brand-grid">
+    <div class="pi pi-brand">
+      <img src="WhatsApp Image 2026-03-27 at 01.15.11.jpeg" alt="Brand content" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Brand</div><div class="pi-name">Visual ID</div></div>
+    </div>
+    <div class="pi pi-brand">
+      <img src="chilly-shooting.jpeg" alt="Tournage clip" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Tournage</div><div class="pi-name">On Set</div></div>
+    </div>
+    <div class="brand-cta-panel">
+      <div>
+        <div class="brand-cta-label">Seven-Prod · Paris</div>
+        <div class="brand-cta-title">Ton projet mérite une image à sa hauteur.</div>
+        <div class="brand-cta-sub">Devis gratuit · Réponse sous 24h · Tarif adapté à ton budget</div>
+      </div>
+      <a href="#devis" class="brand-cta-btn">Démarrer mon projet →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWREEL — ⚠️ remplace "chilly-clip.mp4" par le bon fichier -->
 <section id="showreel" style="padding:0;">
-  <div class="showreel-label fade-up"><span class="showreel-label-text">Behind the lens</span></div>
-  <div class="showreel-title fade-up">En <em>mouvement</em></div>
+  <div class="showreel-label"><span class="showreel-label-text">Behind the lens</span></div>
+  <div class="showreel-title">En <em>mouvement</em></div>
   <div class="showreel-stage">
-    <div class="showreel-side fade-up">Seven-Prod · Paris · 2025</div>
+    <div class="showreel-side">Seven-Prod · Paris · 2025</div>
     <div class="showreel-phone">
       <video autoplay muted loop playsinline preload="none">
         <source src="chilly-clip.mp4" type="video/mp4"/>
@@ -450,7 +475,7 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40
         <div class="showreel-tag">Photo · Vidéo</div>
       </div>
     </div>
-    <div class="showreel-side fade-up">Photographe · Vidéaste · Artiste</div>
+    <div class="showreel-side">Photographe · Vidéaste · Artiste</div>
   </div>
 </section>
 
@@ -515,9 +540,6 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-
-
 <!-- DEVIS -->
 <section id="devis">
   <div class="devis-wrap">
@@ -535,7 +557,7 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40
     </div>
     <div class="devis-form fade-up" id="devisForm">
       <div class="form-title">Ton projet en quelques mots</div>
-      <div class="form-types" id="formTypes">
+      <div class="form-types">
         <div class="form-type active" onclick="selectType(this,'Shooting Photo')">Photo</div>
         <div class="form-type" onclick="selectType(this,'Clip Vidéo')">Clip</div>
         <div class="form-type" onclick="selectType(this,'Pack Réseaux')">Réseaux</div>
@@ -573,10 +595,9 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40
     <div>
       <div class="footer-col-title">Navigation</div>
       <div class="footer-links">
-        <a href="#galerie">Galerie</a>
+        <a href="#featured">Galerie</a>
         <a href="#services">Services</a>
         <a href="#about">À propos</a>
-        <a href="#testimonials">Avis</a>
       </div>
     </div>
     <div>
@@ -608,75 +629,52 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40
 
 <script>
 // CURSOR
-var cursor = document.getElementById('cursor');
-var ring = document.getElementById('cursorRing');
-document.addEventListener('mousemove', function(e) {
-  if(cursor) { cursor.style.left = e.clientX+'px'; cursor.style.top = e.clientY+'px'; }
-  if(ring) { setTimeout(function(){ ring.style.left = e.clientX+'px'; ring.style.top = e.clientY+'px'; }, 80); }
+var cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+document.addEventListener('mousemove',function(e){
+  if(cursor){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';}
+  if(ring){setTimeout(function(){ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';},80);}
 });
 
 // NAV SCROLL
-window.addEventListener('scroll', function() {
-  var nav = document.getElementById('navbar');
-  if(nav) nav.classList.toggle('scrolled', window.scrollY > 60);
+window.addEventListener('scroll',function(){
+  var nav=document.getElementById('navbar');
+  if(nav)nav.classList.toggle('scrolled',window.scrollY>60);
 });
 
 // HERO BG
-window.addEventListener('load', function() {
-  var bg = document.getElementById('heroBg');
-  if(bg) setTimeout(function(){ bg.classList.add('loaded'); }, 100);
+window.addEventListener('load',function(){
+  var bg=document.getElementById('heroBg');
+  if(bg)setTimeout(function(){bg.classList.add('loaded');},100);
 });
 
 // MOBILE NAV
-window.toggleMobileNav = function() {
-  var nav = document.getElementById('mobileNav');
-  if(nav) nav.classList.toggle('open');
-};
-window.closeMobileNav = function() {
-  var nav = document.getElementById('mobileNav');
-  if(nav) nav.classList.remove('open');
-};
+window.toggleMobileNav=function(){var n=document.getElementById('mobileNav');if(n)n.classList.toggle('open');};
+window.closeMobileNav=function(){var n=document.getElementById('mobileNav');if(n)n.classList.remove('open');};
 
-// FADE UP OBSERVER
-var observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+// FADE UP
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-up').forEach(function(el){obs.observe(el);});
 
-// DEVIS FORM
-var selectedType = 'Shooting Photo';
-
-window.selectType = function(el, type) {
-  selectedType = type;
-  document.querySelectorAll('.form-type').forEach(function(t) { t.classList.remove('active'); });
+// DEVIS
+var selectedType='Shooting Photo';
+window.selectType=function(el,type){
+  selectedType=type;
+  document.querySelectorAll('.form-type').forEach(function(t){t.classList.remove('active');});
   el.classList.add('active');
 };
-
-window.sendDevis = function() {
-  var name = (document.getElementById('fName') || {}).value || '';
-  var insta = (document.getElementById('fInsta') || {}).value || '';
-  var project = (document.getElementById('fProject') || {}).value || '';
-  name = name.trim();
-  if(!name) {
-    var inp = document.getElementById('fName');
-    if(inp) inp.focus();
-    return;
-  }
-  var msg = 'Bonjour Seven-Prod ! 👋\n\n'
-    + '📌 Type : ' + selectedType + '\n'
-    + '👤 Nom : ' + name + '\n'
-    + '📱 Instagram : ' + (insta.trim() || 'non renseigné') + '\n'
-    + '📝 Projet : ' + (project.trim() || 'non renseigné') + '\n\n'
-    + 'Merci de revenir vers moi sous 24h !';
-  var url = 'https://wa.me/33651238450?text=' + encodeURIComponent(msg);
-  // Use location.href instead of window.open to avoid popup blockers
-  var form = document.getElementById('devisForm');
-  var success = document.getElementById('devisSuccess');
-  if(form) form.style.display = 'none';
-  if(success) success.classList.add('show');
-  setTimeout(function(){ window.location.href = url; }, 300);
+window.sendDevis=function(){
+  var name=((document.getElementById('fName')||{}).value||'').trim();
+  var insta=((document.getElementById('fInsta')||{}).value||'').trim();
+  var project=((document.getElementById('fProject')||{}).value||'').trim();
+  if(!name){var inp=document.getElementById('fName');if(inp)inp.focus();return;}
+  var msg='Bonjour Seven-Prod ! 👋\n\n📌 Type : '+selectedType+'\n👤 Nom : '+name+'\n📱 Instagram : '+(insta||'non renseigné')+'\n📝 Projet : '+(project||'non renseigné')+'\n\nMerci de revenir vers moi sous 24h !';
+  var url='https://wa.me/33651238450?text='+encodeURIComponent(msg);
+  var form=document.getElementById('devisForm'),success=document.getElementById('devisSuccess');
+  if(form)form.style.display='none';
+  if(success)success.classList.add('show');
+  setTimeout(function(){window.location.href=url;},300);
 };
 </script>
 </body>
