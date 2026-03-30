@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SEVEN-PROD — Photographe & Vidéaste Paris</title>
+<meta name="description" content="Photographe & vidéaste Paris. Shooting photo, clips rap, contenu réseaux. Pour rappeurs, influenceurs, artistes & marques."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --gold:#c8a96e;
+  --gold-dim:#c8a96e44;
+  --black:#070707;
+  --dark:#0f0f0f;
+  --card:#141414;
+  --text:#f0ece4;
+  --muted:#888;
+  --border:#ffffff11;
+}
+html{scroll-behavior:smooth;font-size:16px;}
+body{background:var(--black);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:400;overflow-x:hidden;cursor:none;}
+
+/* CURSOR */
+.cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s,width .3s,height .3s;mix-blend-mode:difference;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .08s,width .3s,height .3s,opacity .3s;opacity:0.5;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--black);}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:24px 40px;transition:background .4s,padding .4s;}
+nav.scrolled{background:rgba(7,7,7,.95);backdrop-filter:blur(12px);padding:16px 40px;border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--text);text-decoration:none;letter-spacing:-.01em;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{background:var(--gold);color:var(--black) !important;padding:10px 24px;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:opacity .3s;}
+.nav-cta:hover{opacity:.85;}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-burger span{display:block;width:24px;height:1.5px;background:var(--text);transition:all .3s;}
+
+/* MOBILE NAV */
+.mobile-nav{position:fixed;inset:0;background:var(--black);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;opacity:0;pointer-events:none;transition:opacity .4s;}
+.mobile-nav.open{opacity:1;pointer-events:all;}
+.mobile-nav a{font-family:'Playfair Display',serif;font-size:clamp(28px,8vw,52px);font-weight:700;color:var(--text);text-decoration:none;transition:color .3s;}
+.mobile-nav a:hover{color:var(--gold);}
+
+/* HERO */
+#hero{position:relative;height:100svh;min-height:600px;display:flex;align-items:flex-end;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url('gal2.jpeg') center/cover no-repeat;filter:brightness(.45);transform:scale(1.05);transition:transform 8s ease;}
+.hero-bg.loaded{transform:scale(1);}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,7,7,1) 0%,rgba(7,7,7,.4) 50%,transparent 100%);}
+.hero-content{position:relative;z-index:1;padding:0 40px 80px;max-width:900px;}
+.hero-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
+.hero-eyebrow span{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);}
+.hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--gold);}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,9vw,7.5rem);font-weight:900;line-height:.95;letter-spacing:-.03em;color:var(--text);margin-bottom:32px;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-sub{font-size:16px;font-weight:300;color:rgba(240,236,228,.7);max-width:480px;line-height:1.7;margin-bottom:48px;}
+.hero-btns{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.btn-primary{display:inline-block;background:var(--gold);color:var(--black);padding:16px 36px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:opacity .3s;}
+.btn-primary:hover{opacity:.85;}
+.btn-ghost{display:inline-block;border:1px solid rgba(255,255,255,.25);color:var(--text);padding:16px 36px;font-size:12px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:border-color .3s,color .3s;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.hero-stats{position:absolute;right:40px;bottom:80px;display:flex;flex-direction:column;gap:32px;z-index:1;}
+.hero-stat{text-align:right;}
+.hero-stat-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--gold);line-height:1;}
+.hero-stat-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+
+/* TICKER */
+.ticker{background:var(--gold);padding:14px 0;overflow:hidden;white-space:nowrap;}
+.ticker-track{display:inline-flex;animation:ticker 22s linear infinite;}
+.ticker-track span{font-size:12px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--black);padding:0 40px;}
+.ticker-track span::before{content:'✦';margin-right:40px;font-size:8px;}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ─── SHARED SECTION STYLES ─── */
+.porto-section{padding:100px 0;background:var(--black);}
+.porto-section+.porto-section{border-top:1px solid var(--border);}
+.porto-header{display:flex;align-items:flex-end;justify-content:space-between;padding:0 40px;margin-bottom:48px;gap:24px;flex-wrap:wrap;}
+.porto-num{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.porto-num::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.porto-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3.8rem);font-weight:900;line-height:1;letter-spacing:-.03em;color:var(--text);}
+.porto-title em{font-style:italic;color:var(--gold);}
+.porto-desc{margin-top:12px;font-size:14px;color:var(--muted);max-width:360px;line-height:1.7;}
+.porto-cta-link{display:inline-block;border:1px solid var(--border);color:var(--muted);padding:12px 28px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .3s;white-space:nowrap;align-self:flex-end;}
+.porto-cta-link:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ─── SHARED IMAGE ITEM ─── */
+.pi{position:relative;overflow:hidden;background:var(--card);}
+.pi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.25,.46,.45,.94),filter .6s;}
+.pi:hover img{transform:scale(1.07);filter:brightness(.55);}
+.pi-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 22px;background:linear-gradient(to top,rgba(7,7,7,.9) 0%,transparent 60%);opacity:0;transition:opacity .4s;}
+.pi:hover .pi-overlay{opacity:1;}
+.pi-cat{font-size:9px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.pi-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);line-height:1.1;}
+
+/* ─── SECTION 1 : FEATURED — 1 grand + 2 droite ─── */
+.porto-featured-grid{display:grid;grid-template-columns:55% 45%;grid-template-rows:280px 280px;gap:4px;}
+.pi-feat-main{grid-column:1;grid-row:1/span 2;}
+.pi-feat-top{grid-column:2;grid-row:1;}
+.pi-feat-bot{grid-column:2;grid-row:2;}
+
+/* ─── SECTION 2 : PORTRAIT STUDIO — 2×2 ─── */
+.porto-portrait-grid{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:360px 360px;gap:4px;}
+.pi-portrait{}
+
+/* ─── SECTION 3 : STREET & LIFESTYLE — 2/3 + 1/3 ─── */
+.porto-street-grid{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:280px 280px;gap:4px;}
+.pi-street-main{grid-column:1;grid-row:1/span 2;}
+.pi-street-top{grid-column:2;grid-row:1;}
+.pi-street-bot{grid-column:2;grid-row:2;}
+
+/* ─── SECTION 4 : BRAND & MOTION — 2 images + panneau CTA ─── */
+.porto-brand-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:420px;gap:4px;align-items:stretch;}
+.pi-brand{}
+.brand-cta-panel{background:var(--gold);display:flex;flex-direction:column;justify-content:space-between;padding:48px 40px;}
+.brand-cta-label{font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(7,7,7,.45);margin-bottom:12px;}
+.brand-cta-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.5vw,2.6rem);font-weight:900;color:var(--black);line-height:1.05;letter-spacing:-.02em;}
+.brand-cta-sub{font-size:13px;color:rgba(7,7,7,.6);line-height:1.65;margin-top:14px;}
+.brand-cta-btn{display:inline-block;background:var(--black);color:var(--gold);padding:14px 28px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;margin-top:36px;transition:opacity .3s;align-self:flex-start;}
+.brand-cta-btn:hover{opacity:.8;}
+
+/* RESPONSIVE GALERIES */
+@media(max-width:768px){
+  .porto-section{padding:64px 0;}
+  .porto-header{padding:0 20px;margin-bottom:28px;flex-direction:column;align-items:flex-start;gap:16px;}
+  .porto-cta-link{align-self:flex-start;}
+
+  /* Featured : grande image pleine largeur, 2 autres côte à côte */
+  .porto-featured-grid{grid-template-columns:1fr 1fr;grid-template-rows:72vw 52vw;}
+  .pi-feat-main{grid-column:1/span 2;grid-row:1;}
+  .pi-feat-top{grid-column:1;grid-row:2;}
+  .pi-feat-bot{grid-column:2;grid-row:2;}
+
+  /* Portrait : 2 colonnes carrées */
+  .porto-portrait-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:52vw 52vw;}
+
+  /* Street : grande pleine largeur, 2 côte à côte en dessous */
+  .porto-street-grid{grid-template-columns:1fr 1fr;grid-template-rows:72vw 52vw;}
+  .pi-street-main{grid-column:1/span 2;grid-row:1;}
+  .pi-street-top{grid-column:1;grid-row:2;}
+  .pi-street-bot{grid-column:2;grid-row:2;}
+
+  /* Brand : 2 images côte à côte + CTA pleine largeur */
+  .porto-brand-grid{grid-template-columns:1fr 1fr;grid-template-rows:52vw auto;}
+  .pi-brand:first-child{grid-column:1;grid-row:1;}
+  .pi-brand:nth-child(2){grid-column:2;grid-row:1;}
+  .brand-cta-panel{grid-column:1/span 2;grid-row:2;padding:32px 24px;}
+
+  .pi-overlay{opacity:1;}
+}
+
+/* SHOWREEL */
+#showreel{padding:0;background:var(--black);}
+.showreel-label{padding:80px 40px 32px;display:flex;align-items:center;gap:16px;}
+.showreel-label::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.showreel-label-text{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);}
+.showreel-title{padding:0 40px 56px;font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,4rem);font-weight:900;line-height:1;letter-spacing:-.02em;}
+.showreel-title em{color:var(--gold);font-style:italic;}
+.showreel-stage{display:flex;align-items:center;justify-content:center;gap:48px;padding:0 40px 100px;}
+.showreel-side{writing-mode:vertical-rl;font-size:10px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);opacity:.4;flex-shrink:0;}
+.showreel-phone{position:relative;width:min(320px,80vw);aspect-ratio:9/16;flex-shrink:0;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 40px 100px rgba(0,0,0,.85),0 0 0 1px rgba(200,169,110,.2);}
+.showreel-phone video{width:100%;height:100%;object-fit:cover;display:block;}
+.showreel-text-mask{position:absolute;left:0;right:0;top:35%;height:40%;z-index:3;background:linear-gradient(to bottom,rgba(7,7,7,0) 0%,rgba(7,7,7,.92) 20%,rgba(7,7,7,.96) 50%,rgba(7,7,7,.92) 80%,rgba(7,7,7,0) 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;}
+.showreel-mask-title{font-family:'Playfair Display',serif;font-size:clamp(18px,5vw,26px);font-weight:900;color:var(--text);letter-spacing:-.01em;text-align:center;line-height:1.2;}
+.showreel-mask-title em{color:var(--gold);font-style:italic;}
+.showreel-mask-sub{font-size:10px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);opacity:.8;}
+.showreel-top{position:absolute;top:0;left:0;right:0;height:22%;z-index:2;background:linear-gradient(to bottom,rgba(7,7,7,.7),transparent);}
+.showreel-bar{position:absolute;bottom:0;left:0;right:0;padding:0 18px 18px;display:flex;align-items:center;justify-content:space-between;z-index:4;background:linear-gradient(to top,rgba(7,7,7,.9) 0%,transparent 100%);padding-top:48px;}
+.showreel-badge{font-size:9px;font-weight:700;letter-spacing:.25em;color:var(--gold);border:1px solid var(--gold-dim);padding:6px 12px;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);}
+.showreel-tag{font-size:9px;letter-spacing:.12em;color:rgba(255,255,255,.35);text-transform:uppercase;}
+@media(max-width:768px){
+  .showreel-stage{padding:0 0 60px;gap:0;}
+  .showreel-side{display:none;}
+  .showreel-phone{width:min(280px,78vw);border-radius:16px;}
+  .showreel-label{padding:60px 24px 28px;}
+  .showreel-title{padding:0 24px 40px;}
+}
+
+/* SERVICES */
+#services{background:var(--dark);padding:120px 40px;}
+.s-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.s-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.s-eyebrow-text{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:.95;letter-spacing:-.03em;color:var(--text);}
+.services-header{margin-bottom:72px;}
+.services-header p{margin-top:20px;color:var(--muted);font-size:15px;max-width:480px;line-height:1.7;}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}
+@media(max-width:768px){.services-grid{grid-template-columns:1fr;}}
+.service-card{background:var(--card);padding:40px;position:relative;overflow:hidden;transition:background .3s;}
+.service-card:hover{background:#1a1a1a;}
+.service-card::before{content:attr(data-num);position:absolute;top:24px;right:28px;font-family:'Playfair Display',serif;font-size:80px;font-weight:900;color:var(--border);line-height:1;}
+.service-icon{width:44px;height:44px;border:1px solid var(--gold-dim);display:flex;align-items:center;justify-content:center;margin-bottom:28px;color:var(--gold);font-size:18px;}
+.service-name{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-bottom:12px;}
+.service-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px;}
+.service-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.service-tag{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dim);padding:4px 12px;}
+.service-cta{display:block;margin-top:32px;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--text);text-decoration:none;transition:color .3s;}
+.service-cta:hover{color:var(--gold);}
+.service-cta::after{content:' →';}
+
+/* ABOUT */
+#about{background:var(--black);padding:120px 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+@media(max-width:768px){#about{grid-template-columns:1fr;gap:48px;padding:80px 24px;}}
+.about-img{position:relative;}
+.about-img img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;filter:brightness(.85);}
+.about-badge{position:absolute;bottom:32px;left:-20px;background:var(--gold);color:var(--black);padding:16px 24px;}
+.about-badge-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;line-height:1;}
+.about-badge-text{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;}
+.about-content .s-eyebrow{margin-bottom:24px;}
+.about-content .s-title{margin-bottom:28px;}
+.about-content p{color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:16px;}
+.about-content p strong{color:var(--text);font-weight:500;}
+.about-socials{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;}
+.about-social{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s;}
+.about-social:hover{color:var(--gold);}
+
+/* DEVIS */
+#devis{background:var(--black);padding:120px 40px;}
+.devis-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+@media(max-width:768px){.devis-wrap{grid-template-columns:1fr;gap:48px;}}
+.devis-info .s-title{margin-bottom:24px;}
+.devis-info p{color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:40px;}
+.devis-items{display:flex;flex-direction:column;gap:16px;}
+.devis-item{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted);}
+.devis-item::before{content:'✓';color:var(--gold);font-weight:700;font-size:12px;}
+.devis-form{background:var(--card);padding:48px;border:1px solid var(--border);}
+.form-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:32px;}
+.form-group{margin-bottom:20px;}
+.form-label{display:block;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.form-input,.form-textarea{width:100%;background:var(--black);border:1px solid var(--border);color:var(--text);padding:14px 16px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .3s;}
+.form-input:focus,.form-textarea:focus{border-color:var(--gold);}
+.form-textarea{resize:vertical;min-height:100px;}
+.form-types{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
+.form-type{background:var(--black);border:1px solid var(--border);padding:12px;cursor:pointer;text-align:center;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:all .3s;}
+.form-type.active,.form-type:hover{border-color:var(--gold);color:var(--gold);}
+.btn-submit{width:100%;background:var(--gold);color:var(--black);padding:18px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;transition:opacity .3s;margin-top:8px;}
+.btn-submit:hover{opacity:.85;}
+.devis-success{display:none;text-align:center;padding:60px 20px;}
+.devis-success.show{display:block;}
+.devis-success-icon{font-size:48px;margin-bottom:24px;}
+.devis-success h3{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:16px;}
+.devis-success p{color:var(--muted);font-size:15px;line-height:1.7;}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 40px 40px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:60px;}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr;}}
+.footer-brand{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;margin-bottom:16px;}
+.footer-brand span{color:var(--gold);}
+.footer-desc{font-size:14px;color:var(--muted);line-height:1.7;max-width:280px;}
+.footer-col-title{font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.footer-links{display:flex;flex-direction:column;gap:12px;}
+.footer-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .3s;}
+.footer-links a:hover{color:var(--text);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:32px;border-top:1px solid var(--border);flex-wrap:wrap;gap:16px;}
+.footer-copy{font-size:12px;color:var(--muted);}
+.footer-socials{display:flex;gap:20px;}
+.footer-socials a{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s;}
+.footer-socials a:hover{color:var(--gold);}
+
+/* RESPONSIVE GENERAL */
+@media(max-width:900px){
+  nav{padding:20px 24px;}
+  nav.scrolled{padding:14px 24px;}
+  .nav-links,.nav-cta{display:none;}
+  .nav-burger{display:flex;}
+  #hero .hero-content{padding:0 24px 80px;}
+  .hero-stats{display:none;}
+  #services{padding:80px 24px;}
+  #devis{padding:80px 24px;}
+  .devis-form{padding:32px 24px;}
+  footer{padding:48px 24px 32px;}
+  .about-badge{left:0;}
+}
+.fade-up{opacity:1;transform:none;}
+
+/* ─── SLIDER SÉANCE EXCLUSIVE ─── */
+.slider-section{background:var(--dark);padding:80px 0;border-top:1px solid var(--border);}
+.slider-header{padding:0 40px;margin-bottom:40px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.slider-eyebrow{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.slider-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.slider-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.4rem);font-weight:900;line-height:1;letter-spacing:-.03em;}
+.slider-title em{color:var(--gold);font-style:italic;}
+.slider-wrap{position:relative;width:100%;background:var(--black);display:flex;flex-direction:column;align-items:center;padding:0 48px 0;}
+.slider-track{position:relative;width:min(400px,88vw);aspect-ratio:3/4;flex-shrink:0;}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;}
+.slide.active{opacity:1;z-index:1;}
+.slide img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;}
+.slide-caption{position:absolute;bottom:0;left:0;right:0;padding:20px 22px;background:linear-gradient(to top,rgba(7,7,7,.9) 0%,transparent 100%);display:flex;align-items:center;justify-content:space-between;z-index:2;}
+.slide-num{font-size:11px;font-weight:600;letter-spacing:.3em;color:var(--gold);}
+.slide-label{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);}
+/* Progress bar */
+.slider-progress{width:min(400px,88vw);height:2px;background:rgba(255,255,255,.1);margin-top:2px;}
+.slider-bar{height:100%;background:var(--gold);width:0%;transition:width .08s linear;}
+/* Dots */
+.slider-dots{display:flex;justify-content:center;gap:10px;padding:18px 0;}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--muted);cursor:pointer;transition:background .3s,transform .3s;}
+.dot.active{background:var(--gold);transform:scale(1.5);}
+/* Arrows — positionnées par rapport au track */
+.slider-arrows-wrap{position:relative;width:min(400px,88vw);height:0;}
+.slider-arrow{position:absolute;top:0;transform:translateY(calc(-1 * (min(400px,88vw) * 4/3 / 2) - 22px));background:rgba(7,7,7,.75);border:1px solid var(--border);color:var(--text);width:44px;height:44px;font-size:16px;cursor:pointer;z-index:10;transition:border-color .3s,color .3s;display:flex;align-items:center;justify-content:center;}
+.slider-arrow:hover{border-color:var(--gold);color:var(--gold);}
+.slider-prev{left:-22px;}
+.slider-next{right:-22px;}
+@media(max-width:600px){
+  .slider-section{padding:48px 0;}
+  .slider-header{padding:0 20px;flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:24px;}
+  .slider-wrap{padding:0 32px 0;}
+  .slider-track{width:min(320px,82vw);}
+  .slider-progress{width:min(320px,82vw);}
+  .slider-arrows-wrap{width:min(320px,82vw);}
+  .slide-label{font-size:16px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#featured" onclick="closeMobileNav()">Galerie</a>
+  <a href="#services" onclick="closeMobileNav()">Services</a>
+  <a href="#about" onclick="closeMobileNav()">À propos</a>
+  <a href="#devis" onclick="closeMobileNav()">Devis gratuit</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">S<span>.</span></a>
+  <div class="nav-links">
+    <a href="#featured">Galerie</a>
+    <a href="#services">Services</a>
+    <a href="#about">À propos</a>
+    <a href="#devis" class="nav-cta">Devis gratuit</a>
+  </div>
+  <div class="nav-burger" id="burger" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span>Paris · Photo · Vidéo · 2025</span></div>
+    <h1 class="hero-title">Des images<br/>qui font <em>réagir</em></h1>
+    <p class="hero-sub">Rappeurs, influenceurs, artistes — je capture ce que les mots ne peuvent pas dire. Des visuels cinématiques à la hauteur de ton talent.</p>
+    <div class="hero-btns">
+      <a href="#devis" class="btn-primary">Devis gratuit</a>
+      <a href="#featured" class="btn-ghost">Voir la galerie</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">50+</div><div class="hero-stat-label">Shootings</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">★ 5</div><div class="hero-stat-label">Satisfaction</div></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Photographe</span><span>Vidéaste</span><span>Clips Rap</span><span>Influenceurs</span><span>Brand Content</span><span>Paris</span><span>Portrait</span><span>Éditorial</span>
+    <span>Photographe</span><span>Vidéaste</span><span>Clips Rap</span><span>Influenceurs</span><span>Brand Content</span><span>Paris</span><span>Portrait</span><span>Éditorial</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════
+     01 — FEATURED
+     Sélection signature : 1 grand portrait + 2 images droite
+     Objectif : impact immédiat, diversité, accroche
+     ══════════════════════════ -->
+<section class="porto-section" id="featured">
+  <div class="porto-header">
+    <div>
+      <div class="porto-num">01 — Portfolio</div>
+      <h2 class="porto-title">La sélection<br/><em>signature</em></h2>
+      <p class="porto-desc">Les visuels qui définissent l'identité Seven-Prod. Cinématique, tranchant, mémorable.</p>
+    </div>
+    <a href="#devis" class="porto-cta-link">Réserver mon shooting</a>
+  </div>
+  <div class="porto-featured-grid">
+    <div class="pi pi-feat-main">
+      <img src="new_woman_solo.jpeg" alt="Portrait glamour" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Glamour</div><div class="pi-name">Lady Boss</div></div>
+    </div>
+    <div class="pi pi-feat-top">
+      <img src="gal1.jpeg" alt="Portrait solo" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Portrait</div><div class="pi-name">Solo Shot</div></div>
+    </div>
+    <div class="pi pi-feat-bot">
+      <img src="new_trio_women.jpeg" alt="Shooting groupe" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Groupe</div><div class="pi-name">Power Trio</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     02 — PORTRAIT STUDIO
+     4 portraits 2×2 — maîtrise artistique
+     Objectif : crédibilité, presse, identité artiste
+     ══════════════════════════ -->
+<section class="porto-section" id="portrait-studio">
+  <div class="porto-header">
+    <div>
+      <div class="porto-num">02 — Portrait Studio</div>
+      <h2 class="porto-title">L'art du<br/><em>portrait</em></h2>
+      <p class="porto-desc">Press kit, identité artiste, éditorial. Chaque portrait est une déclaration visuelle.</p>
+    </div>
+    <a href="#devis" class="porto-cta-link">Shooting portrait</a>
+  </div>
+  <div class="porto-portrait-grid">
+    <div class="pi pi-portrait">
+      <img src="gal3.jpeg" alt="Portrait artistique" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Artistique</div><div class="pi-name">Deep Focus</div></div>
+    </div>
+    <div class="pi pi-portrait">
+      <img src="new_portrait_man.jpeg" alt="Portrait Golden Light" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Street</div><div class="pi-name">Golden Light</div></div>
+    </div>
+    <div class="pi pi-portrait">
+      <img src="gal4.jpeg" alt="Portrait N&B" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">N&amp;B</div><div class="pi-name">Dark Mood</div></div>
+    </div>
+    <div class="pi pi-portrait">
+      <img src="gal5.jpeg" alt="Portrait éditorial" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Éditorial</div><div class="pi-name">Press Kit</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     SLIDER — SÉANCE EXCLUSIVE
+     5 photos série dark/cinématique
+     Autoplay, pleine largeur, fade
+     ══════════════════════════ -->
+<section class="slider-section" id="seance">
+  <div class="slider-header">
+    <div>
+      <div class="slider-eyebrow">Séance exclusive</div>
+      <h2 class="slider-title">Une série,<br/>une <em>atmosphère</em></h2>
+    </div>
+  </div>
+  <div class="slider-wrap">
+    <div class="slider-track" id="sliderTrack">
+      <div class="slide active">
+        <img src="WhatsApp Image 2026-03-27 at 22.07.41.jpeg" alt="Séance exclusive — face cam" loading="lazy"/>
+        <div class="slide-caption"><span class="slide-num">01 / 05</span><span class="slide-label">Neon Portrait</span></div>
+      </div>
+      <div class="slide">
+        <img src="WhatsApp Image 2026-03-27 at 22.07.20 (1).jpeg" alt="Séance exclusive — ombre" loading="lazy"/>
+        <div class="slide-caption"><span class="slide-num">02 / 05</span><span class="slide-label">Shadow &amp; Light</span></div>
+      </div>
+      <div class="slide">
+        <img src="WhatsApp Image 2026-03-27 at 22.07.20 (2).jpeg" alt="Séance exclusive — dos" loading="lazy"/>
+        <div class="slide-caption"><span class="slide-num">03 / 05</span><span class="slide-label">Neon Green</span></div>
+      </div>
+      <div class="slide">
+        <img src="WhatsApp Image 2026-03-27 at 22.07.20 (3).jpeg" alt="Séance exclusive — profil" loading="lazy"/>
+        <div class="slide-caption"><span class="slide-num">04 / 05</span><span class="slide-label">Blind Side</span></div>
+      </div>
+      <div class="slide">
+        <img src="WhatsApp Image 2026-03-27 at 22.07.20.jpeg" alt="Séance exclusive — raw" loading="lazy"/>
+        <div class="slide-caption"><span class="slide-num">05 / 05</span><span class="slide-label">Raw Energy</span></div>
+      </div>
+    </div>
+    <div class="slider-progress"><div class="slider-bar" id="sliderBar"></div></div>
+    <div class="slider-dots" id="sliderDots">
+      <span class="dot active" onclick="goSlide(0)"></span>
+      <span class="dot" onclick="goSlide(1)"></span>
+      <span class="dot" onclick="goSlide(2)"></span>
+      <span class="dot" onclick="goSlide(3)"></span>
+      <span class="dot" onclick="goSlide(4)"></span>
+    </div>
+    <div class="slider-arrows-wrap">
+      <button class="slider-arrow slider-prev" onclick="moveSlide(-1)">←</button>
+      <button class="slider-arrow slider-next" onclick="moveSlide(1)">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     03 — STREET & LIFESTYLE
+     1 grand gauche + 2 droite — énergie urbaine
+     Objectif : influenceurs, réseaux, lifestyle
+     ══════════════════════════ -->
+<section class="porto-section" id="street-lifestyle">
+  <div class="porto-header">
+    <div>
+      <div class="porto-num">03 — Street &amp; Lifestyle</div>
+      <h2 class="porto-title">Dans la<br/><em>rue</em></h2>
+      <p class="porto-desc">Contenu lifestyle pour arrêter le scroll. Réels, TikTok, Instagram — format natif.</p>
+    </div>
+    <a href="#devis" class="porto-cta-link">Pack réseaux</a>
+  </div>
+  <div class="porto-street-grid">
+    <div class="pi pi-street-main">
+      <img src="WhatsApp Image 2026-03-27 at 01.15.56.jpeg" alt="Street mode" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Mode</div><div class="pi-name">Street Cast</div></div>
+    </div>
+    <div class="pi pi-street-top">
+      <img src="WhatsApp Image 2026-03-27 at 01.14.41 (1).jpeg" alt="Urban style" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Urban</div><div class="pi-name">City Vibes</div></div>
+    </div>
+    <div class="pi pi-street-bot">
+      <img src="WhatsApp Image 2026-03-27 at 01.14.41 (2).jpeg" alt="Duo Paris" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Duo</div><div class="pi-name">Paris Nights</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     04 — BRAND & MOTION
+     2 images + panneau CTA doré — conversion
+     Objectif : marques, clips, closer le client
+     ══════════════════════════ -->
+<section class="porto-section" id="brand-motion">
+  <div class="porto-header">
+    <div>
+      <div class="porto-num">04 — Brand &amp; Motion</div>
+      <h2 class="porto-title">Pour les<br/><em>marques</em></h2>
+      <p class="porto-desc">Campagnes, clips, brand content. L'image premium qui convertit et qui dure.</p>
+    </div>
+    <a href="#devis" class="porto-cta-link">Brand Content</a>
+  </div>
+  <div class="porto-brand-grid">
+    <div class="pi pi-brand">
+      <img src="WhatsApp Image 2026-03-27 at 01.15.11.jpeg" alt="Brand content" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Brand</div><div class="pi-name">Visual ID</div></div>
+    </div>
+    <div class="pi pi-brand">
+      <img src="chilly-shooting.jpeg" alt="Tournage clip" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.remove();"/>
+      <div class="pi-overlay"><div class="pi-cat">Tournage</div><div class="pi-name">On Set</div></div>
+    </div>
+    <div class="brand-cta-panel">
+      <div>
+        <div class="brand-cta-label">Seven-Prod · Paris</div>
+        <div class="brand-cta-title">Ton projet mérite une image à sa hauteur.</div>
+        <div class="brand-cta-sub">Devis gratuit · Réponse sous 24h · Tarif adapté à ton budget</div>
+      </div>
+      <a href="#devis" class="brand-cta-btn">Démarrer mon projet →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWREEL — ⚠️ remplace "chilly-clip.mp4" par le bon fichier -->
+<section id="showreel" style="padding:0;">
+  <div class="showreel-label"><span class="showreel-label-text">Behind the lens</span></div>
+  <div class="showreel-title">En <em>mouvement</em></div>
+  <div class="showreel-stage">
+    <div class="showreel-side">Seven-Prod · Paris · 2025</div>
+    <div class="showreel-phone">
+      <video autoplay muted loop playsinline preload="none">
+        <source src="showreel.mp4" type="video/mp4"/>
+      </video>
+      <div class="showreel-top"></div>
+      <div class="showreel-text-mask">
+        <div class="showreel-mask-title">Tes photos<br/><em>méritent mieux</em></div>
+        <div class="showreel-mask-sub">Seven-Prod · Paris</div>
+      </div>
+      <div class="showreel-bar">
+        <div class="showreel-badge">▶ Showreel 2025</div>
+        <div class="showreel-tag">Photo · Vidéo</div>
+      </div>
+    </div>
+    <div class="showreel-side">Photographe · Vidéaste · Artiste</div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header fade-up">
+    <div class="s-eyebrow"><span class="s-eyebrow-text">Prestations</span></div>
+    <h2 class="s-title">Ce que je crée<br/>pour toi</h2>
+    <p>Chaque projet est unique. Décris-moi ta vision — devis personnalisé sous 24 h.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up" data-num="01">
+      <div class="service-icon">◈</div>
+      <div class="service-name">Shooting Photo</div>
+      <div class="service-desc">Identité visuelle, press kit, réseaux sociaux. Des visuels qui t'imposent et t'installent durablement.</div>
+      <div class="service-tags"><span class="service-tag">Portrait</span><span class="service-tag">Mode</span><span class="service-tag">Artiste</span></div>
+      <a href="#devis" class="service-cta">Obtenir mon devis</a>
+    </div>
+    <div class="service-card fade-up" data-num="02">
+      <div class="service-icon">▷</div>
+      <div class="service-name">Clip Vidéo</div>
+      <div class="service-desc">Tournage cinématique, montage pro, color grading 4K. Le clip qui fait streamer et qui reste en tête.</div>
+      <div class="service-tags"><span class="service-tag">Rap</span><span class="service-tag">R&amp;B</span><span class="service-tag">Afro</span></div>
+      <a href="#devis" class="service-cta">Obtenir mon devis</a>
+    </div>
+    <div class="service-card fade-up" data-num="03">
+      <div class="service-icon">◉</div>
+      <div class="service-name">Pack Réseaux</div>
+      <div class="service-desc">Reels, TikTok, Shorts. Du contenu pensé pour exploser l'algorithme et fidéliser ta communauté.</div>
+      <div class="service-tags"><span class="service-tag">Instagram</span><span class="service-tag">TikTok</span><span class="service-tag">YouTube</span></div>
+      <a href="#devis" class="service-cta">Obtenir mon devis</a>
+    </div>
+    <div class="service-card fade-up" data-num="04">
+      <div class="service-icon">◇</div>
+      <div class="service-name">Brand Content</div>
+      <div class="service-desc">Campagnes marques, publicités digitales, direction artistique complète. L'image premium de ta marque.</div>
+      <div class="service-tags"><span class="service-tag">Marque</span><span class="service-tag">Pub</span><span class="service-tag">DA</span></div>
+      <a href="#devis" class="service-cta">Obtenir mon devis</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-img fade-up">
+    <img src="gal5.jpeg" alt="Seven-Prod Paris"/>
+    <div class="about-badge">
+      <div class="about-badge-num">50+</div>
+      <div class="about-badge-text">Shootings réalisés</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <div class="s-eyebrow fade-up"><span class="s-eyebrow-text">À propos</span></div>
+    <h2 class="s-title fade-up">L'image qui<br/>parle pour toi</h2>
+    <p class="fade-up">Dans un monde où tout le monde poste, <strong>tes visuels doivent arrêter le scroll</strong>. Je crée des contenus cinématiques pour artistes et créateurs qui veulent une image à la hauteur de leur talent.</p>
+    <p class="fade-up">Basé à Paris, je travaille avec des rappeurs, influenceurs, artistes et marques qui ont compris que l'image, c'est tout.</p>
+    <div class="about-socials fade-up">
+      <a href="https://instagram.com/S7vn_932" target="_blank" class="about-social">↗ Instagram</a>
+      <a href="https://www.snapchat.com/add/bebeto_93200" target="_blank" class="about-social">↗ Snapchat</a>
+      <a href="https://tiktok.com/@shooter2958" target="_blank" class="about-social">↗ TikTok</a>
+    </div>
+  </div>
+</section>
+
+<!-- DEVIS -->
+<section id="devis">
+  <div class="devis-wrap">
+    <div class="devis-info fade-up">
+      <div class="s-eyebrow"><span class="s-eyebrow-text">Contact</span></div>
+      <h2 class="s-title">Travaillons<br/>ensemble</h2>
+      <p>Décris-moi ton projet. Je te reviens avec un devis sur-mesure sous 24 h — par WhatsApp ou email.</p>
+      <div class="devis-items">
+        <div class="devis-item">Zone Paris &amp; Île-de-France</div>
+        <div class="devis-item">Devis 100 % gratuit &amp; sans engagement</div>
+        <div class="devis-item">Réponse sous 24 heures</div>
+        <div class="devis-item">Tarif adapté à ton budget</div>
+        <div class="devis-item">Instagram : @S7vn_932</div>
+      </div>
+    </div>
+    <div class="devis-form fade-up" id="devisForm">
+      <div class="form-title">Ton projet en quelques mots</div>
+      <div class="form-types">
+        <div class="form-type active" onclick="selectType(this,'Shooting Photo')">Photo</div>
+        <div class="form-type" onclick="selectType(this,'Clip Vidéo')">Clip</div>
+        <div class="form-type" onclick="selectType(this,'Pack Réseaux')">Réseaux</div>
+        <div class="form-type" onclick="selectType(this,'Brand Content')">Brand</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Prénom / Nom d'artiste</label>
+        <input class="form-input" id="fName" type="text" placeholder="Ex: Chilly, @Influenceur93..."/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Instagram / TikTok</label>
+        <input class="form-input" id="fInsta" type="text" placeholder="@tonprofil"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Décris ton projet</label>
+        <textarea class="form-textarea" id="fProject" placeholder="Date souhaitée, ambiance, références..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="sendDevis()">Envoyer ma demande →</button>
+    </div>
+    <div class="devis-success" id="devisSuccess">
+      <div class="devis-success-icon">✦</div>
+      <h3>C'est parti !</h3>
+      <p>Ton projet est entre de bonnes mains. Je prépare ton devis personnalisé et reviens vers toi sous 24 h.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Seven<span>.</span>Prod</div>
+      <p class="footer-desc">Photographe &amp; Vidéaste Paris. Des visuels cinématiques pour artistes, rappeurs, influenceurs et marques.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <div class="footer-links">
+        <a href="#featured">Galerie</a>
+        <a href="#services">Services</a>
+        <a href="#about">À propos</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <div class="footer-links">
+        <a href="#devis">Shooting Photo</a>
+        <a href="#devis">Clip Vidéo</a>
+        <a href="#devis">Pack Réseaux</a>
+        <a href="#devis">Brand Content</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Réseaux</div>
+      <div class="footer-links">
+        <a href="https://instagram.com/S7vn_932" target="_blank">Instagram</a>
+        <a href="https://www.snapchat.com/add/bebeto_93200" target="_blank">Snapchat</a>
+        <a href="https://tiktok.com/@shooter2958" target="_blank">TikTok</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Seven-Prod — Paris, France</div>
+    <div class="footer-socials">
+      <a href="https://instagram.com/S7vn_932" target="_blank">Instagram</a>
+      <a href="https://tiktok.com/@shooter2958" target="_blank">TikTok</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  // CURSOR
+  var cursor = document.getElementById('cursor');
+  var ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', function(e) {
+    if (cursor) { cursor.style.left = e.clientX+'px'; cursor.style.top = e.clientY+'px'; }
+    if (ring) { setTimeout(function(){ ring.style.left = e.clientX+'px'; ring.style.top = e.clientY+'px'; }, 80); }
+  });
+
+  // NAV SCROLL
+  window.addEventListener('scroll', function() {
+    var nav = document.getElementById('navbar');
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // HERO BG
+  var bg = document.getElementById('heroBg');
+  if (bg) setTimeout(function(){ bg.classList.add('loaded'); }, 100);
+
+  // MOBILE NAV
+  window.toggleMobileNav = function() {
+    var n = document.getElementById('mobileNav');
+    if (n) n.classList.toggle('open');
+  };
+  window.closeMobileNav = function() {
+    var n = document.getElementById('mobileNav');
+    if (n) n.classList.remove('open');
+  };
+
+  // DEVIS
+  var selectedType = 'Shooting Photo';
+  window.selectType = function(el, type) {
+    selectedType = type;
+    document.querySelectorAll('.form-type').forEach(function(t){ t.classList.remove('active'); });
+    el.classList.add('active');
+  };
+  window.sendDevis = function() {
+    var name    = (document.getElementById('fName')    || {value:''}).value.trim();
+    var insta   = (document.getElementById('fInsta')   || {value:''}).value.trim();
+    var project = (document.getElementById('fProject') || {value:''}).value.trim();
+    if (!name) { var inp = document.getElementById('fName'); if (inp) inp.focus(); return; }
+    var msg = 'Bonjour Seven-Prod !
+
+Type : ' + selectedType +
+              '
+Nom : ' + name +
+              '
+Instagram : ' + (insta || 'non renseigne') +
+              '
+Projet : ' + (project || 'non renseigne') +
+              '
+
+Merci de revenir sous 24h !';
+    var url  = 'https://wa.me/33651238450?text=' + encodeURIComponent(msg);
+    var form = document.getElementById('devisForm');
+    var succ = document.getElementById('devisSuccess');
+    if (form) form.style.display = 'none';
+    if (succ) succ.classList.add('show');
+    setTimeout(function(){ window.location.href = url; }, 300);
+  };
+
+  // SLIDER
+  var slides   = document.querySelectorAll('.slide');
+  var dots     = document.querySelectorAll('.dot');
+  var bar      = document.getElementById('sliderBar');
+  var total    = slides.length;
+  var INTERVAL = 3500;
+  var cur      = 0;
+  var autoTimer = null;
+  var progTimer = null;
+
+  if (total > 0) {
+
+    function showSlide(n) {
+      for (var i = 0; i < total; i++) {
+        slides[i].classList.remove('active');
+        if (dots[i]) dots[i].classList.remove('active');
+      }
+      cur = ((n % total) + total) % total;
+      slides[cur].classList.add('active');
+      if (dots[cur]) dots[cur].classList.add('active');
+    }
+
+    function startBar() {
+      var val = 0;
+      if (bar) bar.style.width = '0%';
+      clearInterval(progTimer);
+      progTimer = setInterval(function() {
+        val += 100 / (INTERVAL / 50);
+        if (val > 100) val = 100;
+        if (bar) bar.style.width = val + '%';
+      }, 50);
+    }
+
+    function startAuto() {
+      clearInterval(autoTimer);
+      startBar();
+      autoTimer = setInterval(function() {
+        showSlide(cur + 1);
+        startBar();
+      }, INTERVAL);
+    }
+
+    function stopAuto() {
+      clearInterval(autoTimer);
+      clearInterval(progTimer);
+    }
+
+    window.goSlide = function(n) { stopAuto(); showSlide(n); startAuto(); };
+    window.moveSlide = function(d) { stopAuto(); showSlide(cur + d); startAuto(); };
+
+    showSlide(0);
+    startAuto();
+
+    var wrap = document.querySelector('.slider-wrap');
+    if (wrap) {
+      wrap.addEventListener('mouseenter', stopAuto);
+      wrap.addEventListener('mouseleave', startAuto);
+      var tx = 0;
+      wrap.addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; }, {passive:true});
+      wrap.addEventListener('touchend', function(e){
+        var dx = e.changedTouches[0].clientX - tx;
+        if (Math.abs(dx) > 40) { stopAuto(); showSlide(cur + (dx < 0 ? 1 : -1)); startAuto(); }
+      }, {passive:true});
+    }
+  }
+
+});
+</script>
+</body>
+</html>
